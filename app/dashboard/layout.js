@@ -1,9 +1,14 @@
-import React from 'react'
+"use client"
 
-const DashboardLayout = () => {
+import { Box } from "@mui/material";
+import React from "react";
+
+const DashboardLayout = ({ children }) => {
   return (
-    <div>DashboardLayout</div>
-  )
-}
+    <Box sx={{ display: "flex" }}>
+      {children}
+    </Box>
+  );
+};
 
-export default DashboardLayout
+export default DashboardLayout;

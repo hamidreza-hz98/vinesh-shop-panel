@@ -1,8 +1,9 @@
+import AuthPageWrapper from '@/components/wrappers/AuthPageWrapper'
 import React from 'react'
 
 const AuthPage = () => {
   return (
-    <div>AuthPage</div>
+    <AuthPageWrapper />
   )
 }
 
