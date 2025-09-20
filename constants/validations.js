@@ -29,3 +29,11 @@ export const adminSchema = yup.object().shape({
   password: yup.string().required("Password is required").min(6, "Password must be at least 6 characters"),
   role: yup.string().required("Role is required").max(50),
 });
+
+export const mediaSchema = yup.object().shape({
+  title: yup.string().required("Title is required").max(100),
+  description: yup.string().required("Description is required").max(500),
+  file: yup.mixed().required("File is required"),
+  altText: yup.string().required("Alt text is required").max(100),
+  isPublic: yup.boolean().required("Visibility is required"),
+});

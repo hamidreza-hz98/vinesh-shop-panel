@@ -109,6 +109,9 @@ const getDrawerContent = React.useCallback(
           justifyContent: 'space-between',
           overflow: 'auto',
           scrollbarGutter: mini ? 'stable' : 'auto',
+          '&::-webkit-scrollbar': {
+            width: '5px',
+          },
           overflowX: 'hidden',
           pt: !mini ? 0 : 2,
           ...(hasDrawerTransitions

@@ -13,6 +13,7 @@ import ShoppingCartCheckoutOutlinedIcon from '@mui/icons-material/ShoppingCartCh
 import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlined';
 import RateReviewOutlinedIcon from '@mui/icons-material/RateReviewOutlined';
 import SupervisedUserCircleOutlinedIcon from '@mui/icons-material/SupervisedUserCircleOutlined';
+import PermMediaOutlinedIcon from '@mui/icons-material/PermMediaOutlined';
 
 export const sidebarRoutes = [
   {
@@ -35,6 +36,12 @@ export const sidebarRoutes = [
         title: "Admins",
         icon: Person2OutlinedIcon,
         href: "/dashboard/admins",
+      },
+      {
+        id: "media",
+        title: "Media",
+        icon: PermMediaOutlinedIcon,
+        href: "/dashboard/media",
       },
       {
         id: "products",

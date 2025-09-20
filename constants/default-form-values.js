@@ -17,3 +17,11 @@ export const adminDefaultFormValues = (data) => ({
   password: data?.password || "",
   role: data?.role || "",
 });
+
+export const mediaDefaultFormValues = (data) => ({
+  title: data?.title || "",
+  description: data?.description || "",
+  file: data?.file || null,
+  altText: data?.altText || "",
+  isPublic: data?.isPublic || false,
+});
