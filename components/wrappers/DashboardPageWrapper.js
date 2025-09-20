@@ -45,11 +45,20 @@ export default function Dashboard() {
           spacing={2}
         >
           <NavbarBreadcrumbs />
-          <Stack direction="row" sx={{ gap: 1 }}>
+
+          
+          <Stack
+            direction="row"
+            sx={{
+              gap: 1,
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
             <PrimarySerachField />
 
             <CustomDatePicker />
-            
+
             {/* <MenuButton showBadge aria-label="Open notifications">
               <NotificationsRoundedIcon />
             </MenuButton> */}

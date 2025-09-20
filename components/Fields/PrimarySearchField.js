@@ -11,7 +11,7 @@ export default function PrimarySerachField() {
         size="small"
         id="search"
         placeholder="Search…"
-        sx={{ flexGrow: 1 }}
+        sx={{ flexGrow: 1, marginTop: "0px !important" }}
         startAdornment={
           <InputAdornment position="start" sx={{ color: 'text.primary' }}>
             <SearchRoundedIcon fontSize="small" />

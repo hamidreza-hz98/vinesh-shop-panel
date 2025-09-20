@@ -12,6 +12,7 @@ import LayersOutlinedIcon from '@mui/icons-material/LayersOutlined';
 import ShoppingCartCheckoutOutlinedIcon from '@mui/icons-material/ShoppingCartCheckoutOutlined';
 import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlined';
 import RateReviewOutlinedIcon from '@mui/icons-material/RateReviewOutlined';
+import SupervisedUserCircleOutlinedIcon from '@mui/icons-material/SupervisedUserCircleOutlined';
 
 export const sidebarRoutes = [
   {
@@ -22,6 +23,12 @@ export const sidebarRoutes = [
         title: "Dashboard",
         icon: DashboardOutlinedIcon,
         href: "/dashboard",
+      },
+      {
+        id: "users",
+        title: "Users",
+        icon: SupervisedUserCircleOutlinedIcon,
+        href: "/dashboard/users",
       },
       {
         id: "admins",

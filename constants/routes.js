@@ -5,6 +5,8 @@ dashboard: "/dashboard",
 
 admins: "/dashboard/admins",
 
+users: "/dashboard/users",
+
 products: "/dashboard/products",
 
 createProduct: "/dashboard/products/create",

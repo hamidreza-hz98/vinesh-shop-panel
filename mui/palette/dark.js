@@ -1,50 +1,51 @@
+import { alpha } from "@mui/material";
+import { brand, gray, green, orange, red } from "./custom-colors";
+
 const darkPalette = {
-  mode: 'dark',
+  mode: "dark",
+  brand,
+  gray,
+  green,
+  orange,
+  red,
+
   primary: {
-    light: '#6573c3',
-    main: '#3f51b5',
-    dark: '#2c387e',
-    contrastText: '#ffffff',
-  },
-  secondary: {
-    light: '#ff5983',
-    main: '#f50057',
-    dark: '#bb002f',
-    contrastText: '#ffffff',
+    light: brand[300],
+    main: brand[400],
+    dark: brand[700],
+    contrastText: brand[50],
   },
   error: {
-    light: '#ef5350',
-    main: '#f44336',
-    dark: '#c62828',
-    contrastText: '#ffffff',
+    light: red[400],
+    main: red[300],
+    dark: red[700],
+    contrastText: brand[50],
   },
   warning: {
-    light: '#ffb74d',
-    main: '#ff9800',
-    dark: '#ef6c00',
-    contrastText: '#000000',
-  },
-  info: {
-    light: '#64b5f6',
-    main: '#2196f3',
-    dark: '#1565c0',
-    contrastText: '#ffffff',
+    light: orange[400],
+    main: orange[500],
+    dark: orange[700],
+    contrastText: brand[50],
   },
   success: {
-    light: '#81c784',
-    main: '#4caf50',
-    dark: '#2e7d32',
-    contrastText: '#ffffff',
+    light: green[400],
+    main: green[500],
+    dark: green[700],
+    contrastText: brand[50],
   },
   text: {
-    primary: '#ffffff',
-    secondary: '#b0bec5',
+    primary: brand[50],
+    secondary: gray[400],
   },
   background: {
-    default: '#121212',
-    paper: '#1d1d1d',
+    default: gray[900],
+    paper: 'hsl(220, 10%, 7%)',
   },
-  divider: 'rgba(255,255,255,0.12)',
+  divider: alpha(gray[500], 0.6),
+  action: {
+    hover: alpha(gray[600], 0.2),
+    selected: alpha(gray[600], 0.3),
+  },
 };
 
 export default darkPalette;
