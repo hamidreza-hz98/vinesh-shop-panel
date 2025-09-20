@@ -21,3 +21,11 @@ export const userSchema = yup.object().shape({
     .matches(/^IR\d{24}$/, "Enter a valid Iranian Sheba number"),
   birthdate: yup.date().required("Birth date is required"),
 });
+
+export const adminSchema = yup.object().shape({
+  firstName: yup.string().required("First name is required").max(50),
+  lastName: yup.string().required("Last name is required").max(50),
+  username: yup.string().required("Username is required").max(50),
+  password: yup.string().required("Password is required").min(6, "Password must be at least 6 characters"),
+  role: yup.string().required("Role is required").max(50),
+});

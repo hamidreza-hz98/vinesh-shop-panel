@@ -9,3 +9,11 @@ export const userDefaultFormValues = (data) => ({
   shebaNumber: data?.shebaNumber || "",
   birthdate: data?.birthdate ? dayjs(data.birthdate) : null,
 });
+
+export const adminDefaultFormValues = (data) => ({
+  firstName: data?.firstName || "",
+  lastName: data?.lastName || "",
+  username: data?.username || "",
+  password: data?.password || "",
+  role: data?.role || "",
+});

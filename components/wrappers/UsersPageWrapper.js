@@ -20,8 +20,12 @@ const UsersPageWrapper = () => {
   return (
     <div>
       <Overview
-        title="Users"
-        breadcrumbs={[{ title: "Users" }]}
+        title="Manage Users"
+        breadcrumbs={[
+          { title: "Vinesh Shop" },
+          { title: "Dashboard", path: "/dashboard" },
+          { title: "Users" },
+        ]}
         columns={userColumns}
         getMany={getUsers}
         deleteOne={deleteUser}
