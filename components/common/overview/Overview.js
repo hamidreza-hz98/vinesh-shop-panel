@@ -168,7 +168,7 @@ export default function Overview({
        setSelectedRow(row);
        setDrawerOpen(true);
      } else {
-       router.push(`${pathname}/${createPath}/${row.id}`);
+       router.push(`${pathname}/${createPath}?id=${row.id}`);
      }
    },
    [formMode, router, pathname, createPath]
@@ -192,7 +192,7 @@ export default function Overview({
         setSelectedRow(row);
         setDrawerOpen(true);
       } else {
-        router.push(`${pathname}/${createPath}/${row.id}`);
+        router.push(`${pathname}/${createPath}?id=${row.id}`);
       }
     },
     [formMode, router, pathname, createPath]
@@ -361,6 +361,12 @@ export default function Overview({
                 size: "small",
               },
             }}
+             getRowHeight={(params) => {
+    if (params.model.media && params.model.media.length > 0) {
+      return 120;
+    }
+    return null;
+  }}
           />
         )}
       </Box>

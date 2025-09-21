@@ -1,10 +1,13 @@
-import CreateProductPageWrapper from '@/components/wrappers/CreateProductPageWrapper'
-import React from 'react'
+import Loader from "@/components/common/Loader";
+import CreateProductPageWrapper from "@/components/wrappers/CreateProductPageWrapper";
+import React from "react";
 
 const CreateProductPage = () => {
   return (
-    <CreateProductPageWrapper />
-  )
-}
+    <React.Suspense fallback={<Loader />}>
+      <CreateProductPageWrapper />
+    </React.Suspense>
+  );
+};
 
-export default CreateProductPage
+export default CreateProductPage;
