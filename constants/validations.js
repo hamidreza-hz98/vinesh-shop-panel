@@ -1,3 +1,4 @@
+import { brand } from "@/mui/palette/custom-colors";
 import * as yup from "yup";
 
 export const userSchema = yup.object().shape({
@@ -36,4 +37,27 @@ export const mediaSchema = yup.object().shape({
   file: yup.mixed().required("File is required"),
   altText: yup.string().required("Alt text is required").max(100),
   isPublic: yup.boolean().required("Visibility is required"),
+});
+
+export const productSchema = yup.object().shape({
+  quantity: yup.number().required("Quantity is required").min(0, "Quantity cannot be negative"),
+  categories: yup.array().of(yup.string()).min(1, "At least one category is required"),
+  tags: yup.array().of(yup.string()),
+  brand: yup.string().max(50),
+  relatedProducts: yup.array().of(yup.string()),
+  isInCampaign: yup.boolean().required("Campaign status is required"),
+  isActive: yup.boolean().required("Active status is required"),
+  isFeatured: yup.boolean().required("Featured status is required"),
+  media: yup.array().of(yup.string()).min(1, "At least one media item is required"),
+  catalogue: yup.object().shape({
+    src: yup.string().required("Catalogue source is required"),
+    altText: yup.string().required("Catalogue alt text is required").max(100),
+  }),
+  translations: yup.array().of(
+    yup.object().shape({
+      lang: yup.string().required("Language is required").max(10),
+      name: yup.string().required("Name is required").max(100),
+      description: yup.string().required("Description is required").max(500),
+    })
+  ),
 });

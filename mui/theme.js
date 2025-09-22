@@ -10,6 +10,7 @@ import feedbackCustomizations from "./components/feedback";
 import inputsCustomizations from "./components/inputs";
 import navigationCustomizations from "./components/navigation";
 import surfacesCustomizations from "./components/surfaces";
+import autoCompleteCustomizations from "./components/autocomplete";
 
 export const darkTheme = createTheme({
   palette: darkPalette,
@@ -22,7 +23,8 @@ export const darkTheme = createTheme({
     ...feedbackCustomizations,
     ...inputsCustomizations,
     ...navigationCustomizations,
-    ...surfacesCustomizations
+    ...surfacesCustomizations,
+    ...autoCompleteCustomizations
   }
 });
 
@@ -37,6 +39,7 @@ export const lightTheme = createTheme({
     ...feedbackCustomizations,
     ...inputsCustomizations,
     ...navigationCustomizations,
-    ...surfacesCustomizations
+    ...surfacesCustomizations,
+    ...autoCompleteCustomizations
   }
 });
