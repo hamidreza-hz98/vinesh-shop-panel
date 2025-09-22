@@ -146,3 +146,63 @@ export const categoryColumns = [
     valueGetter: (updatedAt) => new Date(updatedAt)?.toLocaleString() || "",
   },
 ];
+
+export const brandColumns = [
+  {
+    field: "image",
+    headerName: "Image",
+    width: 120,
+    renderCell: (params) => {
+      const image = params.row.image || {};
+
+      return (
+        <Box
+          display="flex"
+          gap={1}
+          alignItems="center"
+          justifyContent="center"
+          padding={1}
+        >
+          <img
+            src={image.src}
+            alt={image.title}
+            style={{
+              width: 100,
+              height: 100,
+              objectFit: "cover",
+              borderRadius: 4,
+            }}
+          />
+        </Box>
+      );
+    },
+  },
+  {
+    field: "name",
+    headerName: "Name",
+    width: 200,
+  },
+  {
+    field: "categories",
+    headerName: "Categories",
+    width: 150,
+    valueGetter: (subCategories) => subCategories?.join(" | ") || ""
+  },
+  {
+    field: "excerpt",
+    headerName: "Excerpt",
+    width: 150,
+  },
+  {
+    field: "createdAt",
+    headerName: "Created At",
+    width: 180,
+    valueGetter: (createdAt) => new Date(createdAt)?.toLocaleString() || "",
+  },
+  {
+    field: "updatedAt",
+    headerName: "Updated At",
+    width: 180,
+    valueGetter: (updatedAt) => new Date(updatedAt)?.toLocaleString() || "",
+  },
+];

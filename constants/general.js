@@ -90,6 +90,11 @@ export const sidebarRoutes = [
             title: "All Brands",
             href: "/dashboard/brands",
           },
+          {
+            id: "createBrand",
+            title: "Create Brand",
+            href: "/dashboard/brands/create",
+          },
         ],
       },
       {

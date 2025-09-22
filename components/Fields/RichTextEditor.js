@@ -59,9 +59,9 @@ const RichTextEditor = ({ text = "", onChange }) => {
     <ReactQuill
       ref={quillEditRef}
       onChange={onChange}
-      key={`edit`}
-      id={`edit`}
-      theme={"snow"}
+      key="edit"
+      id="edit"
+      theme="snow"
       modules={modules}
     />
   );

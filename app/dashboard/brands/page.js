@@ -1,5 +1,15 @@
-import BrandsPageWrapper from '@/components/wrappers/BrandsPageWrapper'
-import React from 'react'
+"use client"
+
+import dynamic from 'next/dynamic';
+import Loader from '@/components/common/Loader';
+
+const BrandsPageWrapper = dynamic(
+  () => import('@/components/wrappers/BrandsPageWrapper'),
+  {
+    ssr: false,
+    loading: () => <Loader />,
+  }
+);
 
 const BrandsPage = () => {
   return (

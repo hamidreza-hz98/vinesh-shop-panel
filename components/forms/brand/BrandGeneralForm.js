@@ -12,13 +12,13 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import Image from "next/image";
 import React from "react";
 import { Controller } from "react-hook-form";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import Image from "next/image";
 import MediaPageWrapper from "@/components/wrappers/MediaPageWrapper";
 
-const CategoryGeneralForm = ({ control, setValue }) => {
+const BrandGeneralForm = ({ control, setValue }) => {
   const [activeField, setActiveField] = React.useState(null);
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const [drawerType, setDrawerType] = React.useState("image");
@@ -42,7 +42,7 @@ const CategoryGeneralForm = ({ control, setValue }) => {
       <Grid container spacing={2}>
         <Grid item size={{ xs: 12, sm: 6, md: 4 }}>
           <Controller
-            name="subCategories"
+            name="categories"
             control={control}
             defaultValue={[]}
             render={({ field }) => (
@@ -55,7 +55,7 @@ const CategoryGeneralForm = ({ control, setValue }) => {
                 value={field.value || []}
                 onChange={(e, newValue) => field.onChange(newValue)}
                 renderInput={(params) => (
-                  <TextField {...params} label="Sub Categories" />
+                  <TextField {...params} label="Categories" />
                 )}
               />
             )}
@@ -84,6 +84,26 @@ const CategoryGeneralForm = ({ control, setValue }) => {
 
         <Grid item size={{ xs: 12, sm: 6, md: 4 }}>
           <Controller
+            name="isSelected"
+            control={control}
+            defaultValue={false}
+            render={({ field }) => (
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    size="small"
+                    checked={!!field.value}
+                    onChange={(e) => field.onChange(e.target.checked)}
+                  />
+                }
+                label="Is Selected"
+              />
+            )}
+          />
+        </Grid>
+
+        <Grid item size={{ xs: 12, sm: 6, md: 4 }}>
+          <Controller
             name="isActive"
             control={control}
             defaultValue={false}
@@ -102,8 +122,7 @@ const CategoryGeneralForm = ({ control, setValue }) => {
           />
         </Grid>
 
-        {/* Image */}
-        <Grid item size={{ xs:12 }}>
+        <Grid item size={{ xs: 12 }}>
           <Controller
             name="image"
             control={control}
@@ -132,62 +151,31 @@ const CategoryGeneralForm = ({ control, setValue }) => {
           />
         </Grid>
 
-        {/* Icon */}
-        <Grid item size={{ xs:12 }}>
-          <Controller
-            name="icon"
-            control={control}
-            defaultValue={null}
-            render={({ field }) => (
-              <Stack spacing={1}>
-                <Typography>Category Icon</Typography>
-                <Button
-                  variant="contained"
-                  startIcon={<CloudUploadIcon />}
-                  onClick={() => openMediaDrawer("icon", "image", false)}
-                >
-                  Select from Media Library
-                </Button>
-                {field.value && (
-                  <Image
-                    src={field.value.img || field.value.src}
-                    alt={field.value.title || "media"}
-                    width={60}
-                    height={60}
-                    style={{ objectFit: "cover", borderRadius: 4 }}
-                  />
-                )}
-              </Stack>
-            )}
-          />
-        </Grid>
-
-      {/* Shared Drawer */}
-      <Drawer
-        anchor="right"
-        open={drawerOpen}
-        onClose={() => setDrawerOpen(false)}
-         ModalProps={{
+        <Drawer
+          anchor="right"
+          open={drawerOpen}
+          onClose={() => setDrawerOpen(false)}
+          ModalProps={{
             sx: {
               zIndex: (theme) => theme.zIndex.modal + 1000,
             },
           }}
-        PaperProps={{
-          sx: { width: "100vw", height: "100vh", maxWidth: "100vw", top: 0 },
-        }}
-      >
-        <Box sx={{ width: "100vw", height: "100vh" }}>
-          <MediaPageWrapper
-            onSelect={handleSelect}
-            isOnForm
-            type={drawerType}
-            multiple={drawerMultiple}
-          />
-        </Box>
-      </Drawer>
+          PaperProps={{
+            sx: { width: "100vw", height: "100vh", maxWidth: "100vw", top: 0 },
+          }}
+        >
+          <Box sx={{ width: "100vw", height: "100vh" }}>
+            <MediaPageWrapper
+              onSelect={handleSelect}
+              isOnForm
+              type={drawerType}
+              multiple={drawerMultiple}
+            />
+          </Box>
+        </Drawer>
       </Grid>
     </Box>
   );
 };
 
-export default CategoryGeneralForm;
+export default BrandGeneralForm;

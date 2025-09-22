@@ -112,9 +112,10 @@ const MediaPageWrapper = ({
               onClick={handleSelectMedia}
               startIcon={<DoneOutlinedIcon />}
             >
-              Upload New
+              Done
             </Button>
           )}
+
         </Stack>
       }
     >
