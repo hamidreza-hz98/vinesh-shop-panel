@@ -45,29 +45,54 @@ export default function TabsForm({
   const [currentTab, setCurrentTab] = useState(0);
   const [showAutocomplete, setShowAutocomplete] = useState(false);
 
+  const fixedLangs = [
+    { lang: "us", currency: "$" },
+    { lang: "pt", currency: "€" },
+    { lang: "ae", currency: "UAD" },
+    { lang: "ir", currency: "ريال" },
+  ];
+
+  const defaultTranslations = data?.translations || [];
+  fixedLangs.forEach((fl) => {
+    if (!defaultTranslations.find((t) => t.lang === fl.lang)) {
+      defaultTranslations.push({ lang: fl.lang });
+    }
+  });
+
   const { control, handleSubmit, setValue, watch } = useForm({
-    defaultValues: data || { translations: [] },
-    resolver: schema ? schema : undefined,
+    defaultValues: { ...data, translations: defaultTranslations },
+    resolver: schema || undefined,
   });
 
   const watchForm = watch();
 
   const handleAddLanguage = (lang) => {
-    setShowAutocomplete(false);
-    if (!tabs.find((t) => t.lang === lang.code)) {
-      const newTabs = [
-        ...tabs.filter((t) => t.type !== "add"),
-        { type: "translation", lang: lang.code, currency: lang.currency },
-        { type: "add" },
-      ];
-      setTabs(newTabs);
-      setCurrentTab(newTabs.length - 2);
+  setShowAutocomplete(false);
+  if (!tabs.find((t) => t.lang === lang.code)) {
+    const newTabs = [
+      ...tabs.filter((t) => t.type !== "add"),
+      { type: "translation", lang: lang.code, currency: lang.currency },
+      { type: "add" },
+    ];
+    setTabs(newTabs);
+    setCurrentTab(newTabs.length - 2);
 
-      const newTranslations = watchForm.translations || [];
-      newTranslations.push({ lang: lang.code });
-      setValue("translations", newTranslations);
-    }
-  };
+    const translations = watchForm.translations || [];
+
+    const existingTech =
+      translations.find((t) => t.technicalDetails && Object.keys(t.technicalDetails).length > 0)
+        ?.technicalDetails || {};
+
+    const newTranslation = { 
+      lang: lang.code, 
+      technicalDetails: { ...existingTech } 
+    };
+
+    const newTranslations = [...translations, newTranslation];
+    setValue("translations", newTranslations);
+  }
+};
+
 
   const handleRemoveLanguage = (langCode) => {
     const newTabs = tabs.filter((t) => t.lang !== langCode);

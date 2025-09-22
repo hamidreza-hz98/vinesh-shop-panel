@@ -8,8 +8,11 @@ import {
   Typography,
   InputAdornment,
   MenuItem,
+  Autocomplete,
 } from "@mui/material";
 import { Controller } from "react-hook-form";
+import RichTextEditor from "@/components/Fields/RichTextEditor";
+import TechnicalDetailsField from "@/components/Fields/TechnicalDetailsField";
 
 export default function ProductTranslationForm({
   control,
@@ -18,16 +21,26 @@ export default function ProductTranslationForm({
   setValue,
   watch,
 }) {
-  const name = watch(`translations.${lang}.name`);
-  const price = watch(`translations.${lang}.price`);
-  const discountAmount = watch(`translations.${lang}.discount.amount`);
-  const discountType = watch(`translations.${lang}.discount.type`);
+  const translations = watch("translations") || [];
+  const translationIndex = translations.findIndex((t) => t.lang === lang);
+  const currentTranslation = translations[translationIndex] || {};
+ if (translationIndex === -1) {
+  setValue("translations", [...translations, { lang }]);
+}
+
+  const name = currentTranslation.name;
+  const price = currentTranslation.price;
+  const discountAmount = currentTranslation.discount?.amount;
+  const discountType = currentTranslation.discount?.type;
 
   const priceAfterDiscount =
-    discountType === "percentage"
-      ? price - (price * discountAmount) / 100
-      : price - discountAmount;
+    price && discountAmount
+      ? discountType === "percentage"
+        ? price - (price * discountAmount) / 100
+        : price - discountAmount
+      : price || 0;
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   React.useEffect(() => {
     if (name) {
       const slug = name
@@ -36,11 +49,13 @@ export default function ProductTranslationForm({
         .replace(/[^a-z0-9\s-]/g, "")
         .replace(/\s+/g, "-");
 
-      setValue(`translations.${lang}.slug`, slug, { shouldValidate: true });
+      setValue(`translations.${translationIndex}.slug`, slug, {
+        shouldValidate: true,
+      });
     } else {
-      setValue(`translations.${lang}.slug`, "");
+      setValue(`translations.${translationIndex}.slug`, "");
     }
-  }, [name, lang, setValue]);
+  }, [name, lang, setValue, translationIndex]);
 
   return (
     <Box sx={{ width: "100%", marginTop: 4 }}>
@@ -51,7 +66,7 @@ export default function ProductTranslationForm({
       <Grid container spacing={2}>
         <Grid item size={{ xs: 12, sm: 6 }}>
           <Controller
-            name={`translations.${lang}.name`}
+            name={`translations.${translationIndex}.name`}
             control={control}
             defaultValue=""
             render={({ field }) => (
@@ -62,7 +77,7 @@ export default function ProductTranslationForm({
 
         <Grid item size={{ xs: 12, sm: 6 }}>
           <Controller
-            name={`translations.${lang}.slug`}
+            name={`translations.${translationIndex}.slug`}
             control={control}
             defaultValue=""
             render={({ field }) => (
@@ -73,7 +88,7 @@ export default function ProductTranslationForm({
 
         <Grid item size={{ xs: 12 }}>
           <Controller
-            name={`translations.${lang}.excerpt`}
+            name={`translations.${translationIndex}.excerpt`}
             control={control}
             defaultValue=""
             render={({ field }) => (
@@ -83,42 +98,45 @@ export default function ProductTranslationForm({
         </Grid>
 
         {/* Colors */}
-        <Grid item size={{ xs: 12, sm: 6, md: 4 }}>
+        <Grid item size={{ xs: 12, sm: 6 }}>
           <Controller
-            name={`translations.${lang}.colors`}
+            name={`translations.${translationIndex}.colors`}
             control={control}
             defaultValue={[]}
             render={({ field }) => (
-              <TextField
-                {...field}
-                label="Colors (comma separated)"
-                fullWidth
-                size="small"
-                value={field.value?.join(", ") || ""}
-                onChange={(e) =>
-                  field.onChange(e.target.value.split(",").map((v) => v.trim()))
-                }
+              <Autocomplete
+                multiple
+                options={[]}
+                value={field.value || []}
+                onChange={(_, newValue) => field.onChange(newValue)}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    label="Colors"
+                    size="small"
+                    fullWidth
+                  />
+                )}
               />
             )}
           />
         </Grid>
 
         {/* Sizes */}
-        <Grid item size={{ xs: 12, sm: 6, md: 4 }}>
+        <Grid item size={{ xs: 12, sm: 6 }}>
           <Controller
-            name={`translations.${lang}.sizes`}
+            name={`translations.${translationIndex}.sizes`}
             control={control}
             defaultValue={[]}
             render={({ field }) => (
-              <TextField
-                {...field}
-                label="Sizes (comma separated)"
-                fullWidth
-                size="small"
-                value={field.value?.join(", ") || ""}
-                onChange={(e) =>
-                  field.onChange(e.target.value.split(",").map((v) => v.trim()))
-                }
+              <Autocomplete
+                multiple
+                options={[]}
+                value={field.value || []}
+                onChange={(_, newValue) => field.onChange(newValue)}
+                renderInput={(params) => (
+                  <TextField {...params} label="Sizes" size="small" fullWidth />
+                )}
               />
             )}
           />
@@ -126,37 +144,31 @@ export default function ProductTranslationForm({
 
         {/* Description */}
         <Grid item size={{ xs: 12 }}>
+          <Typography my={2}>Product Description</Typography>
+
           <Controller
-            name={`translations.${lang}.description`}
+            name={`translations.${translationIndex}.description`}
             control={control}
             defaultValue=""
-            render={({ field }) => (
-              <TextField
-                {...field}
-                label="Description"
-                fullWidth
-                size="small"
-                multiline
-                minRows={3}
-              />
-            )}
+            render={({ field }) => <RichTextEditor {...field} />}
           />
         </Grid>
 
         {/* Technical Details */}
         <Grid item size={{ xs: 12 }}>
+          <Typography my={2}>Technical Details</Typography>
+
           <Controller
-            name={`translations.${lang}.technicalDetails`}
+            name={`translations.${translationIndex}.technicalDetails`}
             control={control}
-            defaultValue=""
+            defaultValue={{}}
             render={({ field }) => (
-              <TextField
-                {...field}
-                label="Technical Details"
-                fullWidth
-                size="small"
-                multiline
-                minRows={3}
+              <TechnicalDetailsField
+                value={field.value}
+                onChange={field.onChange}
+                lang={lang}
+                watchForm={watch}
+                setValue={setValue}
               />
             )}
           />
@@ -166,9 +178,9 @@ export default function ProductTranslationForm({
           <Typography variant="subtitle1">Price</Typography>
         </Grid>
 
-                    <Grid item size={{ xs: 12, sm: 4, md: 3 }}>
+        <Grid item size={{ xs: 12, sm: 4, md: 3 }}>
           <Controller
-            name={`translations.${lang}.price`}
+            name={`translations.${translationIndex}.price`}
             control={control}
             defaultValue={0}
             render={({ field }) => (
@@ -193,7 +205,7 @@ export default function ProductTranslationForm({
         {/* Discount */}
         <Grid item size={{ xs: 12, sm: 4, md: 3 }}>
           <Controller
-            name={`translations.${lang}.discount.amount`}
+            name={`translations.${translationIndex}.discount.amount`}
             control={control}
             defaultValue={0}
             render={({ field }) => (
@@ -210,9 +222,9 @@ export default function ProductTranslationForm({
 
         <Grid item size={{ xs: 12, sm: 4, md: 3 }}>
           <Controller
-            name={`translations.${lang}.discount.type`}
+            name={`translations.${translationIndex}.discount.type`}
             control={control}
-            defaultValue="amount"
+            defaultValue="percentage"
             render={({ field }) => (
               <TextField {...field} label="Type" select fullWidth size="small">
                 <MenuItem value="percentage">Percentage</MenuItem>
@@ -258,7 +270,7 @@ export default function ProductTranslationForm({
         ].map((seoField) => (
           <Grid key={seoField} item size={{ xs: 12, sm: 6 }}>
             <Controller
-              name={`translations.${lang}.seo.${seoField}`}
+              name={`translations.${translationIndex}.seo.${seoField}`}
               control={control}
               defaultValue=""
               render={({ field }) => (
