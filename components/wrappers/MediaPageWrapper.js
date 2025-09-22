@@ -22,7 +22,7 @@ const MediaPageWrapper = ({
   isOnForm = false,
   type = "all",
   multiple = false,
-  onChange,
+  onSelect,
 }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -63,9 +63,7 @@ const MediaPageWrapper = ({
   };
 
   const handleSelectMedia = () => {
-    console.log(selectedMedia);
-    
-    onChange(selectedMedia);
+    onSelect(selectedMedia);    
   };
 
   const handleRefresh = () => {

@@ -14,9 +14,7 @@ const CreateCategoryPageWrapper = dynamic(
 
 const CreateCategoryPage = () => {
   return (
-    <React.Suspense fallback={<Loader />}>
     <CreateCategoryPageWrapper />
-    </React.Suspense>
   )
 }
 

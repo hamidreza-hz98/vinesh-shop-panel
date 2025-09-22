@@ -64,6 +64,7 @@ export default function MediaMasonry({ onSelect, type = "all", multiple = false 
         <Tab label="Videos" value="video" />
         <Tab label="Audios" value="audio" />
         <Tab label="Catalogues" value="catalogue" />
+        <Tab label="Icons" value="icon" />
       </Tabs>
 
       <Masonry sx={{width: "100%"}} columns={{ xs: 2, sm: 3, md: 4 }} spacing={4}>

@@ -226,7 +226,7 @@ export default function ProductGeneralForm({
         >
           <Box sx={{ width: "100vw", height: "100vh" }}>
             <MediaPageWrapper
-              onChange={(media) => {
+              onSelect={(media) => {
                 // ✅ Push media into form
                 if (drawerMultiple) {
                   field.onChange([...(field.value || []), ...media]);
@@ -288,7 +288,7 @@ export default function ProductGeneralForm({
         >
           <Box sx={{ width: "100vw", height: "100vh" }}>
             <MediaPageWrapper
-              onChange={(media) => {
+              onSelect={(media) => {
                 // ✅ Single file for catalogue
                 field.onChange(media[0] || null);
                 setDrawerOpen(false);
