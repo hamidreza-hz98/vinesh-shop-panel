@@ -1,41 +1,45 @@
-"use client"
+"use client";
 
-import React from "react";
-import ReactQuill, { Quill } from "react-quill-new";
-import QuillTableBetter from "quill-table-better";
+import React, { useMemo, useRef } from "react";
+import dynamic from "next/dynamic";
+
+const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
+let Quill;
+let QuillTableBetter;
+
+if (typeof window !== "undefined") {
+  Quill = require("react-quill-new").Quill;
+  QuillTableBetter = require("quill-table-better");
+  Quill.register(
+    {
+      "modules/table-better": QuillTableBetter,
+    },
+    true
+  );
+}
 
 import "react-quill-new/dist/quill.snow.css";
 import "react-quill-new/dist/quill.bubble.css";
 import "quill-table-better/dist/quill-table-better.css";
 
-Quill.register(
-  {
-    "modules/table-better": QuillTableBetter,
-  },
-  true
-);
-
-
-
 const RichTextEditor = ({ text = "", onChange }) => {
-  const quillEditRef = React.useRef(null);
+  const quillEditRef = useRef(null);
 
-  const modules = React.useMemo(
+  const modules = useMemo(
     () => ({
       toolbar: {
         container: [
-          [{ header: 1 }, { header: 2 }], // custom button values
-          ["bold", "italic", "underline", "strike"], // toggled buttons
+          [{ header: 1 }, { header: 2 }],
+          ["bold", "italic", "underline", "strike"],
           ["link", "image"],
           [{ list: "bullet" }],
-          [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
-          [{ direction: "rtl" }], // text direction
-          [{ size: ["small", false, "large", "huge"] }], // custom dropdown
-          [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+          [{ indent: "-1" }, { indent: "+1" }],
+          [{ direction: "rtl" }],
+          [{ size: ["small", false, "large", "huge"] }],
+          [{ color: [] }, { background: [] }],
           [{ font: [] }],
           [{ align: [] }],
-          // ['tableUI']
-          ["table-better"], // 添加表格工具按钮
+          ["table-better"],
         ],
       },
       table: false,
@@ -45,22 +49,21 @@ const RichTextEditor = ({ text = "", onChange }) => {
         toolbarTable: true,
       },
       keyboard: {
-        bindings: QuillTableBetter.keyboardBindings,
+        bindings: QuillTableBetter?.keyboardBindings,
       },
     }),
     []
   );
 
   return (
-      <ReactQuill
-          ref={quillEditRef}
-          onChange={onChange}
-          key={`edit`}
-          id={`edit`}
-          theme={"snow"}
-          // value={value}
-          modules={modules}
-        />
+    <ReactQuill
+      ref={quillEditRef}
+      onChange={onChange}
+      key={`edit`}
+      id={`edit`}
+      theme={"snow"}
+      modules={modules}
+    />
   );
 };
 
