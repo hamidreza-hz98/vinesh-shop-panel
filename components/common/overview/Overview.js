@@ -161,18 +161,18 @@ export default function Overview({
     }
   }, [isLoading, loadData]);
 
- const handleRowClick = React.useCallback(
-   ({row}) => {
-     if (formMode === "drawer") {
-       setDrawerMode("edit");
-       setSelectedRow(row);
-       setDrawerOpen(true);
-     } else {
-       router.push(`${pathname}/${createPath}?id=${row.id}`);
-     }
-   },
-   [formMode, router, pathname, createPath]
- );
+  const handleRowClick = React.useCallback(
+    ({ row }) => {
+      if (formMode === "drawer") {
+        setDrawerMode("edit");
+        setSelectedRow(row);
+        setDrawerOpen(true);
+      } else {
+        router.push(`${pathname}/${createPath}?id=${row.id}`);
+      }
+    },
+    [formMode, router, pathname, createPath]
+  );
 
   const handleCreateClick = React.useCallback(() => {
     if (formMode === "drawer") {
@@ -361,12 +361,15 @@ export default function Overview({
                 size: "small",
               },
             }}
-             getRowHeight={(params) => {
-    if (params.model.media && params.model.media.length > 0) {
-      return 120;
-    }
-    return null;
-  }}
+            getRowHeight={(params) => {
+              if (
+                (params.model.media && params.model.media.length > 0) ||
+                params.model.image
+              ) {
+                return 120;
+              }
+              return null;
+            }}
           />
         )}
       </Box>
