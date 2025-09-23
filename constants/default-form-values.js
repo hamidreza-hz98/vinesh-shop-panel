@@ -25,3 +25,19 @@ export const mediaDefaultFormValues = (data) => ({
   altText: data?.altText || "",
   isPublic: data?.isPublic || false,
 });
+
+export const orderDefaultValues = (data) => ({
+  trackNumber:
+    data?.trackNumber ||
+    Math.floor(10000000 + Math.random() * 90000000).toString(),
+  status: data?.status || "pending",
+  orderType: data?.orderType || "online",
+  address: data?.address || {},
+  products: data?.products || [],
+  shipmentPrice: data?.shipmentPrice || 0,
+  transaction: data?.transaction || "",
+  user: data?.user || "",
+  price: data?.price || 0,
+  discount: data?.discount || 0,
+  finalCost: data?.finalCost || 0,
+});

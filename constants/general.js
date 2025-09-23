@@ -1,19 +1,25 @@
-import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
-import Person2OutlinedIcon from '@mui/icons-material/Person2Outlined';
-import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
-import PermDataSettingOutlinedIcon from '@mui/icons-material/PermDataSettingOutlined';
-import CampaignOutlinedIcon from '@mui/icons-material/CampaignOutlined';
-import LocalOfferOutlinedIcon from '@mui/icons-material/LocalOfferOutlined';
-import ReceiptOutlinedIcon from '@mui/icons-material/ReceiptOutlined';
-import AttachEmailOutlinedIcon from '@mui/icons-material/AttachEmailOutlined';
-import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
-import CategoryOutlinedIcon from '@mui/icons-material/CategoryOutlined';
-import LayersOutlinedIcon from '@mui/icons-material/LayersOutlined';
-import ShoppingCartCheckoutOutlinedIcon from '@mui/icons-material/ShoppingCartCheckoutOutlined';
-import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlined';
-import RateReviewOutlinedIcon from '@mui/icons-material/RateReviewOutlined';
-import SupervisedUserCircleOutlinedIcon from '@mui/icons-material/SupervisedUserCircleOutlined';
-import PermMediaOutlinedIcon from '@mui/icons-material/PermMediaOutlined';
+import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
+import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
+import Inventory2OutlinedIcon from "@mui/icons-material/Inventory2Outlined";
+import PermDataSettingOutlinedIcon from "@mui/icons-material/PermDataSettingOutlined";
+import CampaignOutlinedIcon from "@mui/icons-material/CampaignOutlined";
+import LocalOfferOutlinedIcon from "@mui/icons-material/LocalOfferOutlined";
+import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
+import AttachEmailOutlinedIcon from "@mui/icons-material/AttachEmailOutlined";
+import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
+import CategoryOutlinedIcon from "@mui/icons-material/CategoryOutlined";
+import LayersOutlinedIcon from "@mui/icons-material/LayersOutlined";
+import ShoppingCartCheckoutOutlinedIcon from "@mui/icons-material/ShoppingCartCheckoutOutlined";
+import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlined";
+import RateReviewOutlinedIcon from "@mui/icons-material/RateReviewOutlined";
+import SupervisedUserCircleOutlinedIcon from "@mui/icons-material/SupervisedUserCircleOutlined";
+import PermMediaOutlinedIcon from "@mui/icons-material/PermMediaOutlined";
+import RestoreOutlinedIcon from "@mui/icons-material/RestoreOutlined";
+import HourglassBottomOutlinedIcon from "@mui/icons-material/HourglassBottomOutlined";
+import RocketLaunchOutlinedIcon from "@mui/icons-material/RocketLaunchOutlined";
+import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
+import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
+import CreditCardOffOutlinedIcon from "@mui/icons-material/CreditCardOffOutlined";
 
 export const sidebarRoutes = [
   {
@@ -176,5 +182,38 @@ export const sidebarRoutes = [
     ],
   },
 ];
+
+export const orderStatuses = {
+  pending: {
+    name: "Pending",
+    color: "text",
+    icon: <RestoreOutlinedIcon />,
+  },
+  processing: {
+    name: "Processing",
+    color: "primary",
+    icon: <HourglassBottomOutlinedIcon />,
+  },
+  shipping: {
+    name: "Shipping",
+    color: "warning",
+    icon: <RocketLaunchOutlinedIcon />,
+  },
+  delivered: {
+    name: "Delivered",
+    color: "success",
+    icon: <CheckCircleOutlineOutlinedIcon />,
+  },
+  canceled: {
+    name: "Canceled",
+    color: "error",
+    icon: <CancelOutlinedIcon />,
+  },
+  failed: {
+    name: "Failed",
+    color: "error",
+    icon: <CreditCardOffOutlinedIcon />,
+  },
+};
 
 export default sidebarRoutes;

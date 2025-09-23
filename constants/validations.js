@@ -61,3 +61,42 @@ export const productSchema = yup.object().shape({
     })
   ),
 });
+
+
+export const orderSchema = yup.object().shape({
+  trackNumber: yup
+    .string()
+    .required()
+    .length(8, "Track number must be 8 digits"),
+  status: yup.string().required("Status is required"),
+  orderType: yup
+    .string()
+    .oneOf(["online", "telephone", "in-person"])
+    .required("Order type is required"),
+  address: yup.object().shape({
+    name: yup.string().nullable(),
+    recipient: yup.string().nullable(),
+    address: yup.string().nullable(),
+    zipCode: yup.string().nullable(),
+    phone: yup.string().nullable(),
+  }),
+  products: yup
+    .array()
+    .of(
+      yup.object().shape({
+        id: yup.string().required(),
+        name: yup.string().required(),
+        price: yup.number().required().min(0),
+        discount: yup.number().required().min(0),
+        image: yup.string().nullable(),
+        quantity: yup.number().required().min(1),
+      })
+    )
+    .required(),
+  shipmentPrice: yup.number().required().min(0),
+  transaction: yup.string().nullable(),
+  user: yup.string().nullable(),
+  price: yup.number().required().min(0),
+  discount: yup.number().required().min(0),
+  finalCost: yup.number().required().min(0),
+});

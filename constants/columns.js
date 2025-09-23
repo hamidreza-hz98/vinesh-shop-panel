@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import { Box } from "@mui/material";
+import { Box, Chip } from "@mui/material";
+import { orderStatuses } from "./general";
 
 export const userColumns = [
   { field: "firstName", headerName: "First Name", width: 130 },
@@ -126,7 +127,7 @@ export const categoryColumns = [
     field: "subCategories",
     headerName: "Sub Categories",
     width: 150,
-    valueGetter: (subCategories) => subCategories?.join(" | ") || ""
+    valueGetter: (subCategories) => subCategories?.join(" | ") || "",
   },
   {
     field: "excerpt",
@@ -186,7 +187,7 @@ export const brandColumns = [
     field: "categories",
     headerName: "Categories",
     width: 150,
-    valueGetter: (subCategories) => subCategories?.join(" | ") || ""
+    valueGetter: (subCategories) => subCategories?.join(" | ") || "",
   },
   {
     field: "excerpt",
@@ -204,5 +205,49 @@ export const brandColumns = [
     headerName: "Updated At",
     width: 180,
     valueGetter: (updatedAt) => new Date(updatedAt)?.toLocaleString() || "",
+  },
+];
+
+export const orderColumns = [
+  {
+    field: "trackNumber",
+    headerName: "Track Number",
+    width: 200,
+  },
+  {
+    field: "status",
+    headerName: "Status",
+    width: 150,
+    renderCell: (params) => {
+      const status = params.row.status || "";
+
+      return (
+        <Chip
+          label={orderStatuses[status].name}
+          variant="filled"
+          size="small"
+          sx={{border: "none"}}
+          color={orderStatuses[status].color}
+          icon={orderStatuses[status].icon}
+        />
+      );
+    },
+  },
+  {
+    field: "user",
+    headerName: "User",
+    width: 180,
+  },
+  {
+    field: "submitDate",
+    headerName: "SubmitDate",
+    width: 150,
+    valueGetter: (submitDate) => new Date(submitDate)?.toLocaleString() || "",
+  },
+  {
+    field: "finalCost",
+    headerName: "Final Cost",
+    width: 180,
+    valueGetter: (finalCost) => finalCost?.amount + finalCost?.currency || "",
   },
 ];

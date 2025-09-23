@@ -1480,3 +1480,229 @@ export const BRANDS_MOCK_DATA = [
   },
 ];
 
+export const ORDERS_MOCK_DATA = [
+  {
+    id: "ord_1",
+    trackNumber: "1238091329",
+    status: "delivered",
+    submitDate: "2025-07-12",
+    address: {},
+    transaction: {},
+    price: {
+      amount: "750",
+      currency: "$"
+    },
+    discount: {
+      amount: "250",
+      type: "amount"
+    },
+    shipmentPrice: {
+      amount: "0",
+      currency: "$"
+    },
+    finalCost: {
+      amount: "500",
+      currency: "$"
+    },
+    products: [],
+    user: "usr_1",
+    shipmentDate: "2025-07-18",
+    shipmentTrackNumber: "78234789342789"
+  },
+  {
+    id: "ord_2",
+    trackNumber: "9876543210",
+    status: "pending",
+    submitDate: "2025-08-01",
+    address: {},
+    transaction: {},
+    price: {
+      amount: "1200",
+      currency: "$"
+    },
+    discount: {
+      amount: "0",
+      type: "amount"
+    },
+    shipmentPrice: {
+      amount: "30",
+      currency: "$"
+    },
+    finalCost: {
+      amount: "1230",
+      currency: "$"
+    },
+    products: [],
+    user: "usr_2",
+    shipmentDate: "2025-08-07",
+    shipmentTrackNumber: "998877665544"
+  },
+  {
+    id: "ord_3",
+    trackNumber: "5678901234",
+    status: "shipping",
+    submitDate: "2025-06-20",
+    address: {},
+    transaction: {},
+    price: {
+      amount: "540",
+      currency: "$"
+    },
+    discount: {
+      amount: "40",
+      type: "amount"
+    },
+    shipmentPrice: {
+      amount: "15",
+      currency: "$"
+    },
+    finalCost: {
+      amount: "515",
+      currency: "$"
+    },
+    products: [],
+    user: "usr_3",
+    shipmentDate: "2025-06-25",
+    shipmentTrackNumber: "334455667788"
+  },
+  {
+    id: "ord_4",
+    trackNumber: "2468135790",
+    status: "canceled",
+    submitDate: "2025-09-05",
+    address: {},
+    transaction: {},
+    price: {
+      amount: "300",
+      currency: "$"
+    },
+    discount: {
+      amount: "30",
+      type: "amount"
+    },
+    shipmentPrice: {
+      amount: "10",
+      currency: "$"
+    },
+    finalCost: {
+      amount: "280",
+      currency: "$"
+    },
+    products: [],
+    user: "usr_4",
+    shipmentDate: "2025-09-08",
+    shipmentTrackNumber: "112233445566"
+  },
+  {
+    id: "ord_5",
+    trackNumber: "1928374650",
+    status: "processing",
+    submitDate: "2025-07-28",
+    address: {},
+    transaction: {},
+    price: {
+      amount: "850",
+      currency: "$"
+    },
+    discount: {
+      amount: "85",
+      type: "amount"
+    },
+    shipmentPrice: {
+      amount: "25",
+      currency: "$"
+    },
+    finalCost: {
+      amount: "790",
+      currency: "$"
+    },
+    products: [],
+    user: "usr_5",
+    shipmentDate: "2025-08-03",
+    shipmentTrackNumber: "443322110099"
+  },
+  {
+    id: "ord_6",
+    trackNumber: "5647382910",
+    status: "delivered",
+    submitDate: "2025-05-15",
+    address: {},
+    transaction: {},
+    price: {
+      amount: "2000",
+      currency: "$"
+    },
+    discount: {
+      amount: "200",
+      type: "amount"
+    },
+    shipmentPrice: {
+      amount: "0",
+      currency: "$"
+    },
+    finalCost: {
+      amount: "1800",
+      currency: "$"
+    },
+    products: [],
+    user: "usr_6",
+    shipmentDate: "2025-05-22",
+    shipmentTrackNumber: "556677889900"
+  },
+  {
+    id: "ord_7",
+    trackNumber: "3141592653",
+    status: "shipping",
+    submitDate: "2025-09-10",
+    address: {},
+    transaction: {},
+    price: {
+      amount: "430",
+      currency: "$"
+    },
+    discount: {
+      amount: "0",
+      type: "amount"
+    },
+    shipmentPrice: {
+      amount: "20",
+      currency: "$"
+    },
+    finalCost: {
+      amount: "450",
+      currency: "$"
+    },
+    products: [],
+    user: "usr_7",
+    shipmentDate: "2025-09-15",
+    shipmentTrackNumber: "778899001122"
+  },
+  {
+    id: "ord_8",
+    trackNumber: "1029384756",
+    status: "failed",
+    submitDate: "2025-06-05",
+    address: {},
+    transaction: {},
+    price: {
+      amount: "150",
+      currency: "$"
+    },
+    discount: {
+      amount: "10",
+      type: "amount"
+    },
+    shipmentPrice: {
+      amount: "5",
+      currency: "$"
+    },
+    finalCost: {
+      amount: "145",
+      currency: "$"
+    },
+    products: [],
+    user: "usr_8",
+    shipmentDate: "2025-06-10",
+    shipmentTrackNumber: "667788990011"
+  }
+];
