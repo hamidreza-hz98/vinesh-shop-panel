@@ -19,6 +19,7 @@ import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import Drawer from "@mui/material/Drawer";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
+import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 
 const INITIAL_PAGE_SIZE = 10;
 
@@ -31,7 +32,7 @@ export default function Overview({
   createPath = "create",
   formMode = "page",
   FormComponent,
-  rowActions,
+  rowActions = [],
 }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -234,6 +235,17 @@ export default function Overview({
     },
     [dialogs, notifications, loadData, deleteOne]
   );
+
+  const handleRowDetails = React.useCallback((row) => {
+    if (formMode === "drawer") {
+      setDrawerMode("edit");
+      setSelectedRow(row);
+      setDrawerOpen(true);
+    } else {
+      // do some thing else
+    }
+  }, [formMode]);
+
   const handleSuccess = React.useCallback(() => {
     notifications.show("Operation successful.", {
       severity: "success",
@@ -256,7 +268,36 @@ export default function Overview({
     setSelectedRow(null);
   };
 
-  // Add default actions if not provided
+  const actions = React.useMemo(
+    () => ({
+      edit: (row) => (
+        <GridActionsCellItem
+          key="edit-item"
+          icon={<ModeEditOutlineOutlinedIcon />}
+          label="Edit"
+          onClick={handleRowEdit(row)}
+        />
+      ),
+      delete: (row) => (
+        <GridActionsCellItem
+          key="delete-item"
+          icon={<DeleteOutlinedIcon />}
+          label="Delete"
+          onClick={handleRowDelete(row)}
+        />
+      ),
+      details: (row) => (
+        <GridActionsCellItem
+          key="details-item"
+          icon={<RemoveRedEyeOutlinedIcon />}
+          label="Details"
+          onClick={handleRowEdit(row)}
+        />
+      ),
+    }),
+    [handleRowEdit, handleRowDelete, handleRowDetails]
+  );
+
   const dynamicColumns = React.useMemo(() => {
     const actionsColumn = {
       field: "actions",
@@ -264,28 +305,24 @@ export default function Overview({
       flex: 1,
       align: "right",
       minWidth: 100,
-      getActions: ({ row }) =>
-        rowActions
-          ? rowActions(row, { handleRowEdit, handleRowDelete })
-          : [
-              <GridActionsCellItem
-                key="edit-item"
-                icon={<ModeEditOutlineOutlinedIcon />}
-                label="Edit"
-                onClick={handleRowEdit(row)}
-              />,
-              <GridActionsCellItem
-                key="delete-item"
-                icon={<DeleteOutlinedIcon />}
-                label="Delete"
-                onClick={handleRowDelete(row)}
-              />,
-            ],
+      getActions: ({ row }) => {
+        if (rowActions && rowActions.length > 0) {
+          return rowActions
+            .map((action) => {
+              if (typeof action === "string" && actions[action])
+                return actions[action](row);
+              if (typeof action === "function") return action(row);
+              return null;
+            })
+            .filter(Boolean);
+        }
+        return [actions.edit(row), actions.delete(row)];
+      },
     };
-    // Only add actions column if not present
+
     const hasActions = columns.some((col) => col.field === "actions");
     return hasActions ? columns : [...columns, actionsColumn];
-  }, [columns, handleRowEdit, handleRowDelete, rowActions]);
+  }, [columns, rowActions, actions]);
 
   return (
     <PageContainer
@@ -304,13 +341,17 @@ export default function Overview({
               </IconButton>
             </div>
           </Tooltip>
-          <Button
+
+          {
+            !rowActions.includes("details") &&
+            <Button
             variant="contained"
             onClick={handleCreateClick}
             startIcon={<AddIcon />}
-          >
+            >
             Create
           </Button>
+          }
         </Stack>
       }
     >

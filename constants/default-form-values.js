@@ -41,3 +41,24 @@ export const orderDefaultValues = (data) => ({
   discount: data?.discount || 0,
   finalCost: data?.finalCost || 0,
 });
+
+export const cartDefaultValues = (data) => ({
+  id: data?.id || " - ",
+  userName: data?.user?.firstName + " " + data?.user?.lastName || " - ",
+  userEmail: data?.user?.email || " - ",
+  userPhone: data?.user?.phoneNumber || " - ",
+  products: data?.products?.map((p) => p.name).join(", ") || " - ",
+  suggestedProducts:
+    data?.suggestedProducts?.map((p) => p.name).join(", ") || " - ",
+  coupon: data?.coupon?.code || " - ",
+  price: data?.price ? `${data.price.amount} ${data.price.currency}` : " - ",
+  discount: data?.discount
+    ? `${data.discount.amount}${data.discount.currency}`
+    : " - ",
+  shipping: data?.shipping
+    ? `${data.shipping.amount} ${data.shipping.currency}`
+    : " - ",
+  finalPrice: data?.finalPrice
+    ? `${data.finalPrice.amount} ${data.finalPrice.currency}`
+    : " - ",
+});

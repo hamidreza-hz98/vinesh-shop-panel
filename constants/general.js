@@ -110,10 +110,10 @@ export const sidebarRoutes = [
         href: "/dashboard/orders",
       },
       {
-        id: "cart",
-        title: "Cart",
+        id: "carts",
+        title: "Carts",
         icon: ShoppingBasketOutlinedIcon,
-        href: "/dashboard/cart",
+        href: "/dashboard/carts",
       },
       {
         id: "reviews",
@@ -213,6 +213,25 @@ export const orderStatuses = {
     name: "Failed",
     color: "error",
     icon: <CreditCardOffOutlinedIcon />,
+  },
+};
+
+export const reviewStatuses = {
+  pending: {
+    name: "Pending",
+    color: "text",
+    icon: <RestoreOutlinedIcon />,
+  },
+
+  accepted: {
+    name: "Accepted",
+    color: "success",
+    icon: <CheckCircleOutlineOutlinedIcon />,
+  },
+  rejected: {
+    name: "Rejected",
+    color: "error",
+    icon: <CancelOutlinedIcon />,
   },
 };
 

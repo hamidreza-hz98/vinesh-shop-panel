@@ -1296,14 +1296,17 @@ export const BRANDS_MOCK_DATA = [
         description: "<p>Explanations about Palm Tree brand.</p>",
         seo: {
           title: "Palm Tree Brand",
-          description: "Discover the Palm Tree brand – tropical, fresh, and sustainable.",
+          description:
+            "Discover the Palm Tree brand – tropical, fresh, and sustainable.",
           keywords: ["palm", "tree", "brand", "nature"],
           ogTitle: "Palm Tree Brand",
           ogDescription: "Explore Palm Tree brand products.",
-          ogImage: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+          ogImage:
+            "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
           twitterTitle: "Palm Tree Brand",
           twitterDescription: "Explore Palm Tree brand products.",
-          twitterImage: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+          twitterImage:
+            "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
           canonical: "https://example.com/brands/palm-tree",
           robots: "index,follow",
           additionalMetaTags: [
@@ -1341,10 +1344,12 @@ export const BRANDS_MOCK_DATA = [
           keywords: ["sound", "audio", "headphones", "brand"],
           ogTitle: "SoundWave Brand",
           ogDescription: "Explore premium audio experiences.",
-          ogImage: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e",
+          ogImage:
+            "https://images.unsplash.com/photo-1505740420928-5e560c06d30e",
           twitterTitle: "SoundWave Brand",
           twitterDescription: "Premium sound for everyone.",
-          twitterImage: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e",
+          twitterImage:
+            "https://images.unsplash.com/photo-1505740420928-5e560c06d30e",
           canonical: "https://example.com/brands/soundwave",
           robots: "index,follow",
           additionalMetaTags: [
@@ -1378,14 +1383,17 @@ export const BRANDS_MOCK_DATA = [
         description: "<p>Explanations about LensCraft brand.</p>",
         seo: {
           title: "LensCraft Brand",
-          description: "Professional photography gear and creative accessories.",
+          description:
+            "Professional photography gear and creative accessories.",
           keywords: ["lens", "camera", "brand", "photography"],
           ogTitle: "LensCraft Brand",
           ogDescription: "Capture moments with LensCraft.",
-          ogImage: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f",
+          ogImage:
+            "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f",
           twitterTitle: "LensCraft Brand",
           twitterDescription: "Photography gear for creators.",
-          twitterImage: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f",
+          twitterImage:
+            "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f",
           canonical: "https://example.com/brands/lenscraft",
           robots: "index,follow",
           additionalMetaTags: [
@@ -1423,10 +1431,12 @@ export const BRANDS_MOCK_DATA = [
           keywords: ["urban", "fashion", "brand", "clothing"],
           ogTitle: "UrbanWear Brand",
           ogDescription: "Discover trendy streetwear.",
-          ogImage: "https://images.unsplash.com/photo-1581291519195-ef11498d1cf5",
+          ogImage:
+            "https://images.unsplash.com/photo-1581291519195-ef11498d1cf5",
           twitterTitle: "UrbanWear Brand",
           twitterDescription: "Modern fashion for everyone.",
-          twitterImage: "https://images.unsplash.com/photo-1581291519195-ef11498d1cf5",
+          twitterImage:
+            "https://images.unsplash.com/photo-1581291519195-ef11498d1cf5",
           canonical: "https://example.com/brands/urbanwear",
           robots: "index,follow",
           additionalMetaTags: [
@@ -1464,10 +1474,12 @@ export const BRANDS_MOCK_DATA = [
           keywords: ["eco", "bike", "ride", "sustainable"],
           ogTitle: "EcoRide Brand",
           ogDescription: "Ride green with EcoRide.",
-          ogImage: "https://images.unsplash.com/photo-1503264116251-35a269479413",
+          ogImage:
+            "https://images.unsplash.com/photo-1503264116251-35a269479413",
           twitterTitle: "EcoRide Brand",
           twitterDescription: "Eco-friendly bikes for urban riders.",
-          twitterImage: "https://images.unsplash.com/photo-1503264116251-35a269479413",
+          twitterImage:
+            "https://images.unsplash.com/photo-1503264116251-35a269479413",
           canonical: "https://example.com/brands/ecoride",
           robots: "index,follow",
           additionalMetaTags: [
@@ -1490,24 +1502,24 @@ export const ORDERS_MOCK_DATA = [
     transaction: {},
     price: {
       amount: "750",
-      currency: "$"
+      currency: "$",
     },
     discount: {
       amount: "250",
-      type: "amount"
+      type: "amount",
     },
     shipmentPrice: {
       amount: "0",
-      currency: "$"
+      currency: "$",
     },
     finalCost: {
       amount: "500",
-      currency: "$"
+      currency: "$",
     },
     products: [],
     user: "usr_1",
     shipmentDate: "2025-07-18",
-    shipmentTrackNumber: "78234789342789"
+    shipmentTrackNumber: "78234789342789",
   },
   {
     id: "ord_2",
@@ -1518,24 +1530,24 @@ export const ORDERS_MOCK_DATA = [
     transaction: {},
     price: {
       amount: "1200",
-      currency: "$"
+      currency: "$",
     },
     discount: {
       amount: "0",
-      type: "amount"
+      type: "amount",
     },
     shipmentPrice: {
       amount: "30",
-      currency: "$"
+      currency: "$",
     },
     finalCost: {
       amount: "1230",
-      currency: "$"
+      currency: "$",
     },
     products: [],
     user: "usr_2",
     shipmentDate: "2025-08-07",
-    shipmentTrackNumber: "998877665544"
+    shipmentTrackNumber: "998877665544",
   },
   {
     id: "ord_3",
@@ -1546,24 +1558,24 @@ export const ORDERS_MOCK_DATA = [
     transaction: {},
     price: {
       amount: "540",
-      currency: "$"
+      currency: "$",
     },
     discount: {
       amount: "40",
-      type: "amount"
+      type: "amount",
     },
     shipmentPrice: {
       amount: "15",
-      currency: "$"
+      currency: "$",
     },
     finalCost: {
       amount: "515",
-      currency: "$"
+      currency: "$",
     },
     products: [],
     user: "usr_3",
     shipmentDate: "2025-06-25",
-    shipmentTrackNumber: "334455667788"
+    shipmentTrackNumber: "334455667788",
   },
   {
     id: "ord_4",
@@ -1574,24 +1586,24 @@ export const ORDERS_MOCK_DATA = [
     transaction: {},
     price: {
       amount: "300",
-      currency: "$"
+      currency: "$",
     },
     discount: {
       amount: "30",
-      type: "amount"
+      type: "amount",
     },
     shipmentPrice: {
       amount: "10",
-      currency: "$"
+      currency: "$",
     },
     finalCost: {
       amount: "280",
-      currency: "$"
+      currency: "$",
     },
     products: [],
     user: "usr_4",
     shipmentDate: "2025-09-08",
-    shipmentTrackNumber: "112233445566"
+    shipmentTrackNumber: "112233445566",
   },
   {
     id: "ord_5",
@@ -1602,24 +1614,24 @@ export const ORDERS_MOCK_DATA = [
     transaction: {},
     price: {
       amount: "850",
-      currency: "$"
+      currency: "$",
     },
     discount: {
       amount: "85",
-      type: "amount"
+      type: "amount",
     },
     shipmentPrice: {
       amount: "25",
-      currency: "$"
+      currency: "$",
     },
     finalCost: {
       amount: "790",
-      currency: "$"
+      currency: "$",
     },
     products: [],
     user: "usr_5",
     shipmentDate: "2025-08-03",
-    shipmentTrackNumber: "443322110099"
+    shipmentTrackNumber: "443322110099",
   },
   {
     id: "ord_6",
@@ -1630,24 +1642,24 @@ export const ORDERS_MOCK_DATA = [
     transaction: {},
     price: {
       amount: "2000",
-      currency: "$"
+      currency: "$",
     },
     discount: {
       amount: "200",
-      type: "amount"
+      type: "amount",
     },
     shipmentPrice: {
       amount: "0",
-      currency: "$"
+      currency: "$",
     },
     finalCost: {
       amount: "1800",
-      currency: "$"
+      currency: "$",
     },
     products: [],
     user: "usr_6",
     shipmentDate: "2025-05-22",
-    shipmentTrackNumber: "556677889900"
+    shipmentTrackNumber: "556677889900",
   },
   {
     id: "ord_7",
@@ -1658,24 +1670,24 @@ export const ORDERS_MOCK_DATA = [
     transaction: {},
     price: {
       amount: "430",
-      currency: "$"
+      currency: "$",
     },
     discount: {
       amount: "0",
-      type: "amount"
+      type: "amount",
     },
     shipmentPrice: {
       amount: "20",
-      currency: "$"
+      currency: "$",
     },
     finalCost: {
       amount: "450",
-      currency: "$"
+      currency: "$",
     },
     products: [],
     user: "usr_7",
     shipmentDate: "2025-09-15",
-    shipmentTrackNumber: "778899001122"
+    shipmentTrackNumber: "778899001122",
   },
   {
     id: "ord_8",
@@ -1686,23 +1698,268 @@ export const ORDERS_MOCK_DATA = [
     transaction: {},
     price: {
       amount: "150",
-      currency: "$"
+      currency: "$",
     },
     discount: {
       amount: "10",
-      type: "amount"
+      type: "amount",
     },
     shipmentPrice: {
       amount: "5",
-      currency: "$"
+      currency: "$",
     },
     finalCost: {
       amount: "145",
-      currency: "$"
+      currency: "$",
     },
     products: [],
     user: "usr_8",
     shipmentDate: "2025-06-10",
-    shipmentTrackNumber: "667788990011"
-  }
+    shipmentTrackNumber: "667788990011",
+  },
+];
+
+export const CARTS_MOCK_DATA = [
+  {
+    id: "cart_1",
+    products: [PRODUCTS_MOCK_DATA[0], PRODUCTS_MOCK_DATA[1]],
+    user: USERS_MOCK_DATA[0],
+    coupon: {},
+    suggestedProducts: [PRODUCTS_MOCK_DATA[2]],
+    createdAt: "2023-03-10",
+    updatedAt: "2023-03-11",
+    price: { amount: "59.98", currency: "$" },
+    discount: { amount: "5", currency: "$", type: "flat" },
+    shipping: { amount: "7.99", currency: "$" },
+    finalPrice: { amount: "62.97", currency: "$" },
+  },
+  {
+    id: "cart_2",
+    products: [PRODUCTS_MOCK_DATA[2]],
+    user: USERS_MOCK_DATA[1],
+    coupon: {},
+    suggestedProducts: PRODUCTS_MOCK_DATA,
+    createdAt: "2023-03-10",
+    updatedAt: "2023-03-11",
+    price: { amount: "29.99", currency: "$" },
+    discount: { amount: "10", currency: "%", type: "percentage" },
+    shipping: { amount: "5.99", currency: "$" },
+    finalPrice: { amount: "32.99", currency: "$" },
+  },
+  {
+    id: "cart_3",
+    products: [PRODUCTS_MOCK_DATA[1], PRODUCTS_MOCK_DATA[2]],
+    user: USERS_MOCK_DATA[2],
+    coupon: {},
+    suggestedProducts: [],
+    createdAt: "2023-03-10",
+    updatedAt: "2023-03-11",
+    price: { amount: "74.5", currency: "$" },
+    discount: { amount: "15", currency: "$", type: "flat" },
+    shipping: { amount: "0", currency: "$" },
+    finalPrice: { amount: "59.5", currency: "$" },
+  },
+  {
+    id: "cart_4",
+    products: [PRODUCTS_MOCK_DATA[1]],
+    user: USERS_MOCK_DATA[3],
+    coupon: {},
+    suggestedProducts: [PRODUCTS_MOCK_DATA[1]],
+    createdAt: "2023-03-10",
+    updatedAt: "2023-03-11",
+    price: { amount: "19.99", currency: "$" },
+    discount: { amount: "0", currency: "$", type: "flat" },
+    shipping: { amount: "4.99", currency: "$" },
+    finalPrice: { amount: "24.98", currency: "$" },
+  },
+  {
+    id: "cart_5",
+    products: [PRODUCTS_MOCK_DATA[0], PRODUCTS_MOCK_DATA[2]],
+    user: USERS_MOCK_DATA[4],
+    coupon: {},
+    suggestedProducts: [],
+    createdAt: "2023-03-10",
+    updatedAt: "2023-03-11",
+    price: { amount: "89.98", currency: "$" },
+    discount: { amount: "20", currency: "%", type: "percentage" },
+    shipping: { amount: "9.99", currency: "$" },
+    finalPrice: { amount: "81.99", currency: "$" },
+  },
+  {
+    id: "cart_6",
+    products: [PRODUCTS_MOCK_DATA[1]],
+    user: USERS_MOCK_DATA[5],
+    coupon: {},
+    suggestedProducts: [],
+    createdAt: "2023-03-10",
+    updatedAt: "2023-03-11",
+    price: { amount: "39.99", currency: "$" },
+    discount: { amount: "5", currency: "$", type: "flat" },
+    shipping: { amount: "7.5", currency: "$" },
+    finalPrice: { amount: "42.49", currency: "$" },
+  },
+  {
+    id: "cart_7",
+    products: [PRODUCTS_MOCK_DATA[2], PRODUCTS_MOCK_DATA[1]],
+    user: USERS_MOCK_DATA[6],
+    coupon: {},
+    suggestedProducts: [PRODUCTS_MOCK_DATA[4]],
+    createdAt: "2023-03-10",
+    updatedAt: "2023-03-11",
+    price: { amount: "59.98", currency: "$" },
+    discount: { amount: "12", currency: "%", type: "percentage" },
+    shipping: { amount: "6.5", currency: "$" },
+    finalPrice: { amount: "59.27", currency: "$" },
+  },
+  {
+    id: "cart_8",
+    products: PRODUCTS_MOCK_DATA,
+    user: USERS_MOCK_DATA[0],
+    coupon: {},
+    suggestedProducts: [PRODUCTS_MOCK_DATA[6]],
+    createdAt: "2023-03-10",
+    updatedAt: "2023-03-11",
+    price: { amount: "49.99", currency: "$" },
+    discount: { amount: "0", currency: "$", type: "flat" },
+    shipping: { amount: "5.99", currency: "$" },
+    finalPrice: { amount: "55.98", currency: "$" },
+  },
+  {
+    id: "cart_9",
+    products: [PRODUCTS_MOCK_DATA[0], PRODUCTS_MOCK_DATA[1]],
+    user: USERS_MOCK_DATA[1],
+    coupon: {},
+    suggestedProducts: [],
+    createdAt: "2023-03-10",
+    updatedAt: "2023-03-11",
+    price: { amount: "69.99", currency: "$" },
+    discount: { amount: "10", currency: "%", type: "percentage" },
+    shipping: { amount: "8.99", currency: "$" },
+    finalPrice: { amount: "71.99", currency: "$" },
+  },
+];
+
+export const REVIEWS_MOCK_DATA = [
+  {
+    id: "rev_1",
+    user: USERS_MOCK_DATA[0],
+    title: "Great product!",
+    text: "I really enjoyed using this, highly recommended.",
+    rate: 4.8,
+    createdAt: "2023-03-10",
+    updatedAt: "2023-03-11",
+    replies: [
+      {
+        id: "reply_1",
+        user: USERS_MOCK_DATA[1],
+        text: "Thank you for your feedback!",
+        createdAt: "2025-09-01",
+      },
+    ],
+    status: "accepted",
+    entity: "product",
+    media: [
+      {
+        src: "https://images.unsplash.com/photo-1518756131217-31eb79b20e8f",
+        title: "Fern",
+      },
+       {
+        src: "https://images.unsplash.com/photo-1627308595229-7830a5c91f9f",
+        title: "Snacks",
+      },
+      {
+        src: "https://images.unsplash.com/photo-1597645587822-e99fa5d45d25",
+        title: "Mushrooms",
+      },
+    ],
+    rejectionReason: "",
+    isReply: false,
+    likes: 3,
+    dislikes: 0,
+  },
+  {
+    id: "rev_2",
+    user: USERS_MOCK_DATA[2],
+    title: "Not what I expected",
+    text: "The product quality could be better.",
+    rate: 2.7,
+    createdAt: "2023-03-10",
+    updatedAt: "2023-03-11",
+    replies: [],
+    status: "pending",
+    entity: "product",
+    media: [],
+    rejectionReason: "",
+    isReply: false,
+    likes: 1,
+    dislikes: 2,
+  },
+  {
+    id: "rev_3",
+    user: USERS_MOCK_DATA[3],
+    title: "Excellent!",
+    text: "Arrived quickly and works perfectly.",
+    rate: 5.0,
+    createdAt: "2023-03-10",
+    updatedAt: "2023-03-11",
+    replies: [
+      {
+        id: "reply_2",
+        user: USERS_MOCK_DATA[4],
+        text: "Glad you liked it!",
+        createdAt: "2025-09-02",
+      },
+    ],
+    status: "accepted",
+    entity: "product",
+    media: [
+      {
+        src: "https://images.unsplash.com/photo-1627308595229-7830a5c91f9f",
+        title: "Snacks",
+      },
+    ],
+    rejectionReason: "",
+    isReply: false,
+    likes: 5,
+    dislikes: 0,
+  },
+  {
+    id: "rev_4",
+    user: USERS_MOCK_DATA[5],
+    title: "Terrible experience",
+    text: "Item was broken and customer service didn’t respond.",
+    rate: 1.3,
+    createdAt: "2023-03-10",
+    updatedAt: "2023-03-11",
+    replies: [],
+    status: "rejected",
+    entity: "product",
+    media: [
+      {
+        src: "https://images.unsplash.com/photo-1597645587822-e99fa5d45d25",
+        title: "Mushrooms",
+      },
+    ],
+    rejectionReason: "Inappropriate language used in review.",
+    isReply: false,
+    likes: 0,
+    dislikes: 4,
+  },
+  {
+    id: "rev_5",
+    user: USERS_MOCK_DATA[6],
+    title: "Good value for money",
+    text: "Satisfied with the purchase overall.",
+    rate: 4.2,
+    createdAt: "2023-03-10",
+    updatedAt: "2023-03-11",
+    replies: [],
+    status: "accepted",
+    entity: "product",
+    media: [],
+    rejectionReason: "",
+    isReply: false,
+    likes: 2,
+    dislikes: 0,
+  },
 ];

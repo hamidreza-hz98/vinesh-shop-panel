@@ -1,10 +1,17 @@
-import ReviewsPageWrapper from '@/components/wrappers/ReviewsPageWrapper'
-import React from 'react'
+"use client";
 
+import dynamic from "next/dynamic";
+import Loader from "@/components/common/Loader";
+
+const ReviewsPageWrapper = dynamic(
+  () => import("@/components/wrappers/ReviewsPageWrapper"),
+  {
+    ssr: false,
+    loading: () => <Loader />,
+  }
+);
 const ReviewsPage = () => {
-  return (
-    <ReviewsPageWrapper />
-  )
-}
+  return <ReviewsPageWrapper />;
+};
 
-export default ReviewsPage
+export default ReviewsPage;

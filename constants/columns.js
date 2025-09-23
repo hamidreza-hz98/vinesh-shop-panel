@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import { Box, Chip } from "@mui/material";
-import { orderStatuses } from "./general";
+import { Box, Chip, Rating } from "@mui/material";
+import { orderStatuses, reviewStatuses } from "./general";
 
 export const userColumns = [
   { field: "firstName", headerName: "First Name", width: 130 },
@@ -251,3 +251,143 @@ export const orderColumns = [
     valueGetter: (finalCost) => finalCost?.amount + finalCost?.currency || "",
   },
 ];
+
+
+export const cartColumns = [
+  {
+    field: "user",
+    headerName: "User",
+    width: 200,
+    valueGetter: (user) => user?.phoneNumber
+  },
+  {
+    field: "price",
+    headerName: "Price",
+    width: 150,
+    valueGetter: (price) => price?.amount + price?.currency
+  },
+  {
+    field: "discount",
+    headerName: "Discount",
+    width: 150,
+    valueGetter: (discount) =>   discount?.amount + (discount?.type === "percentage" ? "%" : discount?.currency)
+  },
+  {
+    field: "shipping",
+    headerName: "Shipping",
+    width: 150,
+    valueGetter: (shipping) => shipping?.amount + shipping?.currency
+  },
+  {
+    field: "finalPrice",
+    headerName: "Final Price",
+    width: 150,
+    valueGetter: (finalPrice) => finalPrice?.amount + finalPrice?.currency
+  },
+  {
+    field: "createdAt",
+    headerName: "Created At",
+    width: 180,
+    valueGetter: (createdAt) => new Date(createdAt)?.toLocaleString() || "",
+  },
+  {
+    field: "updatedAt",
+    headerName: "Updated At",
+    width: 180,
+    valueGetter: (updatedAt) => new Date(updatedAt)?.toLocaleString() || "",
+  },
+];
+
+
+export const reviewColumns = [
+  {
+    field: "user",
+    headerName: "User",
+    width: 200,
+    valueGetter: (user) => user?.phoneNumber
+  },
+  {
+    field: "status",
+    headerName: "Status",
+    width: 150,
+    renderCell: (params) => {
+      const status = params.row.status || "";
+
+      return (
+        <Chip
+          label={reviewStatuses[status].name}
+          variant="filled"
+          size="small"
+          sx={{border: "none"}}
+          color={reviewStatuses[status].color}
+          icon={reviewStatuses[status].icon}
+        />
+      );
+    },
+  },
+  {
+    field: "entity",
+    headerName: "Entity",
+    width: 150,
+  },
+  {
+    field: "title",
+    headerName: "Title",
+    width: 150,
+  },
+   {
+  field: "media",
+  headerName: "Images",
+  width: 150,
+  renderCell: (params) => {
+    const images = params.row.media || [];
+
+    return (
+      <Box
+        display="flex"
+        gap={1}
+        alignItems="center"
+        justifyContent="center"
+        padding={1}
+      >
+        {images.map((image, index) => (
+          <img
+            key={index}
+            src={image.src}
+            alt={image.title}
+            style={{
+              width: 100,
+              height: 100,
+              objectFit: "cover",
+              borderRadius: 4,
+            }}
+          />
+        ))}
+      </Box>
+    );
+  },
+},
+  {
+    field: "rate",
+    headerName: "Rate",
+    width: 150,
+    renderCell: (params) => {
+      const rate = params.row.rate
+
+      return <Rating size="small" value={rate} readOnly />
+    }
+  },
+  {
+    field: "createdAt",
+    headerName: "Created At",
+    width: 180,
+    valueGetter: (createdAt) => new Date(createdAt)?.toLocaleString() || "",
+  },
+  {
+    field: "updatedAt",
+    headerName: "Updated At",
+    width: 180,
+    valueGetter: (updatedAt) => new Date(updatedAt)?.toLocaleString() || "",
+  },
+];
+
