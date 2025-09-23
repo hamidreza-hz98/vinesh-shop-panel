@@ -1,5 +1,15 @@
-import CampaignsOverviewPageWrapper from '@/components/wrappers/CampaignsOverviewPageWrapper'
-import React from 'react'
+"use client"
+
+import dynamic from 'next/dynamic';
+import Loader from '@/components/common/Loader';
+
+const CampaignsOverviewPageWrapper = dynamic(
+  () => import('@/components/wrappers/CampaignsOverviewPageWrapper'),
+  {
+    ssr: false,
+    loading: () => <Loader />,
+  }
+);
 
 const CampaignsPage = () => {
   return (

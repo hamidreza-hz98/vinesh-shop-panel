@@ -1963,3 +1963,107 @@ export const REVIEWS_MOCK_DATA = [
     dislikes: 0,
   },
 ];
+
+export const CAMPAIGNS_MOCK_DATA = [
+  {
+    id: "cmp_1",
+    banners: [
+      { src: "https://images.unsplash.com/photo-1518756131217-31eb79b20e8f", title: "Fern" },
+      { src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb", title: "Moss" },
+      { src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f", title: "Palm" },
+    ],
+    createdAt: "2025-08-10",
+    updatedAt: "2025-09-11",
+    expiry: "2025-09-15", // expired
+    products: PRODUCTS_MOCK_DATA,
+    name: "Summer Clearance",
+    excerpt: "End of season clearance sale.",
+    description: `<p> Huge discounts on summer products. </p>`,
+    startDate: "2025-08-01",
+  },
+  {
+    id: "cmp_2",
+    banners: [
+      { src: "https://images.unsplash.com/photo-1523275335684-37898b6baf30", title: "Watch" },
+      { src: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f", title: "Shoes" },
+    ],
+    createdAt: "2025-09-01",
+    updatedAt: "2025-09-10",
+    expiry: "2025-12-01", // active
+    products: PRODUCTS_MOCK_DATA,
+    name: "Autumn Sale",
+    excerpt: "Discounts on autumn essentials.",
+    description: `<p> Cozy deals for the fall season. </p>`,
+    startDate: "2025-09-15"
+  },
+  {
+    id: "cmp_3",
+    banners: [
+      { src: "https://images.unsplash.com/photo-1542291026-7eec264c27ff", title: "Winter Jacket" },
+    ],
+    createdAt: "2025-09-15",
+    updatedAt: "2025-09-20",
+    expiry: "2026-01-15", // upcoming
+    products: PRODUCTS_MOCK_DATA,
+    name: "Winter Specials",
+    excerpt: "Prepare for the cold season.",
+    description: `<p> Warm clothes at hot prices. </p>`,
+    startDate: "2025-12-01"
+  },
+  {
+    id: "cmp_4",
+    banners: [
+      { src: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f", title: "Sneakers" },
+    ],
+    createdAt: "2025-09-12",
+    updatedAt: "2025-09-18",
+    expiry: "2025-09-30", // active but ending soon
+    products: PRODUCTS_MOCK_DATA,
+    name: "Back to School",
+    excerpt: "Specials for students.",
+    description: `<p> Perfect picks for the new semester. </p>`,
+    startDate: "2025-09-01"
+  },
+  {
+    id: "cmp_5",
+    banners: [
+      { src: "https://images.unsplash.com/photo-1503602642458-232111445657", title: "Gift" },
+    ],
+    createdAt: "2025-09-05",
+    updatedAt: "2025-09-06",
+    expiry: "2025-10-20", // active
+    products: PRODUCTS_MOCK_DATA,
+    name: "Flash Deals",
+    excerpt: "Limited-time offers.",
+    description: `<p> Hurry! Deals end soon. </p>`,
+    startDate: "2025-09-10"
+  },
+  {
+    id: "cmp_6",
+    banners: [
+      { src: "https://images.unsplash.com/photo-1473187983305-f615310e7daa", title: "Decor" },
+    ],
+    createdAt: "2025-09-08",
+    updatedAt: "2025-09-12",
+    expiry: "2026-03-01", // upcoming, long future
+    products: PRODUCTS_MOCK_DATA,
+    name: "Spring Festival",
+    excerpt: "Celebrate with new arrivals.",
+    description: `<p> Fresh looks for spring. </p>`,
+    startDate: "2026-02-01"
+  },
+  {
+    id: "cmp_7",
+    banners: [
+      { src: "https://images.unsplash.com/photo-1504674900247-0877df9cc836", title: "Food" },
+    ],
+    createdAt: "2025-09-11",
+    updatedAt: "2025-09-13",
+    expiry: "2025-09-22", // active
+    products: PRODUCTS_MOCK_DATA,
+    name: "Food Fiesta",
+    excerpt: "Tasty deals on snacks.",
+    description: `<p> Don’t miss out on limited food deals. </p>`,
+    startDate: "2025-09-12"
+  },
+];

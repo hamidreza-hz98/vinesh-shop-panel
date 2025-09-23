@@ -20,6 +20,9 @@ import RocketLaunchOutlinedIcon from "@mui/icons-material/RocketLaunchOutlined";
 import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import CreditCardOffOutlinedIcon from "@mui/icons-material/CreditCardOffOutlined";
+import PlayCircleOutlinedIcon from '@mui/icons-material/PlayCircleOutlined';
+import HourglassDisabledOutlinedIcon from '@mui/icons-material/HourglassDisabledOutlined';
+import UpdateOutlinedIcon from '@mui/icons-material/UpdateOutlined';
 
 export const sidebarRoutes = [
   {
@@ -232,6 +235,25 @@ export const reviewStatuses = {
     name: "Rejected",
     color: "error",
     icon: <CancelOutlinedIcon />,
+  },
+};
+
+export const campaignStatuses = {
+  running: {
+    name: "Running",
+    color: "success",
+    icon: <UpdateOutlinedIcon />,
+  },
+
+  notStarted: {
+    name: "Not Started",
+    color: "text",
+    icon: <HourglassDisabledOutlinedIcon />,
+  },
+  finished: {
+    name: "Finished",
+    color: "error",
+    icon: <UpdateOutlinedIcon />,
   },
 };
 

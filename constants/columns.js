@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
-import { Box, Chip, Rating } from "@mui/material";
-import { orderStatuses, reviewStatuses } from "./general";
+import { Box, Chip, Rating, Typography } from "@mui/material";
+import { campaignStatuses, orderStatuses, reviewStatuses } from "./general";
+import { calculateCampaignExpiryStatus, calculateCampaignRemainingDays } from "@/lib/date";
 
 export const userColumns = [
   { field: "firstName", headerName: "First Name", width: 130 },
@@ -226,7 +227,7 @@ export const orderColumns = [
           label={orderStatuses[status].name}
           variant="filled"
           size="small"
-          sx={{border: "none"}}
+          sx={{ border: "none" }}
           color={orderStatuses[status].color}
           icon={orderStatuses[status].icon}
         />
@@ -252,37 +253,38 @@ export const orderColumns = [
   },
 ];
 
-
 export const cartColumns = [
   {
     field: "user",
     headerName: "User",
     width: 200,
-    valueGetter: (user) => user?.phoneNumber
+    valueGetter: (user) => user?.phoneNumber,
   },
   {
     field: "price",
     headerName: "Price",
     width: 150,
-    valueGetter: (price) => price?.amount + price?.currency
+    valueGetter: (price) => price?.amount + price?.currency,
   },
   {
     field: "discount",
     headerName: "Discount",
     width: 150,
-    valueGetter: (discount) =>   discount?.amount + (discount?.type === "percentage" ? "%" : discount?.currency)
+    valueGetter: (discount) =>
+      discount?.amount +
+      (discount?.type === "percentage" ? "%" : discount?.currency),
   },
   {
     field: "shipping",
     headerName: "Shipping",
     width: 150,
-    valueGetter: (shipping) => shipping?.amount + shipping?.currency
+    valueGetter: (shipping) => shipping?.amount + shipping?.currency,
   },
   {
     field: "finalPrice",
     headerName: "Final Price",
     width: 150,
-    valueGetter: (finalPrice) => finalPrice?.amount + finalPrice?.currency
+    valueGetter: (finalPrice) => finalPrice?.amount + finalPrice?.currency,
   },
   {
     field: "createdAt",
@@ -298,13 +300,12 @@ export const cartColumns = [
   },
 ];
 
-
 export const reviewColumns = [
   {
     field: "user",
     headerName: "User",
     width: 200,
-    valueGetter: (user) => user?.phoneNumber
+    valueGetter: (user) => user?.phoneNumber,
   },
   {
     field: "status",
@@ -318,7 +319,7 @@ export const reviewColumns = [
           label={reviewStatuses[status].name}
           variant="filled"
           size="small"
-          sx={{border: "none"}}
+          sx={{ border: "none" }}
           color={reviewStatuses[status].color}
           icon={reviewStatuses[status].icon}
         />
@@ -335,47 +336,47 @@ export const reviewColumns = [
     headerName: "Title",
     width: 150,
   },
-   {
-  field: "media",
-  headerName: "Images",
-  width: 150,
-  renderCell: (params) => {
-    const images = params.row.media || [];
+  {
+    field: "media",
+    headerName: "Images",
+    width: 150,
+    renderCell: (params) => {
+      const images = params.row.media || [];
 
-    return (
-      <Box
-        display="flex"
-        gap={1}
-        alignItems="center"
-        justifyContent="center"
-        padding={1}
-      >
-        {images.map((image, index) => (
-          <img
-            key={index}
-            src={image.src}
-            alt={image.title}
-            style={{
-              width: 100,
-              height: 100,
-              objectFit: "cover",
-              borderRadius: 4,
-            }}
-          />
-        ))}
-      </Box>
-    );
+      return (
+        <Box
+          display="flex"
+          gap={1}
+          alignItems="center"
+          justifyContent="center"
+          padding={1}
+        >
+          {images.map((image, index) => (
+            <img
+              key={index}
+              src={image.src}
+              alt={image.title}
+              style={{
+                width: 100,
+                height: 100,
+                objectFit: "cover",
+                borderRadius: 4,
+              }}
+            />
+          ))}
+        </Box>
+      );
+    },
   },
-},
   {
     field: "rate",
     headerName: "Rate",
     width: 150,
     renderCell: (params) => {
-      const rate = params.row.rate
+      const rate = params.row.rate;
 
-      return <Rating size="small" value={rate} readOnly />
-    }
+      return <Rating size="small" value={rate} readOnly />;
+    },
   },
   {
     field: "createdAt",
@@ -391,3 +392,55 @@ export const reviewColumns = [
   },
 ];
 
+export const campaignColumns = [
+  {
+    field: "name",
+    headerName: "Name",
+    width: 120,
+  },
+  {
+    field: "expiry",
+    headerName: "Status",
+    width: 150,
+    renderCell: (params) => {
+      const startDate = params?.row?.startDate || "";
+      const expiryDate = params?.row?.expiry || "";
+      const status = calculateCampaignExpiryStatus(startDate, expiryDate);
+
+      return (
+        <Chip
+          label={campaignStatuses[status].name}
+          variant="filled"
+          size="small"
+          sx={{ border: "none" }}
+          color={campaignStatuses[status].color}
+          icon={campaignStatuses[status].icon}
+        />
+      );
+    },
+  },
+  {
+    field: "startDate",
+    headerName: "Day",
+    width: 150,
+     renderCell: (params) => {
+      const startDate = params?.row?.startDate || "";
+      const expiryDate = params?.row?.expiry || "";
+      const remainingDays = calculateCampaignRemainingDays(startDate, expiryDate);
+
+      return remainingDays;
+    },
+  },
+  {
+    field: "createdAt",
+    headerName: "Created At",
+    width: 180,
+    valueGetter: (createdAt) => new Date(createdAt)?.toLocaleString() || "",
+  },
+  {
+    field: "updatedAt",
+    headerName: "Updated At",
+    width: 180,
+    valueGetter: (updatedAt) => new Date(updatedAt)?.toLocaleString() || "",
+  },
+];
