@@ -124,6 +124,7 @@ const getDrawerContent = React.useCallback(
           sx={{
             padding: mini ? 0 : 0.5,
             mb: 4,
+            mt:2,
             width: mini ? 90 : 'auto',
           }}
         >

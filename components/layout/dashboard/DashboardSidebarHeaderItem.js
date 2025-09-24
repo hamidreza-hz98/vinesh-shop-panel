@@ -29,6 +29,7 @@ function DashboardSidebarHeaderItem({ children }) {
           : {}),
         px: 1.5,
         py: 0,
+        mt: 1 ,
         minWidth: 240,
         overflow: 'hidden',
         textOverflow: 'ellipsis',

@@ -2441,7 +2441,7 @@ export const BLOG_MOCK_DATA = [
     timeToRead: "5 min",
     slug: "sustainable-living-tips",
     reviews: [],
-    
+
     categories: [],
     tags: [],
     suggestedProducts: [],
@@ -2468,5 +2468,128 @@ export const BLOG_MOCK_DATA = [
       </ol>
       <p>Adopting sustainable habits benefits both the planet and your own wellbeing, creating a cleaner, healthier environment for everyone.</p>
     `,
+  },
+];
+
+export const COLORS_MOCK_DATA = [
+  {
+    id: "color_1",
+    code: "#368737",
+    createdAt: "2025-09-12",
+    updatedAt: "2025-09-14",
+    translations: [
+      {
+        lang: "us",
+        name: "Blue",
+      },
+    ],
+  },
+  {
+    id: "color_2",
+    code: "#FF5733",
+    createdAt: "2025-09-12",
+    updatedAt: "2025-09-14",
+    translations: [
+      {
+        lang: "us",
+        name: "Red",
+      },
+    ],
+  },
+  {
+    id: "color_3",
+    code: "#33C1FF",
+    createdAt: "2025-09-12",
+    updatedAt: "2025-09-14",
+    translations: [
+      {
+        lang: "us",
+        name: "Sky Blue",
+      },
+    ],
+  },
+  {
+    id: "color_4",
+    code: "#FFD433",
+    createdAt: "2025-09-12",
+    updatedAt: "2025-09-14",
+    translations: [
+      {
+        lang: "us",
+        name: "Yellow",
+      },
+    ],
+  },
+  {
+    id: "color_5",
+    code: "#8E44AD",
+    createdAt: "2025-09-12",
+    updatedAt: "2025-09-14",
+    translations: [
+      {
+        lang: "us",
+        name: "Purple",
+      },
+    ],
+  },
+  {
+    id: "color_6",
+    code: "#E67E22",
+    createdAt: "2025-09-12",
+    updatedAt: "2025-09-14",
+    translations: [
+      {
+        lang: "us",
+        name: "Orange",
+      },
+    ],
+  },
+  {
+    id: "color_7",
+    code: "#2C3E50",
+    createdAt: "2025-09-12",
+    updatedAt: "2025-09-14",
+    translations: [
+      {
+        lang: "us",
+        name: "Dark Gray",
+      },
+    ],
+  },
+  {
+    id: "color_8",
+    code: "#F1C40F",
+    createdAt: "2025-09-12",
+    updatedAt: "2025-09-14",
+    translations: [
+      {
+        lang: "us",
+        name: "Gold",
+      },
+    ],
+  },
+  {
+    id: "color_9",
+    code: "#1ABC9C",
+    createdAt: "2025-09-12",
+    updatedAt: "2025-09-14",
+    translations: [
+      {
+        lang: "us",
+        name: "Turquoise",
+      },
+    ],
+  },
+  {
+    id: "color_10",
+    code: "#ECF0F1",
+    createdAt: "2025-09-12",
+    updatedAt: "2025-09-14",
+    translations: [
+      {
+        lang: "us",
+        name: "White",
+      },
+    ],
   },
 ];

@@ -27,7 +27,10 @@ export const adminSchema = yup.object().shape({
   firstName: yup.string().required("First name is required").max(50),
   lastName: yup.string().required("Last name is required").max(50),
   username: yup.string().required("Username is required").max(50),
-  password: yup.string().required("Password is required").min(6, "Password must be at least 6 characters"),
+  password: yup
+    .string()
+    .required("Password is required")
+    .min(6, "Password must be at least 6 characters"),
   role: yup.string().required("Role is required").max(50),
 });
 
@@ -40,15 +43,24 @@ export const mediaSchema = yup.object().shape({
 });
 
 export const productSchema = yup.object().shape({
-  quantity: yup.number().required("Quantity is required").min(0, "Quantity cannot be negative"),
-  categories: yup.array().of(yup.string()).min(1, "At least one category is required"),
+  quantity: yup
+    .number()
+    .required("Quantity is required")
+    .min(0, "Quantity cannot be negative"),
+  categories: yup
+    .array()
+    .of(yup.string())
+    .min(1, "At least one category is required"),
   tags: yup.array().of(yup.string()),
   brand: yup.string().max(50),
   relatedProducts: yup.array().of(yup.string()),
   isInCampaign: yup.boolean().required("Campaign status is required"),
   isActive: yup.boolean().required("Active status is required"),
   isFeatured: yup.boolean().required("Featured status is required"),
-  media: yup.array().of(yup.string()).min(1, "At least one media item is required"),
+  media: yup
+    .array()
+    .of(yup.string())
+    .min(1, "At least one media item is required"),
   catalogue: yup.object().shape({
     src: yup.string().required("Catalogue source is required"),
     altText: yup.string().required("Catalogue alt text is required").max(100),
@@ -61,7 +73,6 @@ export const productSchema = yup.object().shape({
     })
   ),
 });
-
 
 export const orderSchema = yup.object().shape({
   trackNumber: yup
@@ -104,10 +115,7 @@ export const orderSchema = yup.object().shape({
 export const couponSchema = yup
   .object()
   .shape({
-    code: yup
-      .string()
-      .trim()
-      .required("Coupon code is required"),
+    code: yup.string().trim().required("Coupon code is required"),
 
     type: yup
       .string()
@@ -126,15 +134,9 @@ export const couponSchema = yup
       .min(0, "Percentage cannot be negative")
       .max(100, "Percentage cannot exceed 100"),
 
-    amount: yup
-      .number()
-      .nullable()
-      .min(0, "Amount cannot be negative"),
+    amount: yup.number().nullable().min(0, "Amount cannot be negative"),
 
-    expiry: yup
-      .date()
-      .nullable()
-      .required("Expiry date is required"),
+    expiry: yup.date().nullable().required("Expiry date is required"),
 
     usageNumber: yup
       .number()
@@ -148,3 +150,27 @@ export const couponSchema = yup
       return value?.percentage || value?.amount;
     }
   );
+
+export const colorSchema = yup.object().shape({
+  code: yup
+    .string()
+    .matches(
+      /^#([0-9A-Fa-f]{6})$/,
+      "Code must be a valid hex color (e.g. #FFFFFF)"
+    )
+    .required("Color code is required"),
+
+  translations: yup
+    .array()
+    .of(
+      yup.object().shape({
+        lang: yup
+          .string()
+          .min(2, "Language code must have at least 2 characters")
+          .max(5, "Language code can’t be longer than 5 characters")
+          .required("Language is required"),
+        name: yup.string().required("Translation name is required"),
+      })
+    )
+    .min(1, "At least one translation is required"),
+});

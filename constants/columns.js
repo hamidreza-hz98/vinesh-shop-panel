@@ -686,3 +686,61 @@ export const blogColumns = [
     valueGetter: (updatedAt) => new Date(updatedAt)?.toLocaleString() || "",
   },
 ];
+
+export const colorColumns = [
+  {
+    field: "translations",
+    headerName: "Name",
+    width: 100,
+    valueGetter: (translations) => {
+      const english = translations.find((item) => item.lang === "us");
+
+      return english.name;
+    },
+  },
+  {
+    field: "code",
+    headerName: "Code",
+    width: 100,
+
+  },
+  {
+    field: "id",
+    headerName: "Color",
+    width: 100,
+    renderCell: (params) => {
+      const color = params.row.code;
+
+      return (
+        <Box
+          width="100%"
+          height="100%"
+          display="flex"
+          alignItems="center"
+          justifyContent="start"
+        >
+          <div
+            style={{
+              width: 32,
+              height: 32,
+              backgroundColor: color,
+              borderRadius: 32,
+            }}
+          />
+        </Box>
+      );
+    },
+  },
+  {
+    field: "createdAt",
+    headerName: "Created At",
+    width: 180,
+    valueGetter: (createdAt) => new Date(createdAt)?.toLocaleString() || "",
+  },
+  {
+    field: "updatedAt",
+    headerName: "Updated At",
+    width: 180,
+    valueGetter: (updatedAt) => new Date(updatedAt)?.toLocaleString() || "",
+  },
+];

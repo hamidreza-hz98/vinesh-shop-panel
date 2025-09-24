@@ -25,10 +25,13 @@ import HourglassDisabledOutlinedIcon from "@mui/icons-material/HourglassDisabled
 import UpdateOutlinedIcon from "@mui/icons-material/UpdateOutlined";
 import AccountBalanceOutlinedIcon from "@mui/icons-material/AccountBalanceOutlined";
 import NotificationAddOutlinedIcon from "@mui/icons-material/NotificationAddOutlined";
+import ColorLensOutlinedIcon from "@mui/icons-material/ColorLensOutlined";
+import TagOutlinedIcon from "@mui/icons-material/TagOutlined";
+import HeightOutlinedIcon from "@mui/icons-material/HeightOutlined";
 
 export const sidebarRoutes = [
   {
-    header: "Main",
+    header: "Main Pages",
     items: [
       {
         id: "dashboard",
@@ -37,17 +40,34 @@ export const sidebarRoutes = [
         href: "/dashboard",
       },
       {
+        id: "products",
+        title: "Products",
+        icon: Inventory2OutlinedIcon,
+        href: "/dashboard/products",
+      },
+      {
+        id: "categories",
+        title: "Categories",
+        icon: CategoryOutlinedIcon,
+        href: "/dashboard/categories",
+      },
+      {
         id: "users",
         title: "Users",
         icon: SupervisedUserCircleOutlinedIcon,
         href: "/dashboard/users",
       },
       {
-        id: "admins",
-        title: "Admins",
-        icon: Person2OutlinedIcon,
-        href: "/dashboard/admins",
+        id: "blog",
+        title: "Blog",
+        icon: DescriptionOutlinedIcon,
+        href: "/dashboard/blog",
       },
+    ],
+  },
+  {
+    header: "General",
+    items: [
       {
         id: "media",
         title: "Media",
@@ -55,88 +75,34 @@ export const sidebarRoutes = [
         href: "/dashboard/media",
       },
       {
-        id: "products",
-        title: "Products",
-        icon: Inventory2OutlinedIcon,
-        href: "/dashboard/products",
-        nested: [
-          {
-            id: "allProducts",
-            title: "All Products",
-            href: "/dashboard/products",
-          },
-          {
-            id: "createProduct",
-            title: "Create Product",
-            href: "/dashboard/products/create",
-          },
-        ],
-      },
-      {
-        id: "categories",
-        title: "Categories",
-        icon: CategoryOutlinedIcon,
-        href: "/dashboard/categories",
-        nested: [
-          {
-            id: "allCategories",
-            title: "All Categories",
-            href: "/dashboard/categories",
-          },
-          {
-            id: "createCategory",
-            title: "Create Category",
-            href: "/dashboard/categories/create",
-          },
-        ],
-      },
-      {
         id: "brands",
         title: "Brands",
         icon: LayersOutlinedIcon,
         href: "/dashboard/brands",
-        nested: [
-          {
-            id: "allBrands",
-            title: "All Brands",
-            href: "/dashboard/brands",
-          },
-          {
-            id: "createBrand",
-            title: "Create Brand",
-            href: "/dashboard/brands/create",
-          },
-        ],
       },
       {
-        id: "orders",
-        title: "Orders",
-        icon: ShoppingCartCheckoutOutlinedIcon,
-        href: "/dashboard/orders",
+        id: "colors",
+        title: "Colors",
+        icon: ColorLensOutlinedIcon,
+        href: "/dashboard/colors",
       },
       {
-        id: "carts",
-        title: "Carts",
-        icon: ShoppingBasketOutlinedIcon,
-        href: "/dashboard/carts",
+        id: "tags",
+        title: "Tags",
+        icon: TagOutlinedIcon,
+        href: "/dashboard/tags",
       },
       {
-        id: "reviews",
-        title: "Reviews",
-        icon: RateReviewOutlinedIcon,
-        href: "/dashboard/reviews",
+        id: "sizes",
+        title: "Sizes",
+        icon: HeightOutlinedIcon,
+        href: "/dashboard/sizes",
       },
     ],
   },
   {
-    header: "Settings",
+    header: "Marketting",
     items: [
-      {
-        id: "generalSettings",
-        title: "General Settings",
-        icon: PermDataSettingOutlinedIcon,
-        href: "/dashboard/general-settings",
-      },
       {
         id: "campaigns",
         title: "Campaigns",
@@ -148,6 +114,17 @@ export const sidebarRoutes = [
         title: "Coupons",
         icon: LocalOfferOutlinedIcon,
         href: "/dashboard/coupons",
+      },
+    ],
+  },
+  {
+    header: "Financial",
+    items: [
+      {
+        id: "orders",
+        title: "Orders",
+        icon: ShoppingCartCheckoutOutlinedIcon,
+        href: "/dashboard/orders",
       },
       {
         id: "transactions",
@@ -162,33 +139,39 @@ export const sidebarRoutes = [
       //   href: "/dashboard/payment-gateways",
       // },
       {
+        id: "carts",
+        title: "Carts",
+        icon: ShoppingBasketOutlinedIcon,
+        href: "/dashboard/carts",
+      },
+    ],
+  },
+  {
+    header: "Settings",
+    items: [
+      {
+        id: "admins",
+        title: "Admins",
+        icon: Person2OutlinedIcon,
+        href: "/dashboard/admins",
+      },
+      {
+        id: "generalSettings",
+        title: "General Settings",
+        icon: PermDataSettingOutlinedIcon,
+        href: "/dashboard/general-settings",
+      },
+      {
         id: "contactForms",
         title: "Contact Forms",
         icon: AttachEmailOutlinedIcon,
         href: "/dashboard/contact-forms",
       },
-    ],
-  },
-  {
-    header: "Blog",
-    items: [
       {
-        id: "blog",
-        title: "Blog",
-        icon: DescriptionOutlinedIcon,
-        href: "/dashboard/blog",
-        nested: [
-          {
-            id: "allBlogs",
-            title: "All Blogs",
-            href: "/dashboard/blog",
-          },
-          {
-            id: "createBlog",
-            title: "Create Blog",
-            href: "/dashboard/blog/create",
-          },
-        ],
+        id: "reviews",
+        title: "Reviews",
+        icon: RateReviewOutlinedIcon,
+        href: "/dashboard/reviews",
       },
     ],
   },

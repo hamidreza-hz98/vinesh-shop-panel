@@ -85,3 +85,25 @@ export const transactionDefaultValues = (data) => ({
   createdAt: data?.createdAt || " - ",
   amount: data?.amount || " - ",
 });
+
+export const colorDefaultValues = (data) => ({
+  code: data?.code || "#000000",
+  translations: data?.translations || [
+    {
+      lang: "us",
+      name: ""
+    },
+    {
+      lang: "pt",
+      name: ""
+    },
+    {
+      lang: "ae",
+      name: ""
+    },
+    {
+      lang: "ir",
+      name: ""
+    },
+  ]
+})
