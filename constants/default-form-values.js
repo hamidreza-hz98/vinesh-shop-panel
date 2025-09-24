@@ -69,8 +69,19 @@ export const couponDefaultValues = (data) => ({
   products: data?.products || [],
   users: data?.users || [],
   cart: data?.cart || {},
-  percentage: data?.percentage || "",  
-  amount: data?.amount || {},  
-  expiry: data?.expiry || "",  
-  usageNumber: data?.usageNumber || 0,  
-})
+  percentage: data?.percentage || "",
+  amount: data?.amount || {},
+  expiry: data?.expiry || "",
+  usageNumber: data?.usageNumber || 0,
+});
+
+export const transactionDefaultValues = (data) => ({
+  userName: data?.user?.firstName + " " + data?.user?.lastName || " - ",
+  userEmail: data?.user?.email || " - ",
+  userPhone: data?.user?.phoneNumber || " - ",
+  trackingCode: data?.trackingCode || " - ",
+  referrerBank: data?.referrerBank || " - ",
+  status: data?.status || " - ",
+  createdAt: data?.createdAt || " - ",
+  amount: data?.amount || " - ",
+});

@@ -276,4 +276,17 @@ export const couponStatuses = {
   },
 };
 
+export const transactionStatuses = {
+  successful: {
+    name: "Successful",
+    color: "success",
+    icon: <UpdateOutlinedIcon />,
+  },
+  failed: {
+    name: "Failed",
+    color: "error",
+    icon: <UpdateOutlinedIcon />,
+  },
+};
+
 export default sidebarRoutes;

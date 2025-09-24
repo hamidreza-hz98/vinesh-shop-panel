@@ -5,6 +5,7 @@ import {
   couponStatuses,
   orderStatuses,
   reviewStatuses,
+  transactionStatuses,
 } from "./general";
 import {
   calculateCampaignExpiryStatus,
@@ -501,6 +502,61 @@ export const couponColumns = [
 
       return percentage ? percentage + "%" : amount.amount + amount.currency;
     },
+  },
+  {
+    field: "createdAt",
+    headerName: "Created At",
+    width: 180,
+    valueGetter: (createdAt) => new Date(createdAt)?.toLocaleString() || "",
+  },
+  {
+    field: "updatedAt",
+    headerName: "Updated At",
+    width: 180,
+    valueGetter: (updatedAt) => new Date(updatedAt)?.toLocaleString() || "",
+  },
+];
+
+export const transactionColumns = [
+  {
+    field: "trackingCode",
+    headerName: "Tracking Code",
+    width: 120,
+  },
+  {
+    field: "user",
+    headerName: "User",
+    width: 120,
+    valueGetter: (user) => user.phoneNumber,
+  },
+  {
+    field: "amount",
+    headerName: "Amount",
+    width: 80,
+  },
+  {
+    field: "status",
+    headerName: "Status",
+    width: 120,
+    renderCell: (params) => {
+      const status = params.row.status
+
+       return (
+        <Chip
+          label={transactionStatuses[status].name}
+          variant="filled"
+          size="small"
+          sx={{ border: "none" }}
+          color={transactionStatuses[status].color}
+          icon={transactionStatuses[status].icon}
+        />
+      );
+    }
+  },
+  {
+    field: "referrerBank",
+    headerName: "Referrer Bank",
+    width: 120,
   },
   {
     field: "createdAt",
