@@ -6,7 +6,6 @@ import { Controller } from "react-hook-form";
 const CampaignTranslationForm = ({
   control,
   lang,
-  currency,
   setValue,
   watch,
 }) => {

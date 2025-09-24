@@ -1863,7 +1863,7 @@ export const REVIEWS_MOCK_DATA = [
         src: "https://images.unsplash.com/photo-1518756131217-31eb79b20e8f",
         title: "Fern",
       },
-       {
+      {
         src: "https://images.unsplash.com/photo-1627308595229-7830a5c91f9f",
         title: "Snacks",
       },
@@ -1968,9 +1968,18 @@ export const CAMPAIGNS_MOCK_DATA = [
   {
     id: "cmp_1",
     banners: [
-      { src: "https://images.unsplash.com/photo-1518756131217-31eb79b20e8f", title: "Fern" },
-      { src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb", title: "Moss" },
-      { src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f", title: "Palm" },
+      {
+        src: "https://images.unsplash.com/photo-1518756131217-31eb79b20e8f",
+        title: "Fern",
+      },
+      {
+        src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+        title: "Moss",
+      },
+      {
+        src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f",
+        title: "Palm",
+      },
     ],
     createdAt: "2025-08-10",
     updatedAt: "2025-09-11",
@@ -1984,8 +1993,14 @@ export const CAMPAIGNS_MOCK_DATA = [
   {
     id: "cmp_2",
     banners: [
-      { src: "https://images.unsplash.com/photo-1523275335684-37898b6baf30", title: "Watch" },
-      { src: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f", title: "Shoes" },
+      {
+        src: "https://images.unsplash.com/photo-1523275335684-37898b6baf30",
+        title: "Watch",
+      },
+      {
+        src: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f",
+        title: "Shoes",
+      },
     ],
     createdAt: "2025-09-01",
     updatedAt: "2025-09-10",
@@ -1994,12 +2009,15 @@ export const CAMPAIGNS_MOCK_DATA = [
     name: "Autumn Sale",
     excerpt: "Discounts on autumn essentials.",
     description: `<p> Cozy deals for the fall season. </p>`,
-    startDate: "2025-09-15"
+    startDate: "2025-09-15",
   },
   {
     id: "cmp_3",
     banners: [
-      { src: "https://images.unsplash.com/photo-1542291026-7eec264c27ff", title: "Winter Jacket" },
+      {
+        src: "https://images.unsplash.com/photo-1542291026-7eec264c27ff",
+        title: "Winter Jacket",
+      },
     ],
     createdAt: "2025-09-15",
     updatedAt: "2025-09-20",
@@ -2008,12 +2026,15 @@ export const CAMPAIGNS_MOCK_DATA = [
     name: "Winter Specials",
     excerpt: "Prepare for the cold season.",
     description: `<p> Warm clothes at hot prices. </p>`,
-    startDate: "2025-12-01"
+    startDate: "2025-12-01",
   },
   {
     id: "cmp_4",
     banners: [
-      { src: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f", title: "Sneakers" },
+      {
+        src: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f",
+        title: "Sneakers",
+      },
     ],
     createdAt: "2025-09-12",
     updatedAt: "2025-09-18",
@@ -2022,12 +2043,15 @@ export const CAMPAIGNS_MOCK_DATA = [
     name: "Back to School",
     excerpt: "Specials for students.",
     description: `<p> Perfect picks for the new semester. </p>`,
-    startDate: "2025-09-01"
+    startDate: "2025-09-01",
   },
   {
     id: "cmp_5",
     banners: [
-      { src: "https://images.unsplash.com/photo-1503602642458-232111445657", title: "Gift" },
+      {
+        src: "https://images.unsplash.com/photo-1503602642458-232111445657",
+        title: "Gift",
+      },
     ],
     createdAt: "2025-09-05",
     updatedAt: "2025-09-06",
@@ -2036,12 +2060,15 @@ export const CAMPAIGNS_MOCK_DATA = [
     name: "Flash Deals",
     excerpt: "Limited-time offers.",
     description: `<p> Hurry! Deals end soon. </p>`,
-    startDate: "2025-09-10"
+    startDate: "2025-09-10",
   },
   {
     id: "cmp_6",
     banners: [
-      { src: "https://images.unsplash.com/photo-1473187983305-f615310e7daa", title: "Decor" },
+      {
+        src: "https://images.unsplash.com/photo-1473187983305-f615310e7daa",
+        title: "Decor",
+      },
     ],
     createdAt: "2025-09-08",
     updatedAt: "2025-09-12",
@@ -2050,12 +2077,15 @@ export const CAMPAIGNS_MOCK_DATA = [
     name: "Spring Festival",
     excerpt: "Celebrate with new arrivals.",
     description: `<p> Fresh looks for spring. </p>`,
-    startDate: "2026-02-01"
+    startDate: "2026-02-01",
   },
   {
     id: "cmp_7",
     banners: [
-      { src: "https://images.unsplash.com/photo-1504674900247-0877df9cc836", title: "Food" },
+      {
+        src: "https://images.unsplash.com/photo-1504674900247-0877df9cc836",
+        title: "Food",
+      },
     ],
     createdAt: "2025-09-11",
     updatedAt: "2025-09-13",
@@ -2064,6 +2094,144 @@ export const CAMPAIGNS_MOCK_DATA = [
     name: "Food Fiesta",
     excerpt: "Tasty deals on snacks.",
     description: `<p> Don’t miss out on limited food deals. </p>`,
-    startDate: "2025-09-12"
+    startDate: "2025-09-12",
+  },
+];
+
+export const COUPONS_MOCK_DATA = [
+  {
+    id: "cpn_1",
+    code: "WLCM-1000",
+    type: "discount",
+    users: [USERS_MOCK_DATA[0]],
+    products: [PRODUCTS_MOCK_DATA[0]],
+    cart: null,
+    percentage: 15,
+    amount: { amount: null, currency: "$" },
+    expiry: "2026-01-25",
+    usageNumber: 2,
+    createdAt: "2025-09-11",
+    updatedAt: "2025-09-13",
+    used: 0,
+  },
+  {
+    id: "cpn_2",
+    code: "SPRING-25",
+    type: "discount",
+    users: [USERS_MOCK_DATA[1]],
+    products: [PRODUCTS_MOCK_DATA[1]],
+    cart: null,
+    percentage: 25,
+    amount: { amount: null, currency: "$" },
+    expiry: "2026-05-01", // active
+    usageNumber: 5,
+    createdAt: "2025-09-11",
+    updatedAt: "2025-09-13",
+    used: 1,
+  },
+  {
+    id: "cpn_3",
+    code: "FREESHIP-50",
+    type: "prize",
+    users: [USERS_MOCK_DATA[2]],
+    products: [],
+    cart: null,
+    percentage: null,
+    amount: { amount: 50, currency: "$" },
+    expiry: "2024-12-31", // expired
+    usageNumber: 1,
+    createdAt: "2025-09-11",
+    updatedAt: "2025-09-13",
+    used: 0,
+  },
+  {
+    id: "cpn_4",
+    code: "MEGA-100",
+    type: "discount",
+    users: [USERS_MOCK_DATA[3]],
+    products: [PRODUCTS_MOCK_DATA[2]],
+    cart: null,
+    percentage: null,
+    amount: { amount: 100, currency: "$" },
+    expiry: "2025-09-15", // expired
+    usageNumber: 3,
+    createdAt: "2025-09-11",
+    updatedAt: "2025-09-13",
+    used: 3,
+  },
+  {
+    id: "cpn_5",
+    code: "LOYAL-10",
+    type: "discount",
+    users: [USERS_MOCK_DATA[4]],
+    products: [],
+    cart: null,
+    percentage: 10,
+    amount: { amount: null, currency: "$" },
+    expiry: "2025-12-31", // active
+    usageNumber: 10,
+    createdAt: "2025-09-11",
+    updatedAt: "2025-09-13",
+    used: 5,
+  },
+  {
+    id: "cpn_6",
+    code: "NEWYEAR-500",
+    type: "prize",
+    users: [USERS_MOCK_DATA[5]],
+    products: [PRODUCTS_MOCK_DATA[0], PRODUCTS_MOCK_DATA[2]],
+    cart: null,
+    percentage: null,
+    amount: { amount: 500, currency: "$" },
+    expiry: "2025-01-01", // expired
+    usageNumber: 1,
+    createdAt: "2025-09-11",
+    updatedAt: "2025-09-13",
+    used: 1,
+  },
+  {
+    id: "cpn_7",
+    code: "HALFOFF",
+    type: "discount",
+    users: [USERS_MOCK_DATA[6]],
+    products: [],
+    cart: null,
+    percentage: 50,
+    amount: { amount: null, currency: "$" },
+    expiry: "2026-08-10", // active
+    usageNumber: 4,
+    createdAt: "2025-09-11",
+    updatedAt: "2025-09-13",
+    used: 2,
+  },
+  {
+    id: "cpn_8",
+    code: "WINTER-75",
+    type: "prize",
+    users: [USERS_MOCK_DATA[0], USERS_MOCK_DATA[3]],
+    products: [PRODUCTS_MOCK_DATA[1]],
+    cart: null,
+    percentage: null,
+    amount: { amount: 75, currency: "$" },
+    expiry: "2025-10-01", // expired
+    usageNumber: 2,
+    createdAt: "2025-09-11",
+    updatedAt: "2025-09-13",
+    used: 2,
+  },
+  {
+    id: "cpn_9",
+    code: "VIP-30",
+    type: "discount",
+    users: [USERS_MOCK_DATA[2], USERS_MOCK_DATA[6]],
+    products: [],
+    cart: null,
+    percentage: 30,
+    amount: { amount: null, currency: "$" },
+    expiry: "2026-03-15", // active
+    usageNumber: 6,
+    createdAt: "2025-09-11",
+    updatedAt: "2025-09-13",
+    used: 0,
   },
 ];

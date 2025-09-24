@@ -242,7 +242,7 @@ export const campaignStatuses = {
   running: {
     name: "Running",
     color: "success",
-    icon: <UpdateOutlinedIcon />,
+    icon: <CheckCircleOutlineOutlinedIcon />,
   },
 
   notStarted: {
@@ -252,6 +252,25 @@ export const campaignStatuses = {
   },
   finished: {
     name: "Finished",
+    color: "error",
+    icon: <UpdateOutlinedIcon />,
+  },
+};
+
+export const couponStatuses = {
+  active: {
+    name: "Active",
+    color: "success",
+    icon: <UpdateOutlinedIcon />,
+  },
+
+  expired: {
+    name: "Expired",
+    color: "text",
+    icon: <HourglassDisabledOutlinedIcon />,
+  },
+  used: {
+    name: "Used",
     color: "error",
     icon: <UpdateOutlinedIcon />,
   },

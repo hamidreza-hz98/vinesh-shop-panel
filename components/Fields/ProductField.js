@@ -43,6 +43,13 @@ const ProductField = ({ control, name, productsOptions }) => {
                 />
               ))
             }
+            slotProps={{
+              popper: {
+                sx: {
+                  zIndex: 8000,
+                },
+              },
+            }}
           />
 
           {/* Selected product list */}
@@ -79,7 +86,9 @@ const ProductField = ({ control, name, productsOptions }) => {
                   {product.price.currency}{" "}
                   {product.discount?.amount > 0 &&
                     `(Discount: ${product.discount.amount}${
-                      product.discount.type === "percentage" ? "%" : product.price.currency
+                      product.discount.type === "percentage"
+                        ? "%"
+                        : product.price.currency
                     })`}
                 </Typography>
               </Box>

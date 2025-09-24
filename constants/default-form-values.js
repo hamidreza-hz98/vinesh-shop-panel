@@ -62,3 +62,15 @@ export const cartDefaultValues = (data) => ({
     ? `${data.finalPrice.amount} ${data.finalPrice.currency}`
     : " - ",
 });
+
+export const couponDefaultValues = (data) => ({
+  code: data?.code || " - ",
+  type: data?.type || " - ",
+  products: data?.products || [],
+  users: data?.users || [],
+  cart: data?.cart || {},
+  percentage: data?.percentage || "",  
+  amount: data?.amount || {},  
+  expiry: data?.expiry || "",  
+  usageNumber: data?.usageNumber || 0,  
+})

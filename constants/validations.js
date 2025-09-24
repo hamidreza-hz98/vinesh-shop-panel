@@ -100,3 +100,51 @@ export const orderSchema = yup.object().shape({
   discount: yup.number().required().min(0),
   finalCost: yup.number().required().min(0),
 });
+
+export const couponSchema = yup
+  .object()
+  .shape({
+    code: yup
+      .string()
+      .trim()
+      .required("Coupon code is required"),
+
+    type: yup
+      .string()
+      .oneOf(["discount", "prize"], "Type must be discount or prize")
+      .required("Coupon type is required"),
+
+    products: yup.array().of(yup.mixed()),
+
+    users: yup.array().of(yup.mixed()),
+
+    cart: yup.object().nullable(),
+
+    percentage: yup
+      .number()
+      .nullable()
+      .min(0, "Percentage cannot be negative")
+      .max(100, "Percentage cannot exceed 100"),
+
+    amount: yup
+      .number()
+      .nullable()
+      .min(0, "Amount cannot be negative"),
+
+    expiry: yup
+      .date()
+      .nullable()
+      .required("Expiry date is required"),
+
+    usageNumber: yup
+      .number()
+      .required("Usage number is required")
+      .min(1, "Usage number must be at least 1"),
+  })
+  .test(
+    "percentage-or-amount",
+    "Either percentage or amount is required",
+    (value) => {
+      return value?.percentage || value?.amount;
+    }
+  );

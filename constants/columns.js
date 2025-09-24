@@ -1,7 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
 import { Box, Chip, Rating, Typography } from "@mui/material";
-import { campaignStatuses, orderStatuses, reviewStatuses } from "./general";
-import { calculateCampaignExpiryStatus, calculateCampaignRemainingDays } from "@/lib/date";
+import {
+  campaignStatuses,
+  couponStatuses,
+  orderStatuses,
+  reviewStatuses,
+} from "./general";
+import {
+  calculateCampaignExpiryStatus,
+  calculateCampaignRemainingDays,
+  calculateCouponStatus,
+} from "@/lib/date";
 
 export const userColumns = [
   { field: "firstName", headerName: "First Name", width: 130 },
@@ -423,12 +432,74 @@ export const campaignColumns = [
     field: "startDate",
     headerName: "Day",
     width: 150,
-     renderCell: (params) => {
+    renderCell: (params) => {
       const startDate = params?.row?.startDate || "";
       const expiryDate = params?.row?.expiry || "";
-      const remainingDays = calculateCampaignRemainingDays(startDate, expiryDate);
+      const remainingDays = calculateCampaignRemainingDays(
+        startDate,
+        expiryDate
+      );
 
       return remainingDays;
+    },
+  },
+  {
+    field: "createdAt",
+    headerName: "Created At",
+    width: 180,
+    valueGetter: (createdAt) => new Date(createdAt)?.toLocaleString() || "",
+  },
+  {
+    field: "updatedAt",
+    headerName: "Updated At",
+    width: 180,
+    valueGetter: (updatedAt) => new Date(updatedAt)?.toLocaleString() || "",
+  },
+];
+
+export const couponColumns = [
+  {
+    field: "code",
+    headerName: "Code",
+    width: 100,
+  },
+
+  {
+    field: "expiry",
+    headerName: "Status",
+    width: 100,
+    renderCell: (params) => {
+      const expiry = params.row.expiry;
+      const usageNumber = params.row.usageNumber;
+      const used = params.row.used;
+      const status = calculateCouponStatus(expiry, usageNumber, used);
+
+      return (
+        <Chip
+          label={couponStatuses[status].name}
+          variant="filled"
+          size="small"
+          sx={{ border: "none" }}
+          color={couponStatuses[status].color}
+          icon={couponStatuses[status].icon}
+        />
+      );
+    },
+  },
+  {
+    field: "type",
+    headerName: "Type",
+    width: 100,
+  },
+  {
+    field: "amount",
+    headerName: "Amount",
+    width: 100,
+    renderCell: (params) => {
+      const percentage = params.row.percentage;
+      const amount = params.row.amount;
+
+      return percentage ? percentage + "%" : amount.amount + amount.currency;
     },
   },
   {
