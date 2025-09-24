@@ -201,3 +201,19 @@ export const tagSchema = yup.object().shape({
     .min(1, "At least one translation is required")
     .required("Translations are required"),
 });
+
+export const sizeSchema = yup.object().shape({
+  dimensions: yup.object().shape({
+    width: yup.number().required("Width is required").min(0),
+    height: yup.number().required("Height is required").min(0),
+    depth: yup.number().required("Depth is required").min(0),
+    weight: yup.number().required("Weight is required").min(0),
+  }),
+
+  translations: yup.array().of(
+    yup.object().shape({
+      lang: yup.string().required("Language is required"),
+      name: yup.string().required("Name is required"),
+    })
+  ),
+});

@@ -2663,3 +2663,101 @@ export const TAGS_MOCK_DATA = [
   },
 ];
 
+export const SIZES_MOCK_DATA = [
+  {
+    id: "size_1",
+    dimensions: { width: 50, height: 70, depth: 5, weight: 0.3 },
+    createdAt: "2025-09-12",
+    updatedAt: "2025-09-14",
+    translations: [
+      { lang: "us", name: "Small" },
+      { lang: "pt", name: "Pequeno" },
+      { lang: "ae", name: "صغير" },
+      { lang: "ir", name: "کوچک" },
+    ],
+  },
+  {
+    id: "size_2",
+    dimensions: { width: 60, height: 80, depth: 5, weight: 0.4 },
+    createdAt: "2025-09-12",
+    updatedAt: "2025-09-14",
+    translations: [
+      { lang: "us", name: "Medium" },
+      { lang: "pt", name: "Médio" },
+      { lang: "ae", name: "متوسط" },
+      { lang: "ir", name: "متوسط" },
+    ],
+  },
+  {
+    id: "size_3",
+    dimensions: { width: 70, height: 90, depth: 5, weight: 0.5 },
+    createdAt: "2025-09-12",
+    updatedAt: "2025-09-14",
+    translations: [
+      { lang: "us", name: "Large" },
+      { lang: "pt", name: "Grande" },
+      { lang: "ae", name: "كبير" },
+      { lang: "ir", name: "بزرگ" },
+    ],
+  },
+  {
+    id: "size_4",
+    dimensions: { width: 42, height: 0, depth: 0, weight: 0 },
+    createdAt: "2025-09-12",
+    updatedAt: "2025-09-14",
+    translations: [
+      { lang: "us", name: "42 inch" },
+      { lang: "pt", name: "42 polegadas" },
+      { lang: "ae", name: "42 بوصة" },
+      { lang: "ir", name: "42 اینچ" },
+    ],
+  },
+  {
+    id: "size_5",
+    dimensions: { width: 55, height: 0, depth: 0, weight: 0 },
+    createdAt: "2025-09-12",
+    updatedAt: "2025-09-14",
+    translations: [
+      { lang: "us", name: "55 inch" },
+      { lang: "pt", name: "55 polegadas" },
+      { lang: "ae", name: "55 بوصة" },
+      { lang: "ir", name: "55 اینچ" },
+    ],
+  },
+  {
+    id: "size_6",
+    dimensions: { width: 200, height: 75, depth: 100, weight: 40 },
+    createdAt: "2025-09-12",
+    updatedAt: "2025-09-14",
+    translations: [
+      { lang: "us", name: "Table XL" },
+      { lang: "pt", name: "Mesa XL" },
+      { lang: "ae", name: "طاولة XL" },
+      { lang: "ir", name: "میز XL" },
+    ],
+  },
+  {
+    id: "size_7",
+    dimensions: { width: 90, height: 200, depth: 50, weight: 25 },
+    createdAt: "2025-09-12",
+    updatedAt: "2025-09-14",
+    translations: [
+      { lang: "us", name: "Wardrobe Large" },
+      { lang: "pt", name: "Guarda-Roupa Grande" },
+      { lang: "ae", name: "خزانة كبيرة" },
+      { lang: "ir", name: "کمد بزرگ" },
+    ],
+  },
+  {
+    id: "size_8",
+    dimensions: { width: 30, height: 30, depth: 30, weight: 10 },
+    createdAt: "2025-09-12",
+    updatedAt: "2025-09-14",
+    translations: [
+      { lang: "us", name: "Box Medium" },
+      { lang: "pt", name: "Caixa Média" },
+      { lang: "ae", name: "صندوق متوسط" },
+      { lang: "ir", name: "جعبه متوسط" },
+    ],
+  },
+];

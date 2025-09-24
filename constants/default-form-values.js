@@ -91,44 +91,70 @@ export const colorDefaultValues = (data) => ({
   translations: data?.translations || [
     {
       lang: "us",
-      name: ""
+      name: "",
     },
     {
       lang: "pt",
-      name: ""
+      name: "",
     },
     {
       lang: "ae",
-      name: ""
+      name: "",
     },
     {
       lang: "ir",
-      name: ""
+      name: "",
     },
-  ]
-})
+  ],
+});
 
 export const tagDefaultValues = (data) => ({
   translations: data?.translations || [
     {
       lang: "us",
       name: "",
-      slug: ""
+      slug: "",
     },
     {
       lang: "pt",
       name: "",
-      slug: ""
+      slug: "",
     },
     {
       lang: "ae",
       name: "",
-      slug: ""
+      slug: "",
     },
     {
       lang: "ir",
       name: "",
-      slug: ""
+      slug: "",
     },
-  ]
-})
+  ],
+});
+
+export const sizeDefaultValues = (data) => ({
+  dimensions: data?.dimensions || { width: 0, height: 0, depth: 0, weight: 0 },
+  translations: data?.translations || [
+    {
+      lang: "us",
+      name: "",
+      slug: "",
+    },
+    {
+      lang: "pt",
+      name: "",
+      slug: "",
+    },
+    {
+      lang: "ae",
+      name: "",
+      slug: "",
+    },
+    {
+      lang: "ir",
+      name: "",
+      slug: "",
+    },
+  ],
+});
