@@ -2395,3 +2395,78 @@ export const CONTACT_FORMS_MOCK_DATA = [
     status: "responded",
   },
 ];
+
+export const BLOG_MOCK_DATA = [
+  {
+    id: "blog_1",
+    title: "The Future of AI in Everyday Life",
+    excerpt:
+      "Explore how AI is transforming the way we live, work, and communicate.",
+    author: "Amir Atabak Ronaghinia",
+    image: {
+      src: "https://images.unsplash.com/photo-1518756131217-31eb79b20e8f",
+      title: "AI Illustration",
+    },
+    timeToRead: "6 min",
+    slug: "future-of-ai-everyday-life",
+    reviews: [],
+    tags: [],
+    categories: [],
+    suggestedProducts: [],
+    relatedBlogs: [],
+    isPublished: true,
+    isFeatured: true,
+    likes: 67,
+    dislikes: 0,
+    createdAt: "2025-09-11",
+    updatedAt: "2025-09-13",
+    text: `
+      <p>Artificial Intelligence (AI) is no longer a concept of the future. It is already part of our daily lives, from smart assistants to recommendation systems and autonomous vehicles.</p>
+      <p>As AI continues to evolve, it brings both opportunities and challenges. Companies are leveraging AI for efficiency and personalization, while society debates ethics, privacy, and job displacement.</p>
+      <h2>How AI is Changing Daily Life</h2>
+      <ul>
+        <li><strong>Smart Homes:</strong> AI enables automated lighting, climate control, and security systems.</li>
+        <li><strong>Healthcare:</strong> AI assists in diagnosis, personalized treatment plans, and patient monitoring.</li>
+        <li><strong>Transportation:</strong> Self-driving cars and traffic optimization systems improve safety and reduce congestion.</li>
+      </ul>
+      <p>The integration of AI into daily routines promises a more convenient and connected world, but it also requires careful consideration of ethical implications.</p>
+    `,
+  },
+  {
+    id: "blog_2",
+    title: "Sustainable Living: Tips for a Greener Lifestyle",
+    excerpt:
+      "Learn practical ways to reduce your environmental footprint and live more sustainably.",
+    author: "Sara Kazemi",
+    timeToRead: "5 min",
+    slug: "sustainable-living-tips",
+    reviews: [],
+    
+    categories: [],
+    tags: [],
+    suggestedProducts: [],
+    relatedBlogs: [],
+    isPublished: true,
+    isFeatured: false,
+    image: {
+      src: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6",
+      title: "Sustainable Living",
+    },
+
+    likes: 45,
+    dislikes: 2,
+    createdAt: "2025-09-12",
+    updatedAt: "2025-09-14",
+    text: `
+      <p>Living sustainably doesn't have to be difficult. Small changes in your daily routine can have a significant impact on the environment.</p>
+      <h2>Practical Tips for a Greener Lifestyle</h2>
+      <ol>
+        <li><strong>Reduce Waste:</strong> Recycle, compost, and avoid single-use plastics whenever possible.</li>
+        <li><strong>Energy Efficiency:</strong> Use LED bulbs, unplug devices when not in use, and consider renewable energy sources.</li>
+        <li><strong>Mindful Consumption:</strong> Buy locally produced goods and choose quality over quantity.</li>
+        <li><strong>Transport:</strong> Walk, bike, or use public transportation to reduce your carbon footprint.</li>
+      </ol>
+      <p>Adopting sustainable habits benefits both the planet and your own wellbeing, creating a cleaner, healthier environment for everyone.</p>
+    `,
+  },
+];

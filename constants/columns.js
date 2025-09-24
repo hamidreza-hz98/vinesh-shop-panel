@@ -626,3 +626,63 @@ export const contactFormColumns = [
     valueGetter: (updatedAt) => new Date(updatedAt)?.toLocaleString() || "",
   },
 ];
+
+export const blogColumns = [
+  {
+    field: "image",
+    headerName: "Image",
+    width: 120,
+    renderCell: (params) => {
+      const image = params.row.image || {};
+
+      return (
+        <Box
+          display="flex"
+          gap={1}
+          alignItems="center"
+          justifyContent="center"
+          padding={1}
+        >
+          <img
+            src={image.src}
+            alt={image.title}
+            style={{
+              width: 100,
+              height: 100,
+              objectFit: "cover",
+              borderRadius: 4,
+            }}
+          />
+        </Box>
+      );
+    },
+  },
+  {
+    field: "title",
+    headerName: "Title",
+    width: 256,
+  },
+  {
+    field: "likes",
+    headerName: "Likes",
+    width: 64,
+  },
+  {
+    field: "dislikes",
+    headerName: "Dislikes",
+    width: 64,
+  },
+
+  {
+    field: "createdAt",
+    headerName: "Created At",
+    width: 180,
+    valueGetter: (createdAt) => new Date(createdAt)?.toLocaleString() || "",
+  },
+  {
+    field: "updatedAt",
+    headerName: "Updated At",
+    width: 180,
+    valueGetter: (updatedAt) => new Date(updatedAt)?.toLocaleString() || "",
+  },
+];
