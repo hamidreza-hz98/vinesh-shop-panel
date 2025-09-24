@@ -20,9 +20,11 @@ import RocketLaunchOutlinedIcon from "@mui/icons-material/RocketLaunchOutlined";
 import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import CreditCardOffOutlinedIcon from "@mui/icons-material/CreditCardOffOutlined";
-import PlayCircleOutlinedIcon from '@mui/icons-material/PlayCircleOutlined';
-import HourglassDisabledOutlinedIcon from '@mui/icons-material/HourglassDisabledOutlined';
-import UpdateOutlinedIcon from '@mui/icons-material/UpdateOutlined';
+import PlayCircleOutlinedIcon from "@mui/icons-material/PlayCircleOutlined";
+import HourglassDisabledOutlinedIcon from "@mui/icons-material/HourglassDisabledOutlined";
+import UpdateOutlinedIcon from "@mui/icons-material/UpdateOutlined";
+import AccountBalanceOutlinedIcon from "@mui/icons-material/AccountBalanceOutlined";
+import NotificationAddOutlinedIcon from "@mui/icons-material/NotificationAddOutlined";
 
 export const sidebarRoutes = [
   {
@@ -153,6 +155,12 @@ export const sidebarRoutes = [
         icon: ReceiptOutlinedIcon,
         href: "/dashboard/transactions",
       },
+      // {
+      //   id: "paymentGateways",
+      //   title: "Payment Gateways",
+      //   icon: AccountBalanceOutlinedIcon,
+      //   href: "/dashboard/payment-gateways",
+      // },
       {
         id: "contactForms",
         title: "Contact Forms",
@@ -286,6 +294,19 @@ export const transactionStatuses = {
     name: "Failed",
     color: "error",
     icon: <UpdateOutlinedIcon />,
+  },
+};
+
+export const contactFormStatuses = {
+  responded: {
+    name: "responded",
+    color: "warning",
+    icon: <UpdateOutlinedIcon />,
+  },
+  new: {
+    name: "New",
+    color: "success",
+    icon: <NotificationAddOutlinedIcon />,
   },
 };
 

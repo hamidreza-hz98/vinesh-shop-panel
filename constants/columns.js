@@ -2,6 +2,7 @@
 import { Box, Chip, Rating, Typography } from "@mui/material";
 import {
   campaignStatuses,
+  contactFormStatuses,
   couponStatuses,
   orderStatuses,
   reviewStatuses,
@@ -539,9 +540,9 @@ export const transactionColumns = [
     headerName: "Status",
     width: 120,
     renderCell: (params) => {
-      const status = params.row.status
+      const status = params.row.status;
 
-       return (
+      return (
         <Chip
           label={transactionStatuses[status].name}
           variant="filled"
@@ -551,11 +552,65 @@ export const transactionColumns = [
           icon={transactionStatuses[status].icon}
         />
       );
-    }
+    },
   },
   {
     field: "referrerBank",
     headerName: "Referrer Bank",
+    width: 120,
+  },
+  {
+    field: "createdAt",
+    headerName: "Created At",
+    width: 180,
+    valueGetter: (createdAt) => new Date(createdAt)?.toLocaleString() || "",
+  },
+  {
+    field: "updatedAt",
+    headerName: "Updated At",
+    width: 180,
+    valueGetter: (updatedAt) => new Date(updatedAt)?.toLocaleString() || "",
+  },
+];
+
+export const contactFormColumns = [
+  {
+    field: "name",
+    headerName: "Name",
+    width: 120,
+  },
+  {
+    field: "status",
+    headerName: "Status",
+    width: 120,
+    renderCell: (params) => {
+      const status = params.row.status;
+
+      return (
+        <Chip
+          label={contactFormStatuses[status].name}
+          variant="filled"
+          size="small"
+          sx={{ border: "none" }}
+          color={contactFormStatuses[status].color}
+          icon={contactFormStatuses[status].icon}
+        />
+      );
+    },
+  },
+  {
+    field: "phone",
+    headerName: "Phone",
+    width: 120,
+  },
+  {
+    field: "email",
+    headerName: "Email",
+    width: 120,
+  },
+  {
+    field: "message",
+    headerName: "Message",
     width: 120,
   },
   {
