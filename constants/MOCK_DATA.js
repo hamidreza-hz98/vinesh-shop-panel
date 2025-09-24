@@ -2593,3 +2593,73 @@ export const COLORS_MOCK_DATA = [
     ],
   },
 ];
+
+export const TAGS_MOCK_DATA = [
+  {
+    id: "tag_1",
+    createdAt: "2025-09-12",
+    updatedAt: "2025-09-14",
+    translations: [
+      { lang: "us", name: "Summer", slug: "summer" },
+      { lang: "pt", name: "Verão", slug: "verao" },
+      { lang: "ae", name: "صيف", slug: "saif" },
+      { lang: "ir", name: "تابستان", slug: "tabestan" },
+    ],
+  },
+  {
+    id: "tag_2",
+    createdAt: "2025-09-12",
+    updatedAt: "2025-09-14",
+    translations: [
+      { lang: "us", name: "Popular", slug: "popular" },
+      { lang: "pt", name: "Popular", slug: "popular" },
+      { lang: "ae", name: "شائع", slug: "shaaye" },
+      { lang: "ir", name: "محبوب", slug: "mahbub" },
+    ],
+  },
+  {
+    id: "tag_3",
+    createdAt: "2025-09-12",
+    updatedAt: "2025-09-14",
+    translations: [
+      { lang: "us", name: "New", slug: "new" },
+      { lang: "pt", name: "Novo", slug: "novo" },
+      { lang: "ae", name: "جديد", slug: "jadeed" },
+      { lang: "ir", name: "جدید", slug: "jadid" },
+    ],
+  },
+  {
+    id: "tag_4",
+    createdAt: "2025-09-12",
+    updatedAt: "2025-09-14",
+    translations: [
+      { lang: "us", name: "Sale", slug: "sale" },
+      { lang: "pt", name: "Promoção", slug: "promocao" },
+      { lang: "ae", name: "تخفيض", slug: "takhfid" },
+      { lang: "ir", name: "فروش ویژه", slug: "forush-vije" },
+    ],
+  },
+  {
+    id: "tag_5",
+    createdAt: "2025-09-12",
+    updatedAt: "2025-09-14",
+    translations: [
+      { lang: "us", name: "Limited", slug: "limited" },
+      { lang: "pt", name: "Limitado", slug: "limitado" },
+      { lang: "ae", name: "محدود", slug: "mahdood" },
+      { lang: "ir", name: "محدود", slug: "mahdood" },
+    ],
+  },
+  {
+    id: "tag_6",
+    createdAt: "2025-09-12",
+    updatedAt: "2025-09-14",
+    translations: [
+      { lang: "us", name: "Exclusive", slug: "exclusive" },
+      { lang: "pt", name: "Exclusivo", slug: "exclusivo" },
+      { lang: "ae", name: "حصري", slug: "hasri" },
+      { lang: "ir", name: "انحصاری", slug: "enhesari" },
+    ],
+  },
+];
+

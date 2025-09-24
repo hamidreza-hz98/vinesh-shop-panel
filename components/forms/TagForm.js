@@ -1,27 +1,27 @@
 "use client";
 
 import { countries } from "@/constants/countries";
-import { colorDefaultValues } from "@/constants/default-form-values";
-import { colorSchema } from "@/constants/validations";
+import { tagDefaultValues } from "@/constants/default-form-values";
+import { tagSchema } from "@/constants/validations";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Autocomplete, Box, Button, Grid, TextField } from "@mui/material";
 import Image from "next/image";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 
-const ColorForm = ({ mode, data, onClose, onSuccess }) => {
+const TagForm = ({ mode, data, onClose, onSuccess }) => {
   const {
     control,
     handleSubmit,
     reset,
     formState: { errors, isSubmitting },
   } = useForm({
-    resolver: yupResolver(colorSchema),
-    defaultValues: colorDefaultValues(data),
+    resolver: yupResolver(tagSchema),
+    defaultValues: tagDefaultValues(data),
   });
 
   React.useEffect(() => {
-    reset(colorDefaultValues(data));
+    reset(tagDefaultValues(data));
   }, [mode, data, reset]);
 
   const onSubmit = async (formData) => {
@@ -41,23 +41,6 @@ const ColorForm = ({ mode, data, onClose, onSuccess }) => {
       sx={{ width: "100%", mt: 2 }}
     >
       <Grid container spacing={2}>
-        <Grid size={{ xs: 8 }}>
-          <Controller
-            name="code"
-            control={control}
-            render={({ field }) => (
-              <TextField
-                {...field}
-                label="Color Code"
-                type="color"
-                error={!!errors.code}
-                helperText={errors.code?.message}
-                fullWidth
-              />
-            )}
-          />
-        </Grid>
-
         <Grid size={{ xs: 12 }}>
           <Controller
             name="translations"
@@ -65,9 +48,19 @@ const ColorForm = ({ mode, data, onClose, onSuccess }) => {
             render={({ field }) => {
               const translations = field.value || [];
 
+              // Convert string to URL-friendly slug
+              const generateSlug = (text) =>
+                text
+                  .toLowerCase()
+                  .trim()
+                  .replace(/\s+/g, "-") // replace spaces with -
+                  .replace(/[^\w-]+/g, ""); // remove non-word chars
+
               const handleNameChange = (index, newValue) => {
                 const updated = translations.map((item, i) =>
-                  i === index ? { ...item, name: newValue } : item
+                  i === index
+                    ? { ...item, name: newValue, slug: generateSlug(newValue) }
+                    : item
                 );
                 field.onChange(updated);
               };
@@ -76,7 +69,7 @@ const ColorForm = ({ mode, data, onClose, onSuccess }) => {
                 if (!translations.find((t) => t.lang === lang.code)) {
                   const updated = [
                     ...translations,
-                    { lang: lang.code, name: "" },
+                    { lang: lang.code, name: "", slug: "" },
                   ];
                   field.onChange(updated);
                 }
@@ -98,9 +91,11 @@ const ColorForm = ({ mode, data, onClose, onSuccess }) => {
                   ))}
 
                   <Autocomplete
-                  sx={{mt:2}}
+                    sx={{ mt: 2 }}
                     fullWidth
-                    options={countries}
+                    options={countries.filter(
+                      (c) => !translations.some((t) => t.lang === c.code)
+                    )}
                     getOptionLabel={(option) => option.label}
                     onChange={(e, newValue) =>
                       newValue && handleAddLanguage(newValue)
@@ -123,9 +118,7 @@ const ColorForm = ({ mode, data, onClose, onSuccess }) => {
                     renderInput={(params) => (
                       <TextField {...params} label="Add Language" />
                     )}
-                    slotProps={{
-                      popper: { sx: { zIndex: 8000 } },
-                    }}
+                    slotProps={{ popper: { sx: { zIndex: 8000 } } }}
                   />
                 </>
               );
@@ -152,4 +145,4 @@ const ColorForm = ({ mode, data, onClose, onSuccess }) => {
   );
 };
 
-export default ColorForm;
+export default TagForm;

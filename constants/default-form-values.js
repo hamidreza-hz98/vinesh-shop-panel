@@ -107,3 +107,28 @@ export const colorDefaultValues = (data) => ({
     },
   ]
 })
+
+export const tagDefaultValues = (data) => ({
+  translations: data?.translations || [
+    {
+      lang: "us",
+      name: "",
+      slug: ""
+    },
+    {
+      lang: "pt",
+      name: "",
+      slug: ""
+    },
+    {
+      lang: "ae",
+      name: "",
+      slug: ""
+    },
+    {
+      lang: "ir",
+      name: "",
+      slug: ""
+    },
+  ]
+})

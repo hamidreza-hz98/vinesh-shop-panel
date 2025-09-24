@@ -702,7 +702,6 @@ export const colorColumns = [
     field: "code",
     headerName: "Code",
     width: 100,
-
   },
   {
     field: "id",
@@ -729,6 +728,41 @@ export const colorColumns = [
           />
         </Box>
       );
+    },
+  },
+  {
+    field: "createdAt",
+    headerName: "Created At",
+    width: 180,
+    valueGetter: (createdAt) => new Date(createdAt)?.toLocaleString() || "",
+  },
+  {
+    field: "updatedAt",
+    headerName: "Updated At",
+    width: 180,
+    valueGetter: (updatedAt) => new Date(updatedAt)?.toLocaleString() || "",
+  },
+];
+
+export const tagColumns = [
+  {
+    field: "translations",
+    headerName: "Name",
+    width: 100,
+       valueGetter: (translations) => {
+      const english = translations.find((item) => item.lang === "us");
+
+      return english.name;
+    },
+  },
+  {
+    field: "id",
+    headerName: "Slug",
+    width: 100,
+    renderCell: (params) => {
+      const english = params?.row?.translations?.find((item) => item.lang === "us");
+
+      return english.slug;
     },
   },
   {

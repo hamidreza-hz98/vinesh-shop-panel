@@ -174,3 +174,30 @@ export const colorSchema = yup.object().shape({
     )
     .min(1, "At least one translation is required"),
 });
+
+export const tagSchema = yup.object().shape({
+  translations: yup
+    .array()
+    .of(
+      yup.object().shape({
+        lang: yup
+          .string()
+          .required("Language code is required")
+          .min(2, "Language code must be at least 2 characters")
+          .max(5, "Language code cannot exceed 5 characters"),
+        name: yup
+          .string()
+          .required("Tag name is required")
+          .min(1, "Tag name cannot be empty"),
+        slug: yup
+          .string()
+          .required("Slug is required")
+          .matches(
+            /^[a-z0-9]+(?:-[a-z0-9]+)*$/,
+            "Slug must be URL-friendly (lowercase letters, numbers, hyphens)"
+          ),
+      })
+    )
+    .min(1, "At least one translation is required")
+    .required("Translations are required"),
+});
