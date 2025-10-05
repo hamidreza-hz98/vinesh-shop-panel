@@ -1,0 +1,1 @@
+export const adminLoginApi = `${process.env.NEXT_PUBLIC_BASE_URL}/admin/login`;

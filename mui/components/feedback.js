@@ -2,23 +2,23 @@ import { alpha } from '@mui/material/styles';
 
 /* eslint-disable import/prefer-default-export */
 const feedbackCustomizations = {
-  MuiAlert: {
-    styleOverrides: {
-      root: ({ theme }) => ({
-        borderRadius: 10,
-        backgroundColor: theme.palette.orange[100],
-        color: (theme.vars || theme).palette.text.primary,
-        border: `1px solid ${alpha(theme.palette.orange[300], 0.5)}`,
-        '& .MuiAlert-icon': {
-          color: theme.palette.orange[500],
-        },
-        ...theme.applyStyles('dark', {
-          backgroundColor: `${alpha(theme.palette.orange[900], 0.5)}`,
-          border: `1px solid ${alpha(theme.palette.orange[800], 0.5)}`,
-        }),
-      }),
-    },
-  },
+  // MuiAlert: {
+  //   styleOverrides: {
+  //     root: ({ theme }) => ({
+  //       borderRadius: 10,
+  //       backgroundColor: theme.palette.orange[100],
+  //       color: (theme.vars || theme).palette.text.primary,
+  //       border: `1px solid ${alpha(theme.palette.orange[300], 0.5)}`,
+  //       '& .MuiAlert-icon': {
+  //         color: theme.palette.orange[500],
+  //       },
+  //       ...theme.applyStyles('dark', {
+  //         backgroundColor: `${alpha(theme.palette.orange[900], 0.5)}`,
+  //         border: `1px solid ${alpha(theme.palette.orange[800], 0.5)}`,
+  //       }),
+  //     }),
+  //   },
+  // },
   MuiDialog: {
     styleOverrides: {
       root: ({ theme }) => ({
