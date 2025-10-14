@@ -18,12 +18,43 @@ export const adminDefaultFormValues = (data) => ({
   role: data?.role || "",
 });
 
-export const mediaDefaultFormValues = (data) => ({
-  title: data?.title || "",
-  description: data?.description || "",
-  file: data?.file || null,
-  altText: data?.altText || "",
-  isPublic: data?.isPublic || false,
+export const mediaDefaultValues = (data) => ({
+  _id: data?._id || null,
+  file:
+    { path: data?.path, type: data?.type, mimeType: data?.mimeType } || null,
+  type: data?.type || "image",
+  translations: data?.translations || [
+    {
+      lang: "us",
+      title: "",
+      description: "",
+      mediaAlt: "",
+      mediaCaption: "",
+      seoTitle: "",
+      seoDescription: "",
+      seoKeywords: [],
+    },
+    {
+      lang: "pt",
+      title: "",
+      description: "",
+      mediaAlt: "",
+      mediaCaption: "",
+      seoTitle: "",
+      seoDescription: "",
+      seoKeywords: [],
+    },
+    {
+      lang: "ir",
+      title: "",
+      description: "",
+      mediaAlt: "",
+      mediaCaption: "",
+      seoTitle: "",
+      seoDescription: "",
+      seoKeywords: [],
+    },
+  ],
 });
 
 export const orderDefaultValues = (data) => ({

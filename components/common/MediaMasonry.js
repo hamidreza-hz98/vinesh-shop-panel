@@ -8,6 +8,9 @@ import { styled } from "@mui/material/styles";
 import Image from "next/image";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
+import { setFilePath } from "@/lib/media";
+import { Button, IconButton, Typography } from "@mui/material";
+import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 
 const Label = styled(Paper)(({ theme }) => ({
   backgroundColor: "#fff",
@@ -22,16 +25,21 @@ const Label = styled(Paper)(({ theme }) => ({
   }),
 }));
 
-export default function MediaMasonry({ onSelect, type = "all", multiple = false }) {
+export default function MediaMasonry({
+  media,
+  onSelect,
+  onDelete,
+  type = "all",
+  onTabChange,
+  multiple = false,
+}) {
   const [tab, setTab] = React.useState(type);
   const [selected, setSelected] = React.useState([]);
 
   const handleTabChange = (event, newValue) => {
+    onTabChange(newValue);
     setTab(newValue);
   };
-
-  const filteredItems =
-    tab === "all" ? itemData : itemData.filter((item) => item.type === tab);
 
   const isSelected = (item) =>
     selected.some((s) => (s.img || s.src) === (item.img || item.src));
@@ -40,7 +48,9 @@ export default function MediaMasonry({ onSelect, type = "all", multiple = false 
     setSelected((prev) => {
       let newSelection;
       if (isSelected(item)) {
-        newSelection = prev.filter((s) => (s.img || s.src) !== (item.img || item.src));
+        newSelection = prev.filter(
+          (s) => (s.img || s.src) !== (item.img || item.src)
+        );
       } else {
         newSelection = multiple ? [...prev, item] : [item];
       }
@@ -67,27 +77,48 @@ export default function MediaMasonry({ onSelect, type = "all", multiple = false 
         <Tab label="Icons" value="icon" />
       </Tabs>
 
-      <Masonry sx={{width: "100%"}} columns={{ xs: 2, sm: 3, md: 4 }} spacing={4}>
-        {filteredItems.map((item, index) => {
+      <Masonry
+        sx={{ width: "100%" }}
+        columns={{ xs: 2, sm: 3, md: 4 }}
+        spacing={4}
+      >
+        {media?.map((item, index) => {
           const selectedState = isSelected(item);
           return (
             <Box
               key={index}
-              onClick={() => handleSelectItem(item)}
               sx={{
                 cursor: "pointer",
-                border: selectedState ? "3px solid #1976d2" : "3px solid transparent",
+                border: selectedState
+                  ? "3px solid #1976d2"
+                  : "3px solid transparent",
                 borderRadius: 2,
                 overflow: "hidden",
                 transition: "all 0.2s ease",
               }}
             >
-              <Label>{item.title}</Label>
+              <Label>
+                <Box
+                  display="flex"
+                  justifyContent="space-between"
+                  alignItems="center"
+                >
+                  <Typography variant="subtitle2">
+                    {item?.translations[0]?.title}
+                  </Typography>
+
+                  <CancelOutlinedIcon
+                    color="error"
+                    onClick={() => onDelete(item._id)}
+                  />
+                </Box>
+              </Label>
 
               {item.type === "image" && (
                 <Image
-                  src={item.img}
-                  alt={item.title}
+                  onClick={() => handleSelectItem(item)}
+                  src={setFilePath(item.path)}
+                  alt={item?.translations[0]?.title}
                   loading="lazy"
                   width={0}
                   height={0}
@@ -100,18 +131,29 @@ export default function MediaMasonry({ onSelect, type = "all", multiple = false 
                 />
               )}
               {item.type === "video" && (
-                <video controls style={{ width: "100%" }}>
-                  <source src={item.src} type="video/mp4" />
+                <video
+                  onClick={() => handleSelectItem(item)}
+                  controls
+                  width="100%"
+                  crossOrigin="anonymous"
+                >
+                  <source src={setFilePath(item.path)} type={item.mimeType} />
                 </video>
               )}
               {item.type === "audio" && (
-                <audio controls style={{ width: "100%" }}>
-                  <source src={item.src} type="audio/mpeg" />
+                <audio
+                  onClick={() => handleSelectItem(item)}
+                  controls
+                  style={{ width: "100%" }}
+                  crossOrigin="anonymous"
+                >
+                  <source src={setFilePath(item.path)} type={item.mimeType} />
                 </audio>
               )}
               {item.type === "catalogue" && (
                 <iframe
-                  src={item.src}
+                  onClick={() => handleSelectItem(item)}
+                  src={setFilePath(item.path)}
                   style={{
                     width: "100%",
                     height: 300,
@@ -126,94 +168,3 @@ export default function MediaMasonry({ onSelect, type = "all", multiple = false 
     </Box>
   );
 }
-
-const itemData = [
-  // --- Images ---
-  {
-    type: "image",
-    img: "https://images.unsplash.com/photo-1518756131217-31eb79b20e8f",
-    title: "Fern",
-  },
-  {
-    type: "image",
-    img: "https://images.unsplash.com/photo-1597645587822-e99fa5d45d25",
-    title: "Mushrooms",
-  },
-  {
-    type: "image",
-    img: "https://images.unsplash.com/photo-1529655683826-aba9b3e77383",
-    title: "Tower",
-  },
-  {
-    type: "image",
-    img: "https://images.unsplash.com/photo-1471357674240-e1a485acb3e1",
-    title: "Sea Star",
-  },
-  {
-    type: "image",
-    img: "https://images.unsplash.com/photo-1551782450-a2132b4ba21d",
-    title: "Burger",
-  },
-  {
-    type: "image",
-    img: "https://images.unsplash.com/photo-1627328561499-a3584d4ee4f7",
-    title: "Mountain",
-  },
-  {
-    type: "image",
-    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
-    title: "Bike",
-  },
-
-  // --- Videos ---
-  {
-    type: "video",
-    src: "https://www.w3schools.com/html/mov_bbb.mp4",
-    title: "Sample Video",
-  },
-  {
-    type: "video",
-    src: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
-    title: "Flower Timelapse",
-  },
-  {
-    type: "video",
-    src: "https://www.w3schools.com/html/movie.mp4",
-    title: "Bear Walk",
-  },
-
-  // --- Audios ---
-  {
-    type: "audio",
-    src: "https://www.w3schools.com/html/horse.mp3",
-    title: "Horse Audio",
-  },
-  {
-    type: "audio",
-    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-    title: "SoundHelix Song 1",
-  },
-  {
-    type: "audio",
-    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
-    title: "SoundHelix Song 2",
-  },
-
-  // --- Catalogues (PDFs) ---
-  {
-    type: "catalogue",
-    src: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
-    title: "Dummy Catalogue",
-  },
-  {
-    type: "catalogue",
-    src: "https://gahp.net/wp-content/uploads/2017/09/sample.pdf",
-    title: "Sample PDF",
-  },
-  {
-    type: "catalogue",
-    src: "https://www.clickdimensions.com/links/TestPDFfile.pdf",
-    title: "Test PDF File",
-  },
-];
-

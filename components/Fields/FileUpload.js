@@ -17,20 +17,19 @@ export const VisuallyHiddenInput = styled("input")({
   width: 1,
 });
 
-export default function FileUpload() {
+export default function FileUpload({ value, onChange, multiple = false }) {
   return (
     <Button
       component="label"
-      role={undefined}
+      fullWidth
       variant="contained"
-      tabIndex={-1}
       startIcon={<CloudUploadIcon />}
     >
-      Upload files
+      {value ? "File Selected" : "Upload files"}
       <VisuallyHiddenInput
         type="file"
-        onChange={(event) => console.log(event.target.files)}
-        multiple
+        multiple={multiple}
+        onChange={(event) => onChange(event.target.files[0])}
       />
     </Button>
   );

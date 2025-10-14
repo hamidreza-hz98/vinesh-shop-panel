@@ -17,6 +17,14 @@ import RefreshIcon from "@mui/icons-material/Refresh";
 import MediaForm from "../forms/MediaForm";
 import { useTheme } from "@mui/material/styles";
 import DoneOutlinedIcon from "@mui/icons-material/DoneOutlined";
+import { useDispatch, useSelector } from "react-redux";
+import { selectMedia } from "@/store/media/media.selector";
+import useNotifications from "@/hooks/useNotifications/useNotifications";
+import { selectLoading } from "@/store/admin/admin.selector";
+import Loader from "../common/Loader";
+import { deleteMedia, getAllMedia } from "@/store/media/media.action";
+import { setRequestBody, setRequestQuery } from "@/lib/request";
+import { useDialogs } from "@/hooks/useDialogs/useDialogs";
 
 const MediaPageWrapper = ({
   isOnForm = false,
@@ -31,6 +39,34 @@ const MediaPageWrapper = ({
   const [drawerMode, setDrawerMode] = React.useState("create");
   const [selectedRow, setSelectedRow] = React.useState(null);
   const [selectedMedia, setSelectedMedia] = React.useState(null);
+  const [tab, setTab] = React.useState(type);
+
+  const notifications = useNotifications();
+  const dialogs = useDialogs();
+
+  const dispatch = useDispatch();
+  const media = useSelector(selectMedia);
+  const loading = useSelector(selectLoading);
+
+  const fetchMedia = React.useCallback(async () => {
+    try {
+      const query = setRequestQuery({
+        filters: tab !== "all" ? { type: tab } : {},
+        page_size: 1000,
+      });
+
+      await dispatch(getAllMedia(query));
+    } catch (error) {
+      notifications.show(error.message, {
+        severity: "error",
+        autoHideDuration: 3000,
+      });
+    }
+  }, [dispatch, notifications, tab]);
+
+  React.useEffect(() => {
+    fetchMedia();
+  }, [fetchMedia]);
 
   const handleDrawerClose = () => {
     setDrawerOpen(false);
@@ -38,13 +74,10 @@ const MediaPageWrapper = ({
   };
 
   const handleSuccess = React.useCallback(() => {
-    notifications.show("Operation successful.", {
-      severity: "success",
-      autoHideDuration: 3000,
-    });
+    fetchMedia();
 
     handleDrawerClose();
-  }, []);
+  }, [fetchMedia]);
 
   const handleCreateClick = () => {
     setDrawerMode("create");
@@ -57,19 +90,52 @@ const MediaPageWrapper = ({
       setSelectedMedia(row);
     } else {
       setDrawerMode("edit");
-      setSelectedRow(row);
+      setSelectedRow(row[0]);
       setDrawerOpen(true);
     }
   };
 
   const handleSelectMedia = () => {
-    onSelect(selectedMedia);    
+    onSelect(selectedMedia);
   };
 
   const handleRefresh = () => {
-    // Handle the refresh button click
-    console.log("Refresh button clicked");
+    fetchMedia();
   };
+
+  const handleDeleteMedia = async (_id) => {
+    const confirmed = await dialogs.confirm(
+      `Do you wish to delete this item?`,
+      {
+        title: `Delete item?`,
+        severity: "error",
+        okText: "Delete",
+        cancelText: "Cancel",
+      }
+    );
+
+    if (confirmed) {
+      try {
+        const message = await dispatch(deleteMedia(_id)).unwrap();
+
+        fetchMedia();
+
+        notifications.show(message, {
+          severity: "success",
+          autoHideDuration: 3000,
+        });
+      } catch (message) {
+        notifications.show(message, {
+          severity: "error",
+          autoHideDuration: 3000,
+        });
+      }
+    }
+  };
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <PageContainer
@@ -115,14 +181,18 @@ const MediaPageWrapper = ({
               Done
             </Button>
           )}
-
         </Stack>
       }
     >
       <MediaMasonry
         type={type}
         onSelect={(row) => handleRowEdit(row)}
+        onTabChange={(value) => {
+          setTab(value);
+        }}
+        onDelete={handleDeleteMedia}
         multiple={multiple}
+        media={media?.items}
       />
 
       <Drawer
