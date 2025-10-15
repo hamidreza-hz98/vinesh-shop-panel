@@ -169,7 +169,7 @@ export default function Overview({
         setSelectedRow(row);
         setDrawerOpen(true);
       } else {
-        router.push(`${pathname}/${createPath}?id=${row.id}`);
+        router.push(`${pathname}/${createPath}?id=${row._id}`);
       }
     },
     [formMode, router, pathname, createPath]
@@ -193,7 +193,7 @@ export default function Overview({
         setSelectedRow(row);
         setDrawerOpen(true);
       } else {
-        router.push(`${pathname}/${createPath}?id=${row.id}`);
+        router.push(`${pathname}/${createPath}?id=${row._id}`);
       }
     },
     [formMode, router, pathname, createPath]
@@ -214,16 +214,16 @@ export default function Overview({
       if (confirmed) {
         setIsLoading(true);
         try {
-          await deleteOne(Number(row.id));
+          const { message } = await deleteOne(row._id);
 
-          notifications.show("Item deleted successfully.", {
+          notifications.show(message || "Item deleted successfully.", {
             severity: "success",
             autoHideDuration: 3000,
           });
           loadData();
         } catch (deleteError) {
           notifications.show(
-            `Failed to delete item. Reason: ${deleteError.message}`,
+            `Failed to delete item. Reason: ${deleteError}`,
             {
               severity: "error",
               autoHideDuration: 3000,
@@ -365,6 +365,7 @@ export default function Overview({
             rows={rowsState.rows}
             rowCount={rowsState.rowCount}
             columns={dynamicColumns}
+            getRowId={(row) => row._id}
             pagination
             sortingMode="server"
             filterMode="server"

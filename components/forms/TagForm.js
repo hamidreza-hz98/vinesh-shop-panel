@@ -3,13 +3,17 @@
 import { countries } from "@/constants/countries";
 import { tagDefaultValues } from "@/constants/default-form-values";
 import { tagSchema } from "@/constants/validations";
+import { createTag, updateTag } from "@/store/tag/tag.action";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Autocomplete, Box, Button, Grid, TextField } from "@mui/material";
 import Image from "next/image";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 
 const TagForm = ({ mode, data, onClose, onSuccess }) => {
+  const dispatch = useDispatch();
+
   const {
     control,
     handleSubmit,
@@ -24,8 +28,12 @@ const TagForm = ({ mode, data, onClose, onSuccess }) => {
     reset(tagDefaultValues(data));
   }, [mode, data, reset]);
 
-  const onSubmit = async (formData) => {
-    console.log("Form Data Submitted:", formData);
+  const onSubmit = async (body) => {
+    if (mode === "edit") {
+      await dispatch(updateTag({_id: data?._id, body})).unwrap();
+    } else {
+      await dispatch(createTag(body)).unwrap();
+    }
 
     setTimeout(() => {
       reset();
@@ -52,7 +60,7 @@ const TagForm = ({ mode, data, onClose, onSuccess }) => {
                 text
                   .toLowerCase()
                   .trim()
-                  .replace(/\s+/g, "-") 
+                  .replace(/\s+/g, "-")
                   .replace(/[^\w-]+/g, "");
 
               const handleNameChange = (index, newValue) => {

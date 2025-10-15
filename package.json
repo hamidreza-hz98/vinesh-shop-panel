@@ -29,6 +29,7 @@
     "moment": "^2.30.1",
     "next": "15.1.6",
     "nookies": "^2.5.2",
+    "qs": "^6.14.0",
     "quill-table-better": "^1.2.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

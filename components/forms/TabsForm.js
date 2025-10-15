@@ -28,6 +28,7 @@ export default function TabsForm({
   GeneralForm,
   TranslationForm,
   data,
+  mode,
   schema,
   onSave,
 }) {
@@ -59,40 +60,47 @@ export default function TabsForm({
     }
   });
 
-  const { control, handleSubmit, setValue, watch } = useForm({
+  const { control, handleSubmit, setValue, watch, reset } = useForm({
     defaultValues: { ...data, translations: defaultTranslations },
     resolver: schema || undefined,
   });
 
+  React.useEffect(() => {
+    if (data) {
+      reset(data);
+    }
+  }, [data, reset]);
+
   const watchForm = watch();
 
   const handleAddLanguage = (lang) => {
-  setShowAutocomplete(false);
-  if (!tabs.find((t) => t.lang === lang.code)) {
-    const newTabs = [
-      ...tabs.filter((t) => t.type !== "add"),
-      { type: "translation", lang: lang.code, currency: lang.currency },
-      { type: "add" },
-    ];
-    setTabs(newTabs);
-    setCurrentTab(newTabs.length - 2);
+    setShowAutocomplete(false);
+    if (!tabs.find((t) => t.lang === lang.code)) {
+      const newTabs = [
+        ...tabs.filter((t) => t.type !== "add"),
+        { type: "translation", lang: lang.code, currency: lang.currency },
+        { type: "add" },
+      ];
+      setTabs(newTabs);
+      setCurrentTab(newTabs.length - 2);
 
-    const translations = watchForm.translations || [];
+      const translations = watchForm.translations || [];
 
-    const existingTech =
-      translations.find((t) => t.technicalDetails && Object.keys(t.technicalDetails).length > 0)
-        ?.technicalDetails || {};
+      const existingTech =
+        translations.find(
+          (t) =>
+            t.technicalDetails && Object.keys(t.technicalDetails).length > 0
+        )?.technicalDetails || {};
 
-    const newTranslation = { 
-      lang: lang.code, 
-      technicalDetails: { ...existingTech } 
-    };
+      const newTranslation = {
+        lang: lang.code,
+        technicalDetails: { ...existingTech },
+      };
 
-    const newTranslations = [...translations, newTranslation];
-    setValue("translations", newTranslations);
-  }
-};
-
+      const newTranslations = [...translations, newTranslation];
+      setValue("translations", newTranslations);
+    }
+  };
 
   const handleRemoveLanguage = (langCode) => {
     const newTabs = tabs.filter((t) => t.lang !== langCode);
@@ -106,7 +114,9 @@ export default function TabsForm({
   };
 
   const getTranslationData = (lang) => {
+    if(!data || !watchForm) return
     if (!Array.isArray(watchForm.translations)) return {};
+
     return watchForm.translations.find((t) => t.lang === lang) || {};
   };
 
@@ -220,6 +230,7 @@ export default function TabsForm({
             <GeneralForm
               control={control}
               setValue={setValue}
+              mode={mode}
               data={watchForm}
             />
           )}
@@ -231,6 +242,7 @@ export default function TabsForm({
               watch={watch}
               lang={tab.lang}
               currency={tab.currency}
+              mode={mode}
               data={getTranslationData(tab.lang)}
             />
           )}

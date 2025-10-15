@@ -15,17 +15,13 @@ import { Controller } from "react-hook-form";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import Image from "next/image";
 import MediaPageWrapper from "@/components/wrappers/MediaPageWrapper";
+import { setFilePath } from "@/lib/media";
 
-const CategoryTranslationForm = ({
-  control,
-  lang,
-  currency,
-  setValue,
-  watch,
-}) => {
+const CategoryTranslationForm = ({ control, lang, data, setValue, watch }) => {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const [drawerType, setDrawerType] = React.useState("image");
   const [drawerMultiple, setDrawerMultiple] = React.useState(false);
+  const [selectedMediaObjects, setSelectedMediaObjects] = React.useState({});
 
   const toggleMediaDrawer = (type, multiple) => {
     setDrawerType(type);
@@ -34,14 +30,36 @@ const CategoryTranslationForm = ({
   };
 
   const translations = watch("translations") || [];
-  const translationIndex = translations.findIndex((t) => t.lang === lang);
-  const currentTranslation = translations[translationIndex] || {};
+  let translationIndex = translations.findIndex((t) => t.lang === lang);
+
   if (translationIndex === -1) {
+    // Ensure a translation object exists for this lang
     setValue("translations", [...translations, { lang }]);
+    translationIndex = translations.length;
   }
 
+  const currentTranslation = translations[translationIndex] || {};
   const name = currentTranslation.name;
 
+  const initialized = React.useRef(false);
+
+  React.useEffect(() => {
+    if (!data || initialized.current) return;
+    initialized.current = true;
+
+    setValue(`translations.${translationIndex}`, data, {
+      shouldValidate: false,
+    });
+
+    if (data?.banners?.length) {
+      setSelectedMediaObjects((prev) => ({
+        ...prev,
+        [`translations.${translationIndex}.banners`]: data.banners,
+      }));
+    }
+  }, [data, lang]);
+
+  // Auto-generate slug
   React.useEffect(() => {
     if (name) {
       const slug = name
@@ -57,6 +75,23 @@ const CategoryTranslationForm = ({
       setValue(`translations.${translationIndex}.slug`, "");
     }
   }, [name, lang, setValue, translationIndex]);
+
+  const handleMediaSelect = (field, media) => {
+    if (!media) return;
+
+    // Store full objects for UI
+    setSelectedMediaObjects((prev) => ({
+      ...prev,
+      [field.name]: Array.isArray(media) ? media : [media],
+    }));
+
+    // Set value directly for form (will be purified on submit)
+    setValue(field.name, Array.isArray(media) ? media : media[0] || null, {
+      shouldValidate: true,
+    });
+
+    setDrawerOpen(false);
+  };
 
   return (
     <Box sx={{ width: "100%", marginTop: 4 }}>
@@ -100,29 +135,31 @@ const CategoryTranslationForm = ({
 
         <Grid item size={{ xs: 12 }}>
           <Typography my={2}>Category Description</Typography>
-
           <Controller
             name={`translations.${translationIndex}.description`}
             control={control}
             defaultValue=""
-            render={({ field }) => <RichTextEditor {...field} />}
+            render={({ field }) => {
+              return (
+                <RichTextEditor
+                  text={field.value}
+                  onChange={field.onChange}
+                />
+              );
+            }}
           />
         </Grid>
 
         <Grid item size={{ xs: 12 }}>
           <Controller
-            name="banners"
+            name={`translations.${translationIndex}.banners`}
             control={control}
             defaultValue={[]}
             render={({ field }) => (
               <Stack spacing={1}>
                 <Typography>Category Banners</Typography>
-
                 <Button
-                  component="label"
-                  role={undefined}
                   variant="contained"
-                  tabIndex={-1}
                   startIcon={<CloudUploadIcon />}
                   onClick={() => toggleMediaDrawer("image", true)}
                 >
@@ -130,32 +167,31 @@ const CategoryTranslationForm = ({
                 </Button>
 
                 <Stack direction="row" spacing={1} mt={1}>
-                  {field.value?.map((file, idx) => (
+                  {selectedMediaObjects[field.name]?.map((file, idx) => (
                     <Box key={idx}>
                       {file.type === "image" ? (
                         <Image
-                          src={file.src || file.img}
-                          alt={file.title || `media-${idx}`}
+                          src={setFilePath(file.path)}
+                          alt={file.translations?.[0]?.title || `media-${idx}`}
                           width={60}
                           height={60}
                           style={{ objectFit: "cover", borderRadius: 4 }}
                         />
                       ) : (
-                        <Typography>{file.title || file.src}</Typography>
+                        <Typography>
+                          {file.translations?.[0]?.title || file.src}
+                        </Typography>
                       )}
                     </Box>
                   ))}
                 </Stack>
 
-                {/* Drawer */}
                 <Drawer
                   anchor="right"
                   open={drawerOpen}
-                  onClose={() => toggleMediaDrawer("image", false)}
+                  onClose={() => setDrawerOpen(false)}
                   ModalProps={{
-                    sx: {
-                      zIndex: (theme) => theme.zIndex.modal + 1000,
-                    },
+                    sx: { zIndex: (theme) => theme.zIndex.modal + 1000 },
                   }}
                   PaperProps={{
                     sx: {
@@ -168,15 +204,7 @@ const CategoryTranslationForm = ({
                 >
                   <Box sx={{ width: "100vw", height: "100vh" }}>
                     <MediaPageWrapper
-                      onChange={(media) => {
-                        // ✅ Push media into form
-                        if (drawerMultiple) {
-                          field.onChange([...(field.value || []), ...media]);
-                        } else {
-                          field.onChange(media);
-                        }
-                        setDrawerOpen(false);
-                      }}
+                      onSelect={(media) => handleMediaSelect(field, media)}
                       isOnForm
                       type={drawerType}
                       multiple={drawerMultiple}
@@ -210,7 +238,7 @@ const CategoryTranslationForm = ({
             <Controller
               name={`translations.${translationIndex}.seo.${seoField}`}
               control={control}
-              defaultValue=""
+              defaultValue={currentTranslation.seo?.[seoField] || ""}
               render={({ field }) => (
                 <TextField
                   {...field}

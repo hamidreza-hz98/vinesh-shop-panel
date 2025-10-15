@@ -1,23 +1,36 @@
-"use client"
+"use client";
 
 import React from "react";
 import Overview from "../common/overview/Overview";
 import { categoryColumns } from "@/constants/columns";
-import { CATEGORIES_MOCK_DATA } from "@/constants/MOCK_DATA";
+import { useDispatch } from "react-redux";
+import {
+  deleteCategory,
+  getAllCategories,
+} from "@/store/category/category.action";
+import { transformGridQuery } from "@/lib/request";
+import qs from "qs";
 
 const CategoriesPageWrapper = () => {
+  const dispatch = useDispatch();
+
   const getCategories = async (params) => {
-    console.log("Fetching categories with params:", params);
+    const query = transformGridQuery({ lang: "us", ...params });
+
+    const data = await dispatch(
+      getAllCategories(qs.stringify(query, { encodedValuesOnly: true }))
+    ).unwrap();
 
     return {
-      items: CATEGORIES_MOCK_DATA,
-      rowCount: CATEGORIES_MOCK_DATA.length,
+      items: data.categories,
+      rowCount: data.total,
     };
   };
 
-  const deleteCategory = async (id) => {
-    console.log("Deleting category with id:", id);
-    return { success: true };
+  const handleDeleteCategory = async (_id) => {
+    const message = await dispatch(deleteCategory(_id)).unwrap();
+
+    return { success: true, message };
   };
 
   return (
@@ -31,7 +44,7 @@ const CategoriesPageWrapper = () => {
         ]}
         columns={categoryColumns}
         getMany={getCategories}
-        deleteOne={deleteCategory}
+        deleteOne={handleDeleteCategory}
       />
     </div>
   );

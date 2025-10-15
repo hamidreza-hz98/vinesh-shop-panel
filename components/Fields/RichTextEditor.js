@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useRef } from "react";
+import React, { useMemo, useRef, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
@@ -24,6 +24,17 @@ import "quill-table-better/dist/quill-table-better.css";
 
 const RichTextEditor = ({ text = "", onChange }) => {
   const quillEditRef = useRef(null);
+  const [value, setValue] = useState(text);
+
+  // Update local state if text changes from props
+  useEffect(() => {
+    setValue(text);
+  }, [text]);
+
+  const handleChange = (content, delta, source, editor) => {
+    setValue(content);
+    if (onChange) onChange(content); // pass content to RHF
+  };
 
   const modules = useMemo(
     () => ({
@@ -58,9 +69,8 @@ const RichTextEditor = ({ text = "", onChange }) => {
   return (
     <ReactQuill
       ref={quillEditRef}
-      onChange={onChange}
-      key="edit"
-      id="edit"
+      value={value}        // <-- controlled value
+      onChange={handleChange} // <-- propagate changes
       theme="snow"
       modules={modules}
     />

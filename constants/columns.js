@@ -13,6 +13,8 @@ import {
   calculateCampaignRemainingDays,
   calculateCouponStatus,
 } from "@/lib/date";
+import { setFilePath } from "@/lib/media";
+import Image from "next/image";
 
 export const userColumns = [
   { field: "firstName", headerName: "First Name", width: 130 },
@@ -116,14 +118,17 @@ export const categoryColumns = [
           justifyContent="center"
           padding={1}
         >
-          <img
-            src={image.src}
-            alt={image.title}
+          <Image
+            src={setFilePath(image.path)}
+            alt={image.filename}
+            loading="lazy"
+            width={0}
+            height={0}
+            sizes="100vw"
             style={{
-              width: 100,
-              height: 100,
-              objectFit: "cover",
-              borderRadius: 4,
+              display: "block",
+              width: "100%",
+              height: "auto",
             }}
           />
         </Box>
@@ -193,18 +198,18 @@ export const brandColumns = [
   {
     field: "name",
     headerName: "Name",
-    width: 200,
+    width: 100,
   },
   {
     field: "categories",
     headerName: "Categories",
     width: 150,
-    valueGetter: (subCategories) => subCategories?.join(" | ") || "",
+    valueGetter: (subCategories) => subCategories?.join(" | ") || "-",
   },
   {
     field: "excerpt",
     headerName: "Excerpt",
-    width: 150,
+    width: 200,
   },
   {
     field: "createdAt",
@@ -748,9 +753,9 @@ export const tagColumns = [
   {
     field: "translations",
     headerName: "Name",
-    width: 100,
+    width: 150,
     valueGetter: (translations) => {
-      const english = translations.find((item) => item.lang === "us");
+      const english = translations?.find((item) => item.lang === "us");
 
       return english.name;
     },
@@ -758,7 +763,7 @@ export const tagColumns = [
   {
     field: "id",
     headerName: "Slug",
-    width: 100,
+    width: 150,
     renderCell: (params) => {
       const english = params?.row?.translations?.find(
         (item) => item.lang === "us"
