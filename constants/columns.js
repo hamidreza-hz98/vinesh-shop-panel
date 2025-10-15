@@ -15,6 +15,7 @@ import {
 } from "@/lib/date";
 import { setFilePath } from "@/lib/media";
 import Image from "next/image";
+import MediaPreview from "@/components/common/MediaPreview";
 
 export const userColumns = [
   { field: "firstName", headerName: "First Name", width: 130 },
@@ -177,18 +178,22 @@ export const brandColumns = [
         <Box
           display="flex"
           gap={1}
+          height="100%"
           alignItems="center"
           justifyContent="center"
           padding={1}
         >
-          <img
-            src={image.src}
-            alt={image.title}
+          <Image
+            src={setFilePath(image.path)}
+            alt={image.filename}
+            loading="lazy"
+            width={0}
+            height={0}
+            sizes="100vw"
             style={{
-              width: 100,
-              height: 100,
-              objectFit: "cover",
-              borderRadius: 4,
+              display: "block",
+              width: "100%",
+              height: "auto",
             }}
           />
         </Box>
@@ -204,7 +209,7 @@ export const brandColumns = [
     field: "categories",
     headerName: "Categories",
     width: 150,
-    valueGetter: (subCategories) => subCategories?.join(" | ") || "-",
+    valueGetter: (categories) => categories?.map(c => c.name).join(" | ") || "-",
   },
   {
     field: "excerpt",

@@ -5,15 +5,26 @@ import { Box, Grid, TextField, Typography } from "@mui/material";
 import React from "react";
 import { Controller } from "react-hook-form";
 
-const BrandTranslationForm = ({ control, lang, currency, setValue, watch }) => {
+const BrandTranslationForm = ({ control, lang, data, setValue, watch }) => {
   const translations = watch("translations") || [];
   const translationIndex = translations.findIndex((t) => t.lang === lang);
-  const currentTranslation = translations[translationIndex] || {};
   if (translationIndex === -1) {
     setValue("translations", [...translations, { lang }]);
   }
 
+  const currentTranslation = translations[translationIndex] || {};
   const name = currentTranslation.name;
+
+  const initialized = React.useRef(false);
+
+  React.useEffect(() => {
+    if (!data || initialized.current) return;
+    initialized.current = true;
+
+      setValue(`translations.${translationIndex}`, data, {
+        shouldValidate: false,
+      });
+  }, [data, lang]);
 
   React.useEffect(() => {
     if (name) {
@@ -78,7 +89,9 @@ const BrandTranslationForm = ({ control, lang, currency, setValue, watch }) => {
             name={`translations.${translationIndex}.description`}
             control={control}
             defaultValue=""
-            render={({ field }) => <RichTextEditor {...field} />}
+            render={({ field }) => (
+              <RichTextEditor text={field.value} {...field} />
+            )}
           />
         </Grid>
 
@@ -104,7 +117,7 @@ const BrandTranslationForm = ({ control, lang, currency, setValue, watch }) => {
             <Controller
               name={`translations.${translationIndex}.seo.${seoField}`}
               control={control}
-              defaultValue=""
+              defaultValue={currentTranslation.seo?.[seoField] || ""}
               render={({ field }) => (
                 <TextField
                   {...field}

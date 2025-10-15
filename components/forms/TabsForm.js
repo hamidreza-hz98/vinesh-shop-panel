@@ -53,17 +53,30 @@ export default function TabsForm({
     { lang: "ir", currency: "ريال" },
   ];
 
-  const defaultTranslations = data?.translations || [];
-  fixedLangs.forEach((fl) => {
-    if (!defaultTranslations.find((t) => t.lang === fl.lang)) {
-      defaultTranslations.push({ lang: fl.lang });
-    }
-  });
+  const defaultTranslations = React.useMemo(() => {
+    const existing = data?.translations || [];
+    const fixedLangs = [
+      { lang: "us", currency: "$" },
+      { lang: "pt", currency: "€" },
+      { lang: "ae", currency: "UAD" },
+      { lang: "ir", currency: "ريال" },
+    ];
 
-  const { control, handleSubmit, setValue, watch, reset } = useForm({
-    defaultValues: { ...data, translations: defaultTranslations },
-    resolver: schema || undefined,
-  });
+    const merged = fixedLangs.map((fl) => {
+      const existingOne = existing.find((t) => t.lang === fl.lang);
+      return existingOne || { lang: fl.lang };
+    });
+
+    return merged;
+  }, [data]);
+
+const { control, handleSubmit, setValue, watch, reset } = useForm({
+  defaultValues: {
+    ...(data || {}),
+    translations: defaultTranslations,
+  },
+  resolver: schema || undefined,
+});
 
   React.useEffect(() => {
     if (data) {
@@ -113,12 +126,14 @@ export default function TabsForm({
     setValue("translations", newTranslations);
   };
 
-  const getTranslationData = (lang) => {
-    if(!data || !watchForm) return
-    if (!Array.isArray(watchForm.translations)) return {};
+const getTranslationData = (lang) => {
+  const translations = watchForm?.translations || [];
 
-    return watchForm.translations.find((t) => t.lang === lang) || {};
-  };
+  const translation = translations.find((t) => t.lang === lang);
+  
+  return translation || { lang };
+};
+
 
   return (
     <Box component="form" onSubmit={handleSubmit(onSave)}>

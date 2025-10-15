@@ -26,7 +26,7 @@ import Loader from "@/components/common/Loader";
 
 const CategoryGeneralForm = ({ control, setValue, mode, data }) => {
   const dispatch = useDispatch();
-  const tags = useSelector(selectTags);
+  const { tags } = useSelector(selectTags);
 
   const [activeField, setActiveField] = React.useState(null);
   const [drawerOpen, setDrawerOpen] = React.useState(false);
@@ -61,7 +61,11 @@ const CategoryGeneralForm = ({ control, setValue, mode, data }) => {
     });
 
     // Tags
-    if (data.tags) setValue("tags", data.tags.map((t) => (t?._id ? t._id : t)));
+    if (data.tags)
+      setValue(
+        "tags",
+        data.tags.map((t) => (t?._id ? t._id : t))
+      );
   }, [data, tags, setValue]);
 
   const openMediaDrawer = (fieldName, type, multiple) => {
@@ -75,9 +79,7 @@ const CategoryGeneralForm = ({ control, setValue, mode, data }) => {
     if (!activeField || !media) return;
 
     // Set _id(s) for backend
-    const ids = drawerMultiple
-      ? media.map((m) => m?._id)
-      : media[0]?._id;
+    const ids = drawerMultiple ? media.map((m) => m?._id) : media[0]?._id;
     setValue(activeField, ids);
 
     // Store full objects for UI
@@ -95,7 +97,7 @@ const CategoryGeneralForm = ({ control, setValue, mode, data }) => {
     <Box sx={{ width: "100%", marginTop: 4 }}>
       <Grid container spacing={2}>
         {/* Sub Categories */}
-        <Grid size={{xs:12, sm:6, md:4}}>
+        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
           <Controller
             name="subCategories"
             control={control}
@@ -117,15 +119,13 @@ const CategoryGeneralForm = ({ control, setValue, mode, data }) => {
         </Grid>
 
         {/* Tags */}
-        <Grid size={{xs:12, sm:6, md:4}}>
+        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
           <Controller
             name="tags"
             control={control}
             render={({ field }) => {
               const selectedTags = (field.value || [])
-                .map((item) =>
-                  tags.find((t) => t._id === (item?._id || item))
-                )
+                .map((item) => tags.find((t) => t._id === (item?._id || item)))
                 .filter(Boolean);
 
               return (
@@ -139,7 +139,9 @@ const CategoryGeneralForm = ({ control, setValue, mode, data }) => {
                   onChange={(e, newValue) =>
                     field.onChange(newValue.map((t) => t._id))
                   }
-                  renderInput={(params) => <TextField {...params} label="Tags" />}
+                  renderInput={(params) => (
+                    <TextField {...params} label="Tags" />
+                  )}
                 />
               );
             }}
@@ -147,7 +149,7 @@ const CategoryGeneralForm = ({ control, setValue, mode, data }) => {
         </Grid>
 
         {/* Is Active */}
-        <Grid size={{xs:12, sm:6, md:4}}>
+        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
           <Controller
             name="isActive"
             control={control}
@@ -168,10 +170,12 @@ const CategoryGeneralForm = ({ control, setValue, mode, data }) => {
 
         {/* Media Fields */}
         {["image", "icon"].map((fieldName) => (
-          <Grid key={fieldName} size={{xs: 12}}>
+          <Grid key={fieldName} size={{ xs: 12 }}>
             <Stack spacing={1}>
               <Typography>
-                {fieldName === "image" ? "Category Main Image" : "Category Icon"}
+                {fieldName === "image"
+                  ? "Category Main Image"
+                  : "Category Icon"}
               </Typography>
               <Button
                 variant="contained"
@@ -184,7 +188,10 @@ const CategoryGeneralForm = ({ control, setValue, mode, data }) => {
               {selectedMediaObjects[fieldName] && (
                 <Image
                   src={setFilePath(selectedMediaObjects[fieldName].path)}
-                  alt={selectedMediaObjects[fieldName]?.translations?.[0]?.title || "media"}
+                  alt={
+                    selectedMediaObjects[fieldName]?.translations?.[0]?.title ||
+                    "media"
+                  }
                   width={60}
                   height={60}
                   style={{ objectFit: "cover", borderRadius: 4 }}
@@ -200,7 +207,9 @@ const CategoryGeneralForm = ({ control, setValue, mode, data }) => {
           open={drawerOpen}
           onClose={() => setDrawerOpen(false)}
           ModalProps={{ sx: { zIndex: (theme) => theme.zIndex.modal + 1000 } }}
-          PaperProps={{ sx: { width: "100vw", height: "100vh", maxWidth: "100vw", top: 0 } }}
+          PaperProps={{
+            sx: { width: "100vw", height: "100vh", maxWidth: "100vw", top: 0 },
+          }}
         >
           <Box sx={{ width: "100vw", height: "100vh" }}>
             <MediaPageWrapper

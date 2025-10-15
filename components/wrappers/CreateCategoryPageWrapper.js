@@ -60,7 +60,6 @@ const CreateCategoryPageWrapper = () => {
 
       router.push("/dashboard/categories");
     } catch (error) {
-        console.log(error);
       notifications.show(error, {
         severity: "error",
         autoHideDuration: 3000,

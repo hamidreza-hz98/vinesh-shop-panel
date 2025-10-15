@@ -19,6 +19,17 @@ export const modifyCategoryApi = (id) =>
 export const getAllCategoriesApi = (query) =>
   `${process.env.NEXT_PUBLIC_BASE_URL}/category/all?${query}`;
 
+export const createBrandApi = `${process.env.NEXT_PUBLIC_BASE_URL}/brand`;
+
+export const brandDetailsApi = (query) =>
+  `${process.env.NEXT_PUBLIC_BASE_URL}/brand/details?${query}`;
+
+export const modifyBrandApi = (id) =>
+  `${process.env.NEXT_PUBLIC_BASE_URL}/brand/${id}`;
+
+export const getAllBrandsApi = (query) =>
+  `${process.env.NEXT_PUBLIC_BASE_URL}/brand/all?${query}`;
+
 export const createTagApi = `${process.env.NEXT_PUBLIC_BASE_URL}/tag`;
 
 export const modifyTagApi = (id) =>
