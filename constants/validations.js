@@ -4,7 +4,7 @@ import * as yup from "yup";
 export const userSchema = yup.object().shape({
   firstName: yup.string().required("First name is required").max(50),
   lastName: yup.string().required("Last name is required").max(50),
-  phoneNumber: yup
+  phone: yup
     .string()
     .required("Phone number is required")
     .matches(/^\+?\d{10,15}$/, "Enter a valid phone number"),
@@ -12,14 +12,14 @@ export const userSchema = yup.object().shape({
     .string()
     .required("Email is required")
     .email("Enter a valid email"),
-  password: yup
-    .string()
-    .required("Password is required")
-    .min(6, "Password must be at least 6 characters"),
+  // password: yup
+  //   .string()
+  //   .required("Password is required")
+  //   .min(6, "Password must be at least 6 characters"),
   shebaNumber: yup
     .string()
     .required("Sheba number is required")
-    .matches(/^IR\d{24}$/, "Enter a valid Iranian Sheba number"),
+    .matches(/^IR\d{22}$/, "Enter a valid Iranian Sheba number"),
   birthdate: yup.date().required("Birth date is required"),
 });
 
@@ -203,12 +203,7 @@ export const tagSchema = yup.object().shape({
 });
 
 export const sizeSchema = yup.object().shape({
-  dimensions: yup.object().shape({
-    width: yup.number().required("Width is required").min(0),
-    height: yup.number().required("Height is required").min(0),
-    depth: yup.number().required("Depth is required").min(0),
-    weight: yup.number().required("Weight is required").min(0),
-  }),
+  dimensions: yup.object().required(),
 
   translations: yup.array().of(
     yup.object().shape({

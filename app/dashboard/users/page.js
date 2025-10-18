@@ -1,12 +1,19 @@
+"use client"
+
+import dynamic from 'next/dynamic';
 import Loader from "@/components/common/Loader";
-import UsersPageWrapper from "@/components/wrappers/UsersPageWrapper";
-import React from "react";
+
+const UsersPageWrapper = dynamic(
+  () => import('@/components/wrappers/UsersPageWrapper'),
+  {
+    ssr: false,
+    loading: () => <Loader />,
+  }
+);
 
 const UsersPage = () => {
   return (
-    <React.Suspense fallback={<Loader />}>
       <UsersPageWrapper />
-    </React.Suspense>
   );
 };
 

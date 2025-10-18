@@ -3,13 +3,19 @@
 import { countries } from "@/constants/countries";
 import { colorDefaultValues } from "@/constants/default-form-values";
 import { colorSchema } from "@/constants/validations";
+import useNotifications from "@/hooks/useNotifications/useNotifications";
+import { createColor, updateColor } from "@/store/color/color.action";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Autocomplete, Box, Button, Grid, TextField } from "@mui/material";
 import Image from "next/image";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 
 const ColorForm = ({ mode, data, onClose, onSuccess }) => {
+  const dispatch = useDispatch();
+  const notifications = useNotifications();
+
   const {
     control,
     handleSubmit,
@@ -24,14 +30,12 @@ const ColorForm = ({ mode, data, onClose, onSuccess }) => {
     reset(colorDefaultValues(data));
   }, [mode, data, reset]);
 
-  const onSubmit = async (formData) => {
-    console.log("Form Data Submitted:", formData);
+  const onSubmit = async (body) => {
+    mode === "edit"
+      ? await dispatch(updateColor({ _id: data?._id, body })).unwrap()
+      : await dispatch(createColor(body)).unwrap();
 
-    setTimeout(() => {
-      reset();
-
-      onSuccess && onSuccess();
-    }, 500);
+    onSuccess && onSuccess();
   };
 
   return (
@@ -98,7 +102,7 @@ const ColorForm = ({ mode, data, onClose, onSuccess }) => {
                   ))}
 
                   <Autocomplete
-                  sx={{mt:2}}
+                    sx={{ mt: 2 }}
                     fullWidth
                     options={countries}
                     getOptionLabel={(option) => option.label}

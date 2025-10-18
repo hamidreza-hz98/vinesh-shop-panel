@@ -15,16 +15,30 @@ import {
 } from "@/lib/date";
 import { setFilePath } from "@/lib/media";
 import Image from "next/image";
-import MediaPreview from "@/components/common/MediaPreview";
 
 export const userColumns = [
   { field: "firstName", headerName: "First Name", width: 130 },
   { field: "lastName", headerName: "Last Name", width: 130 },
-  { field: "phoneNumber", headerName: "Phone", width: 130 },
+  { field: "phone", headerName: "Phone", width: 130 },
   { field: "email", headerName: "Email", width: 200 },
-  { field: "birthdate", headerName: "Birthdate", width: 200 },
-  { field: "createdAt", headerName: "Created At", width: 180 },
-  { field: "updatedAt", headerName: "Updated At", width: 180 },
+  {
+    field: "birthdate",
+    headerName: "Birth Date",
+    width: 180,
+    valueGetter: (createdAt) => new Date(createdAt)?.toLocaleString() || "",
+  },
+  {
+    field: "createdAt",
+    headerName: "Created At",
+    width: 180,
+    valueGetter: (createdAt) => new Date(createdAt)?.toLocaleString() || "",
+  },
+  {
+    field: "updatedAt",
+    headerName: "Updated At",
+    width: 180,
+    valueGetter: (updatedAt) => new Date(updatedAt)?.toLocaleString() || "",
+  },
 ];
 
 export const adminColumns = [
@@ -209,7 +223,8 @@ export const brandColumns = [
     field: "categories",
     headerName: "Categories",
     width: 150,
-    valueGetter: (categories) => categories?.map(c => c.name).join(" | ") || "-",
+    valueGetter: (categories) =>
+      categories?.map((c) => c.name).join(" | ") || "-",
   },
   {
     field: "excerpt",
@@ -701,7 +716,7 @@ export const colorColumns = [
   {
     field: "translations",
     headerName: "Name",
-    width: 100,
+    width: 150,
     valueGetter: (translations) => {
       const english = translations.find((item) => item.lang === "us");
 
@@ -714,7 +729,7 @@ export const colorColumns = [
     width: 100,
   },
   {
-    field: "id",
+    field: "_id",
     headerName: "Color",
     width: 100,
     renderCell: (params) => {
@@ -795,7 +810,7 @@ export const sizeColumns = [
   {
     field: "translations",
     headerName: "Name",
-    width: 100,
+    width: 150,
     valueGetter: (translations) => {
       const english = translations.find((item) => item.lang === "us");
 

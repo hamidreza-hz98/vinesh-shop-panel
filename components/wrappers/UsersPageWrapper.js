@@ -3,18 +3,29 @@
 import React from "react";
 import Overview from "../common/overview/Overview";
 import { userColumns } from "@/constants/columns";
-import { USERS_MOCK_DATA } from "@/constants/MOCK_DATA";
 import UserForm from "../forms/UserForm";
+import { transformGridQuery } from "@/lib/request";
+import { useDispatch } from "react-redux";
+import { deleteUser, getAllUsers } from "@/store/user/user.action";
+import QueryString from "qs";
 
 const UsersPageWrapper = () => {
+  const dispatch = useDispatch();
+
   const getUsers = async (params) => {
-    console.log("Fetching users with params:", params);
-    return { items: USERS_MOCK_DATA, rowCount: USERS_MOCK_DATA.length };
+    const query = transformGridQuery(params);
+
+    const data = await dispatch(
+      getAllUsers(QueryString.stringify(query, { encodeValuesOnly: true }))
+    ).unwrap();
+
+    return { items: data.users, rowCount: data.total };
   };
 
-  const deleteUser = async (id) => {
-    console.log("Deleting user with id:", id);
-    return { success: true };
+  const handleDeleteUser = async (_id) => {
+    const message = await dispatch(deleteUser(_id)).unwrap();
+
+    return { success: true, message };
   };
 
   return (
@@ -28,7 +39,7 @@ const UsersPageWrapper = () => {
         ]}
         columns={userColumns}
         getMany={getUsers}
-        deleteOne={deleteUser}
+        deleteOne={handleDeleteUser}
         formMode="drawer"
         FormComponent={UserForm}
       />

@@ -14,9 +14,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import CustomDatePicker from "../Fields/CustomDatePicker";
 import { userSchema } from "@/constants/validations";
 import { userDefaultFormValues } from "@/constants/default-form-values";
+import { useDispatch } from "react-redux";
+import { createUser, updateUser } from "@/store/user/user.action";
 
-export default function UserForm({ mode, data, onClose, onSuccess }) {
+export default function UserForm({ mode, data, onClose, onSuccess, onError }) {
   const [showPassword, setShowPassword] = React.useState(false);
+
+  const dispatch = useDispatch();
 
   const {
     control,
@@ -32,16 +36,21 @@ export default function UserForm({ mode, data, onClose, onSuccess }) {
     reset(userDefaultFormValues(data));
   }, [mode, data, reset]);
 
-  const onSubmit = async (formData) => {
-    console.log("Form Data Submitted:", formData);
+  const onSubmit = async (body) => {
+    let message = "";
+    try {
+      if (mode === "edit") {
+        message = await dispatch(updateUser({ _id: data?._id, body })).unwrap();
+      } else {
+        message = await dispatch(createUser(body)).unwrap();
+      }
 
-    setTimeout(() => {
       reset();
-      
-      onSuccess && onSuccess();
-    }, 500);
+      onSuccess && onSuccess(message);
+    } catch (error) {
+      onError && onError(error);
+    }
   };
-
   return (
     <Box
       component="form"
@@ -78,14 +87,14 @@ export default function UserForm({ mode, data, onClose, onSuccess }) {
         />
 
         <Controller
-          name="phoneNumber"
+          name="phone"
           control={control}
           render={({ field }) => (
             <TextField
               {...field}
               label="Phone Number"
-              error={!!errors.phoneNumber}
-              helperText={errors.phoneNumber?.message}
+              error={!!errors.phone}
+              helperText={errors.phone?.message}
               fullWidth
             />
           )}

@@ -222,13 +222,10 @@ export default function Overview({
           });
           loadData();
         } catch (deleteError) {
-          notifications.show(
-            `Failed to delete item. Reason: ${deleteError}`,
-            {
-              severity: "error",
-              autoHideDuration: 3000,
-            }
-          );
+          notifications.show(`Failed to delete item. Reason: ${deleteError}`, {
+            severity: "error",
+            autoHideDuration: 3000,
+          });
         }
         setIsLoading(false);
       }
@@ -236,25 +233,41 @@ export default function Overview({
     [dialogs, notifications, loadData, deleteOne]
   );
 
-  const handleRowDetails = React.useCallback((row) => {
-    if (formMode === "drawer") {
-      setDrawerMode("edit");
-      setSelectedRow(row);
-      setDrawerOpen(true);
-    } else {
-      // do some thing else
-    }
-  }, [formMode]);
+  const handleRowDetails = React.useCallback(
+    (row) => {
+      if (formMode === "drawer") {
+        setDrawerMode("edit");
+        setSelectedRow(row);
+        setDrawerOpen(true);
+      } else {
+        // do some thing else
+      }
+    },
+    [formMode]
+  );
 
-  const handleSuccess = React.useCallback(() => {
-    notifications.show("Operation successful.", {
-      severity: "success",
-      autoHideDuration: 3000,
-    });
+  const handleSuccess = React.useCallback(
+    (message) => {
+      notifications.show(message || "Operation successful.", {
+        severity: "success",
+        autoHideDuration: 3000,
+      });
 
-    handleDrawerClose();
-    loadData();
-  }, [loadData, notifications]);
+      handleDrawerClose();
+      loadData();
+    },
+    [loadData, notifications]
+  );
+
+  const handleError = React.useCallback(
+    (message) => {
+      notifications.show(message || "Operation Failed.", {
+        severity: "error",
+        autoHideDuration: 3000,
+      });
+    },
+    [notifications]
+  );
 
   const initialState = React.useMemo(
     () => ({
@@ -342,16 +355,15 @@ export default function Overview({
             </div>
           </Tooltip>
 
-          {
-            !rowActions.includes("details") &&
+          {!rowActions.includes("details") && (
             <Button
-            variant="contained"
-            onClick={handleCreateClick}
-            startIcon={<AddIcon />}
+              variant="contained"
+              onClick={handleCreateClick}
+              startIcon={<AddIcon />}
             >
-            Create
-          </Button>
-          }
+              Create
+            </Button>
+          )}
         </Stack>
       }
     >
@@ -443,6 +455,7 @@ export default function Overview({
               data={drawerMode === "edit" ? selectedRow : null}
               onClose={handleDrawerClose}
               onSuccess={handleSuccess}
+              onError={handleError}
             />
           </Box>
         </Drawer>

@@ -3,6 +3,7 @@
 import { countries } from "@/constants/countries";
 import { sizeDefaultValues } from "@/constants/default-form-values";
 import { sizeSchema } from "@/constants/validations";
+import { createSize, updateSize } from "@/store/size/size.action";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
   Autocomplete,
@@ -15,8 +16,11 @@ import {
 import Image from "next/image";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 
 const SizeForm = ({ mode, data, onClose, onSuccess }) => {
+  const dispatch = useDispatch();
+
   const {
     control,
     handleSubmit,
@@ -31,15 +35,17 @@ const SizeForm = ({ mode, data, onClose, onSuccess }) => {
     reset(sizeDefaultValues(data));
   }, [mode, data, reset]);
 
-  const onSubmit = async (formData) => {
-    console.log("Form Data Submitted:", formData);
+  const onSubmit = async (body) => {
+    
+    mode === "edit"
+      ? await dispatch(updateSize({ _id: data?._id, body }))
+      : await dispatch(createSize(body));
 
-    setTimeout(() => {
-      reset();
-
-      onSuccess && onSuccess();
-    }, 500);
+    onSuccess && onSuccess();
+    reset()
   };
+
+  
 
   return (
     <Box

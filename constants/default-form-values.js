@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 export const userDefaultFormValues = (data) => ({
   firstName: data?.firstName || "",
   lastName: data?.lastName || "",
-  phoneNumber: data?.phoneNumber || "",
+  phone: data?.phone || "",
   email: data?.email || "",
   password: data?.password || "",
   shebaNumber: data?.shebaNumber || "",
@@ -118,6 +118,7 @@ export const transactionDefaultValues = (data) => ({
 });
 
 export const colorDefaultValues = (data) => ({
+  _id: data?._id || null,
   code: data?.code || "#000000",
   translations: data?.translations || [
     {

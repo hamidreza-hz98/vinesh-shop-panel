@@ -5,20 +5,31 @@ import React from "react";
 import Overview from "../common/overview/Overview";
 import { colorColumns } from "@/constants/columns";
 import ColorForm from "../forms/ColorForm";
+import { useDispatch } from "react-redux";
+import { transformGridQuery } from "@/lib/request";
+import { deleteColor, getAllColors } from "@/store/color/color.action";
+import QueryString from "qs";
 
 const ColorsPageWrapper = () => {
+  const dispatch = useDispatch();
+
   const getColors = async (params) => {
-    console.log("Fetching colors with params:", params);
+    const query = transformGridQuery({ ...params });
+
+    const data = await dispatch(
+      getAllColors(QueryString.stringify(query, { encodedValueOnly: true }))
+    ).unwrap();
 
     return {
-      items: COLORS_MOCK_DATA,
-      rowCount: COLORS_MOCK_DATA.length,
+      items: data.colors,
+      rowCount: data.total,
     };
   };
 
-  const deleteColor = async (id) => {
-    console.log("Deleting color with id:", id);
-    return { success: true };
+  const handleDeleteColor = async (_id) => {
+    const message = await dispatch(deleteColor(_id)).unwrap();
+
+    return { success: true, message };
   };
 
   return (
@@ -32,7 +43,7 @@ const ColorsPageWrapper = () => {
         ]}
         columns={colorColumns}
         getMany={getColors}
-        deleteOne={deleteColor}
+        deleteOne={handleDeleteColor}
         formMode="drawer"
         FormComponent={ColorForm}
       />

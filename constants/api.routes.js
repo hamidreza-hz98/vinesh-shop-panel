@@ -37,3 +37,31 @@ export const modifyTagApi = (id) =>
 
 export const getAllTagsApi = (query) =>
   `${process.env.NEXT_PUBLIC_BASE_URL}/tag/all?${query}`;
+
+export const createColorApi = `${process.env.NEXT_PUBLIC_BASE_URL}/color`;
+
+export const modifyColorApi = (id) =>
+  `${process.env.NEXT_PUBLIC_BASE_URL}/color/${id}`;
+
+export const getAllColorsApi = (query) =>
+  `${process.env.NEXT_PUBLIC_BASE_URL}/color/all?${query}`;
+
+export const createSizeApi = `${process.env.NEXT_PUBLIC_BASE_URL}/size`;
+
+export const modifySizeApi = (id) =>
+  `${process.env.NEXT_PUBLIC_BASE_URL}/size/${id}`;
+
+export const getAllSizesApi = (query) =>
+  `${process.env.NEXT_PUBLIC_BASE_URL}/size/all?${query}`;
+
+export const createUserApi = `${process.env.NEXT_PUBLIC_BASE_URL}/user`;
+
+export const modifyUserApi = (id) =>
+  `${process.env.NEXT_PUBLIC_BASE_URL}/user/${id}`;
+
+export const getAllUsersApi = (query) =>
+  `${process.env.NEXT_PUBLIC_BASE_URL}/user/all?${query}`;
+
+
+export const userDetailsApi = (query) =>
+  `${process.env.NEXT_PUBLIC_BASE_URL}/user/details?${query}`;

@@ -5,20 +5,31 @@ import React from "react";
 import Overview from "../common/overview/Overview";
 import { sizeColumns } from "@/constants/columns";
 import SizeForm from "../forms/SizeForm";
+import { useDispatch } from "react-redux";
+import { transformGridQuery } from "@/lib/request";
+import { deleteSize, getAllSizes } from "@/store/size/size.action";
+import QueryString from "qs";
 
 const SizesPageWrapper = () => {
+  const dispatch = useDispatch();
+
   const getSizes = async (params) => {
-    console.log("Fetching sizes with params:", params);
+    const query = transformGridQuery({ ...params });
+
+    const data = await dispatch(
+      getAllSizes(QueryString.stringify(query, { encodeValuesOnly: true }))
+    ).unwrap();
 
     return {
-      items: SIZES_MOCK_DATA,
-      rowCount: SIZES_MOCK_DATA.length,
+      items: data.sizes,
+      rowCount: data.total,
     };
   };
 
-  const deleteSize = async (id) => {
-    console.log("Deleting size with id:", id);
-    return { success: true };
+  const handleDeleteSize = async (_id) => {
+    const message = await dispatch(deleteSize(_id)).unwrap();
+
+    return { success: true, message };
   };
 
   return (
@@ -32,7 +43,7 @@ const SizesPageWrapper = () => {
         ]}
         columns={sizeColumns}
         getMany={getSizes}
-        deleteOne={deleteSize}
+        deleteOne={handleDeleteSize}
         formMode="drawer"
         FormComponent={SizeForm}
       />
